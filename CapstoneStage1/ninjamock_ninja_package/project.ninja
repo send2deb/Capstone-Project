@@ -1,0 +1,3424 @@
+{
+  "name": "Untitled project",
+  "description": null,
+  "contentType": "json",
+  "fileVersion": 3,
+  "type": "AndroidProject",
+  "theme": "napkin",
+  "contents": {
+    "id": 54861256,
+    "appName": "Untitled project",
+    "saveTime": "2018-07-11T08:19:58.412Z",
+    "lastNotificationId": 0,
+    "theme": "napkin",
+    "isCrazy": true,
+    "defaultFontFamily": "TomsHandwritten",
+    "pageGroups": [
+      {
+        "type": "sketch.framework.PageGroup",
+        "properties": {
+          "id": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+          "name": "Default group",
+          "pageIds": [
+            "b5c84257-215b-3cca-83fc-b3a6564d3a9a",
+            "ae54d01f-e32c-78e9-e9ca-47907d932512",
+            "138b3612-91f9-ce13-f3e1-17fbbf1aa46e",
+            "9d479aac-d3e2-27b0-c9a0-d3b92e6063a8",
+            "3dec5b41-1011-55e3-13f9-eef0bd7b1af8"
+          ]
+        }
+      }
+    ],
+    "satelliteProjects": [],
+    "extraParameters": null,
+    "pages": [
+      {
+        "version": 1,
+        "id": "b5c84257-215b-3cca-83fc-b3a6564d3a9a",
+        "type": "sketch.ui.pages.PortableDevicePage",
+        "name": "Page 1",
+        "background": {
+          "value": null,
+          "type": null,
+          "lineWidth": 0,
+          "__type__": "sketch.framework.Brush"
+        },
+        "children": [
+          {
+            "type": "sketch.ui.common.PortableDevice",
+            "version": 1,
+            "id": "61d98e06-bdda-4505-8da0-314feb4d0343",
+            "properties": {
+              "width": 3130,
+              "height": 2320
+            },
+            "children": [
+              {
+                "type": "sketch.ui.common.Image",
+                "version": 6,
+                "id": "4e66d45d-784f-4eec-dafc-d723c06a39ad",
+                "properties": {
+                  "width": 452,
+                  "height": 186.3922983827299,
+                  "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                  "left": 0,
+                  "top": 47,
+                  "clipSelf": true,
+                  "source.name": "ContentPicture",
+                  "source.__type__": "sketch.framework.ImageSourceFont",
+                  "displayMode": "stretch",
+                  "backgroundBrush.value": "rgba(143,66,143,1)",
+                  "backgroundBrush.type": "color",
+                  "backgroundBrush.lineWidth": 0,
+                  "backgroundBrush.__type__": "sketch.framework.Brush",
+                  "borderBrush.value": "rgba(128,33,128,1)",
+                  "borderBrush.type": "color",
+                  "borderBrush.__type__": "sketch.framework.Brush",
+                  "opacity": 0.8
+                }
+              },
+              {
+                "type": "sketch.framework.Rectangle",
+                "version": 3,
+                "id": "60a51111-fbc4-2364-7f34-c178c2b7f670",
+                "properties": {
+                  "width": 293,
+                  "height": 72,
+                  "left": 40,
+                  "top": 124,
+                  "borderBrush.value": "rgba(11,153,68,1)",
+                  "borderBrush.type": "color",
+                  "borderBrush.__type__": "sketch.framework.Brush"
+                }
+              },
+              {
+                "type": "sketch.ui.common.Label",
+                "version": 3,
+                "id": "5b055722-f153-38a2-6403-84e85759d055",
+                "properties": {
+                  "width": 258,
+                  "height": 27,
+                  "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                  "left": 53.975129483358813,
+                  "top": 149.84987892993027,
+                  "text": "Where do you want to go?",
+                  "font.family": "Tahoma",
+                  "font.color.value": "rgba(171,171,171,1)",
+                  "font.color.type": "color",
+                  "font.color.lineWidth": 0,
+                  "font.color.__type__": "sketch.framework.Brush",
+                  "font.__type__": "sketch.framework.Font",
+                  "scaleWithFontSize": true
+                }
+              },
+              {
+                "type": "sketch.ui.common.Label",
+                "version": 3,
+                "id": "e93cd255-3343-8ee0-382d-fddd85b6579d",
+                "properties": {
+                  "width": 91,
+                  "height": 31,
+                  "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                  "left": 40.952942124925613,
+                  "top": 233.39229838272985,
+                  "text": "Near By",
+                  "font.family": "Tahoma",
+                  "font.size": 26,
+                  "font.__type__": "sketch.framework.Font",
+                  "scaleWithFontSize": true
+                }
+              },
+              {
+                "type": "sketch.ui.android.ActionBar",
+                "version": 1,
+                "id": "99b85d30-2039-6efd-1e6c-2f29df594693",
+                "properties": {
+                  "name": "Action Bar [746]",
+                  "left": 0,
+                  "top": 0,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ActionBarTemplate"
+                },
+                "tags": "Bar",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "b160fcf9-620e-9381-9951-4433a2bc71db",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "name": "Icon [102]",
+                      "left": 420,
+                      "top": 10,
+                      "anchor.left": false,
+                      "anchor.right": true,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "277a7760-f654-82ee-b45e-3f7753a48916",
+                    "properties": {
+                      "width": 25,
+                      "height": 42,
+                      "name": "Icon [2414]",
+                      "top": 5,
+                      "clipSelf": true,
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "a83c4d85-f8f1-3701-3d57-5090a4759820",
+                    "properties": {
+                      "width": 36,
+                      "height": 48,
+                      "name": "Icon [5129]",
+                      "left": 25,
+                      "clipSelf": true,
+                      "source.name": "LocationMap",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(11,153,68,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "34eff609-ea43-9958-9a3f-c32bef271a33",
+                    "properties": {
+                      "width": 136,
+                      "height": 48,
+                      "name": "Label [5148]",
+                      "left": 66,
+                      "text": "tinru",
+                      "textVerticalAlign": "middle",
+                      "font.family": "Tahoma",
+                      "font.size": 26,
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "1105ed0f-1ce1-88d1-919c-815eb5b6c198",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 40,
+                  "top": 271,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "Resturant",
+                  "font.family": "Tahoma",
+                  "font.size": 22,
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/72ac7e81-86fc-48e1-b3b3-c3adece7f7af.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "206e2bd5-08a0-d38a-b87b-bef608eb29e8",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 233,
+                  "top": 271,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "Cafe",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/04891448-c49e-49f6-a985-4ce6d2e6d68c.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "4e0aaea4-6046-943a-b7bb-7eedb342dcca",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 40,
+                  "top": 430,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "Bar",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/dff7abc7-9ef6-4188-87e9-d8b68bc46b9b.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "1c87276d-1528-dc62-31d5-33bd427e172b",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 233,
+                  "top": 430,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "ATM",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/654b5129-4952-4297-85c4-12c8656c8bf8.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "f60c17b4-38af-32ba-f100-352a8292369d",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 40,
+                  "top": 587,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "Shopping",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 40,
+                  "iconSource.height": 40,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/525391b9-7b03-40a8-91e4-e83e58a4c2ae.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "cff78346-bc09-32e8-efcc-2a6f479a028a",
+                "properties": {
+                  "width": 162,
+                  "height": 132,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 233,
+                  "top": 589,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "Petrol",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/9dffe257-639f-4352-8401-bfd4fe56bee2.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              }
+            ],
+            "panelProperties": {
+              "type": "sketch.ui.common.PortableDevicePanel",
+              "version": 1,
+              "id": "5b288f79-a778-dbb9-1bb2-f0aa05bc07ab",
+              "properties": {
+                "width": 450,
+                "height": 800,
+                "left": 1340,
+                "top": 760,
+                "clipSelf": true
+              }
+            }
+          },
+          {
+            "type": "sketch.framework.TemplatedElement",
+            "version": 1,
+            "id": "99792c41-6ddd-70c9-66ce-62d4af59a907",
+            "properties": {
+              "name": "Button [99792c41-6ddd-70c9-66ce-62d4af59a907]",
+              "left": 1685,
+              "top": 884,
+              "templateId": "ui.android.templates.ImageTextButtonTemplate",
+              "width": 62,
+              "height": 72,
+              "text": "",
+              "iconSource.name": "ActionSearch",
+              "iconSource.__type__": "sketch.framework.ImageSourceFont"
+            },
+            "states": {
+              "default": {
+                "properties": {
+                  "borderBrush.value": "rgba(11,153,68,1)",
+                  "borderBrush.type": "color",
+                  "borderBrush.lineWidth": null,
+                  "borderBrush.__type__": "sketch.framework.Brush"
+                }
+              }
+            }
+          },
+          {
+            "type": "sketch.framework.Rectangle",
+            "version": 3,
+            "id": "4a11a977-f0df-09c2-e005-ca87ff87375a",
+            "properties": {
+              "width": 453,
+              "height": 181,
+              "left": 1338,
+              "top": 808
+            }
+          },
+          {
+            "type": "sketch.framework.Rectangle",
+            "version": 3,
+            "id": "15dea204-ac19-823a-5b67-8b20372973da",
+            "properties": {
+              "left": 0,
+              "top": 0
+            }
+          }
+        ],
+        "isDeleted": false,
+        "groupId": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+        "screenType": "Android"
+      },
+      {
+        "version": 1,
+        "id": "ae54d01f-e32c-78e9-e9ca-47907d932512",
+        "type": "sketch.ui.pages.PortableDevicePage",
+        "name": "Page 2",
+        "background": {
+          "value": null,
+          "type": null,
+          "lineWidth": 0,
+          "__type__": "sketch.framework.Brush"
+        },
+        "children": [
+          {
+            "type": "sketch.ui.common.PortableDevice",
+            "version": 1,
+            "id": "1e133d63-2411-243c-b523-d34e552e5104",
+            "properties": {
+              "width": 3130,
+              "height": 2320
+            },
+            "children": [
+              {
+                "type": "sketch.ui.android.ActionBar",
+                "version": 1,
+                "id": "a2e61591-385f-a1cc-5335-6fc2926003dc",
+                "properties": {
+                  "name": "Action Bar [746]",
+                  "left": 0,
+                  "top": 0,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ActionBarTemplate"
+                },
+                "tags": "Bar",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "a25558fa-11df-6404-763b-7b0816d2eb3c",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "name": "Icon [102]",
+                      "left": 420,
+                      "top": 10,
+                      "anchor.left": false,
+                      "anchor.right": true,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "3fd251c1-2f85-e8ae-f608-d3d6734907fd",
+                    "properties": {
+                      "width": 25,
+                      "height": 42,
+                      "name": "Icon [2414]",
+                      "top": 3,
+                      "clipSelf": true,
+                      "source.name": "NavigationBack",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "left": 12
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "78f97531-3303-1168-3394-160155790ca2",
+                    "properties": {
+                      "width": 36,
+                      "height": 48,
+                      "name": "Icon [5129]",
+                      "left": 42,
+                      "clipSelf": true,
+                      "top": 0,
+                      "source.name": "LocationMap",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(11,153,68,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "02f56359-260e-63b2-f807-96ae10c10a28",
+                    "properties": {
+                      "width": 165,
+                      "height": 48,
+                      "name": "Label [5148]",
+                      "left": 87.997791579767721,
+                      "top": 0.25305989334063383,
+                      "text": "Location Name",
+                      "textVerticalAlign": "middle",
+                      "font.family": "Tahoma",
+                      "font.size": 26,
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "d57cc792-13d6-5aa2-caa8-8778f3c5c7be",
+                "properties": {
+                  "name": "List item [343]",
+                  "left": 21,
+                  "top": 60,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "width": 399,
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "c8b7d271-256b-db90-b2a6-b6bb93a50d75",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "clipSelf": true,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "300cc639-c105-60b8-073b-4c64a6bbeec8",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 1",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "f592dd8e-6022-23aa-9631-753cf3839c55",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "7744d572-be9c-bc0c-ac7e-0289101bd2cb",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 23,
+                  "top": 138,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "238e8ae9-06a7-303b-70ee-1059cd3b643d",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "clipSelf": true,
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL"
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Rectangle",
+                    "version": 3,
+                    "id": "83e110fe-567d-aecc-700d-aac5047099f3",
+                    "properties": {
+                      "name": "Rectangle [83e110fe-567d-aecc-700d-aac5047099f3]",
+                      "left": -1363,
+                      "top": -898
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "2d6c9883-d158-7126-7a16-1b376c288bd5",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 2",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "9cc7c445-0bb4-de97-85fa-a4bf05245980",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "229c742a-3c11-e765-e3ea-358920b9690e",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 22,
+                  "top": 217,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "90430747-c8e0-bb7c-fe65-13f8276aac27",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "clipSelf": true,
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "f6a0942b-49e9-7661-e3f3-3dee88c962a9",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 3",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "5bbacd16-924c-4d19-dc76-8c635a7e5316",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "4fdc84f0-ada9-0c18-1e01-b14ad94c6923",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 21,
+                  "top": 291,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "cbbb6eed-acc0-1992-477b-b80686689729",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "clipSelf": true,
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "989bb480-e835-b6a7-ae65-96eb8930957d",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 4",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "626a8319-9cbf-352f-832a-ee6c0876830d",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "a20f47b7-ed52-891d-0dd8-8c743b5a199d",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 20,
+                  "top": 358,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "bcc127e8-025f-112e-6b88-d3011f66ba8f",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "8c1dd224-3d38-d55c-58e9-25c9e3f20b62",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 5",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "2a1e34d9-2a88-673d-eed7-3fdc5e7609c5",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Rectangle",
+                    "version": 3,
+                    "id": "98a28f9e-ef42-54a4-19ff-3ba9875893c6",
+                    "properties": {
+                      "width": 140,
+                      "height": 124,
+                      "name": "Rectangle [98a28f9e-ef42-54a4-19ff-3ba9875893c6]",
+                      "left": 38,
+                      "top": 64
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Rectangle",
+                    "version": 3,
+                    "id": "388ff3ba-fc9a-d150-56ec-32f85f4aaa28",
+                    "properties": {
+                      "name": "Rectangle [388ff3ba-fc9a-d150-56ec-32f85f4aaa28]",
+                      "left": -1360,
+                      "top": -1121
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "48f55ac7-a514-b7c3-5d00-df94f0742766",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 20,
+                  "top": 430,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "32b99334-a565-e723-bebf-9338da841874",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "c4cacc3d-6877-d9af-d6b5-2562249bebbe",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 6",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "5c07a503-8d93-3b5d-6e55-2d78cca60a3d",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "d020a044-41fb-1655-16ac-0ea36f1bcdcd",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 22,
+                  "top": 498,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "02f23c2a-6311-60b1-7341-78608e44acbd",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "70786d11-49d4-dce3-9081-23f40e579e03",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 7",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "4f988dcb-5025-1214-d468-242269a517f2",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Rectangle",
+                    "version": 3,
+                    "id": "e7dd7b1c-20aa-d7b3-eeb5-562520b3559d",
+                    "properties": {
+                      "name": "Rectangle [e7dd7b1c-20aa-d7b3-eeb5-562520b3559d]",
+                      "left": -1362,
+                      "top": -1258
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "48904a73-72d0-6a63-56d7-48ffc9287741",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 22,
+                  "top": 560,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "88e43f4f-f56f-49ed-2978-7443bc0fcf56",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "9654f537-aa45-b61f-b180-6fbbc932fa93",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 8",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "e4ac4abc-3302-5f8a-e3a6-c5cf0ca9272b",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.android.ListItem",
+                "version": 1,
+                "id": "6b021f4a-6d80-2377-2773-31ab685d45a0",
+                "properties": {
+                  "width": 399,
+                  "name": "List item [343]",
+                  "left": 20,
+                  "top": 616,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ListItemTemplate",
+                  "height": 64
+                },
+                "tags": "ListItem",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "52ab9b7b-7e78-3744-66c3-1480a6de0741",
+                    "properties": {
+                      "width": 64,
+                      "height": 64,
+                      "name": "Icon [405]",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.width": 64,
+                      "source.height": 64,
+                      "source.url": "https://cdn2.iconfinder.com/data/icons/picons-essentials/57/image-64.png",
+                      "source.__type__": "sketch.framework.ImageSourceURL",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "5aa60cf7-2191-da08-2a4a-dfdc387c5cb7",
+                    "properties": {
+                      "width": 312,
+                      "height": 25,
+                      "name": "Label [2524]",
+                      "left": 84.989947880321779,
+                      "top": 7.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Point of Interest Item 9",
+                      "font.family": "Tahoma",
+                      "font.size": 20,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "4831c94a-b120-75dc-3de0-08a3da2ea6bb",
+                    "properties": {
+                      "width": 281,
+                      "height": 24,
+                      "name": "Label [2525]",
+                      "left": 86,
+                      "top": 29.15185882486071,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "text": "Brief Description of the point of interest in two or three lines",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "multiLine": true
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "77c7c23b-9bb8-a1c4-46d5-50392536d192",
+                "properties": {
+                  "name": "Button [77c7c23b-9bb8-a1c4-46d5-50392536d192]",
+                  "left": 23,
+                  "top": 715,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "width": 367,
+                  "height": 50,
+                  "text": "Flight to Paris",
+                  "font.family": "Tahoma",
+                  "font.size": 23,
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/9d05fdd1-fbc1-440b-ab13-9ce7c384a5d5.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              }
+            ],
+            "panelProperties": {
+              "type": "sketch.ui.common.PortableDevicePanel",
+              "version": 1,
+              "id": "ca19ea59-1696-42f8-119b-7ea3e6399f83",
+              "properties": {
+                "width": 450,
+                "height": 800,
+                "left": 1340,
+                "top": 760,
+                "clipSelf": true
+              }
+            }
+          }
+        ],
+        "isDeleted": false,
+        "groupId": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+        "screenType": "Android"
+      },
+      {
+        "version": 1,
+        "id": "138b3612-91f9-ce13-f3e1-17fbbf1aa46e",
+        "type": "sketch.ui.pages.PortableDevicePage",
+        "name": "Page 3",
+        "background": {
+          "value": null,
+          "type": null,
+          "lineWidth": 0,
+          "__type__": "sketch.framework.Brush"
+        },
+        "children": [
+          {
+            "type": "sketch.ui.common.PortableDevice",
+            "version": 1,
+            "id": "c9ceb096-06eb-4197-683a-7e20c0800ae1",
+            "properties": {
+              "width": 3130,
+              "height": 2320
+            },
+            "children": [
+              {
+                "type": "sketch.ui.common.Image",
+                "version": 6,
+                "id": "b28d49d8-2b99-2291-d8fe-47349510982b",
+                "properties": {
+                  "width": 450,
+                  "height": 301,
+                  "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                  "left": 0,
+                  "top": 49,
+                  "clipSelf": true,
+                  "source.name": "ContentPicture",
+                  "source.__type__": "sketch.framework.ImageSourceFont",
+                  "backgroundBrush.value": "rgba(46,96,135,1)",
+                  "backgroundBrush.type": "color",
+                  "backgroundBrush.__type__": "sketch.framework.Brush"
+                }
+              },
+              {
+                "type": "sketch.ui.android.ActionBar",
+                "version": 1,
+                "id": "912e4c3b-fcac-f7db-9c5e-5bccdbff8cd9",
+                "properties": {
+                  "name": "Action Bar [746]",
+                  "left": 0,
+                  "top": 0,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ActionBarTemplate"
+                },
+                "tags": "Bar",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "2c917b6f-e022-d3c1-764c-b590e4ece864",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "name": "Icon [102]",
+                      "left": 420,
+                      "top": 10,
+                      "anchor.left": false,
+                      "anchor.right": true,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "bdee5c34-9a6b-9e3a-9811-2fa11d756430",
+                    "properties": {
+                      "width": 25,
+                      "height": 42,
+                      "name": "Icon [2414]",
+                      "top": 5,
+                      "clipSelf": true,
+                      "left": 8,
+                      "source.name": "NavigationBack",
+                      "source.__type__": "sketch.framework.ImageSourceFont"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "850de94c-ae15-246c-4134-deaf49054ca2",
+                    "properties": {
+                      "width": 36,
+                      "height": 48,
+                      "name": "Icon [5129]",
+                      "left": 36,
+                      "clipSelf": true,
+                      "top": null,
+                      "source.name": "LocationMap",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(11,153,68,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "3e5736f1-afce-fe2b-e9d9-946cecc93b81",
+                    "properties": {
+                      "width": 171,
+                      "height": 48,
+                      "name": "Label [5148]",
+                      "left": 78.997334665236849,
+                      "top": 0.30541711265246008,
+                      "text": "Point of Interest Name",
+                      "textVerticalAlign": "middle",
+                      "font.family": "Tahoma",
+                      "font.size": 26,
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "fc94f423-f8b4-7e52-c9cb-3af64a0fc6d1",
+                "properties": {
+                  "width": 162,
+                  "height": 54,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 37,
+                  "top": 615,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/72ac7e81-86fc-48e1-b3b3-c3adece7f7af.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL",
+                  "text": "Resturant",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "cab09fe2-a124-af61-579a-4a6ba36e7eb0",
+                "properties": {
+                  "width": 162,
+                  "height": 54,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 230,
+                  "top": 615,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/04891448-c49e-49f6-a985-4ce6d2e6d68c.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL",
+                  "text": "Cafe",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "7594bf65-867a-068e-e326-9a4fb3da8c4e",
+                "properties": {
+                  "width": 162,
+                  "height": 48,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 37,
+                  "top": 679,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/dff7abc7-9ef6-4188-87e9-d8b68bc46b9b.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL",
+                  "text": "Bar",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "c740b5ce-3724-5625-a0f4-36d765d88448",
+                "properties": {
+                  "width": 162,
+                  "height": 48,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 230,
+                  "top": 679,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "text": "ATM",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/654b5129-4952-4297-85c4-12c8656c8bf8.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "25e9fdb4-851d-accf-cb4c-dada1df9996a",
+                "properties": {
+                  "width": 162,
+                  "height": 49,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 37,
+                  "top": 737,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "iconSource.width": 40,
+                  "iconSource.height": 40,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/525391b9-7b03-40a8-91e4-e83e58a4c2ae.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL",
+                  "text": "Shopping",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.TemplatedElement",
+                "version": 1,
+                "id": "d48ee377-0097-dd4d-55d4-17eb23b972fb",
+                "properties": {
+                  "width": 162,
+                  "height": 51,
+                  "name": "Button [1105ed0f-1ce1-88d1-919c-815eb5b6c198]",
+                  "left": 230,
+                  "top": 736,
+                  "templateId": "ui.android.templates.ImageTextButtonTemplate",
+                  "iconSource.width": 48,
+                  "iconSource.height": 48,
+                  "iconSource.url": "https://ninjastorage.blob.core.windows.net/companyfiles/54878066/9dffe257-639f-4352-8401-bfd4fe56bee2.png",
+                  "iconSource.__type__": "sketch.framework.ImageSourceURL",
+                  "text": "Petrol",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font"
+                },
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.ui.common.TextBlock",
+                "version": 2,
+                "id": "dd096c81-9dd2-b535-4a3b-66313f88eb19",
+                "properties": {
+                  "width": 390,
+                  "height": 240,
+                  "name": "Text block [91df7c1c-0efa-41ad-c96a-d500571ea979]",
+                  "left": 30,
+                  "top": 359,
+                  "text": "The description of the selected location will go here as a paragraph. This is to fill up the space. This is to fill up the space. This is to fill up the space. This is to fill up the space. This is to fill up the space. This is to fill up the space. This is to fill up the space. This is to fill up the space. ",
+                  "font.family": "Tahoma",
+                  "font.__type__": "sketch.framework.Font",
+                  "multiLine": true,
+                  "clipSelf": true
+                },
+                "tags": "Primitive,P"
+              },
+              {
+                "type": "sketch.framework.Rectangle",
+                "version": 3,
+                "id": "e226c1ad-8302-8def-7440-faf893377dcc",
+                "properties": {
+                  "width": 449,
+                  "height": 299,
+                  "left": 0,
+                  "top": 50
+                }
+              }
+            ],
+            "panelProperties": {
+              "type": "sketch.ui.common.PortableDevicePanel",
+              "version": 1,
+              "id": "af2f012f-76b1-9faa-a6df-d020e3c8777b",
+              "properties": {
+                "width": 450,
+                "height": 800,
+                "left": 1340,
+                "top": 760,
+                "clipSelf": true
+              }
+            }
+          },
+          {
+            "type": "sketch.framework.Rectangle",
+            "version": 3,
+            "id": "88635b06-3010-054a-f84f-bfd427197138",
+            "properties": {
+              "left": 0,
+              "top": 0
+            }
+          }
+        ],
+        "isDeleted": false,
+        "groupId": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+        "screenType": "Android"
+      },
+      {
+        "version": 1,
+        "id": "9d479aac-d3e2-27b0-c9a0-d3b92e6063a8",
+        "type": "sketch.ui.pages.PortableDevicePage",
+        "name": "Page 4",
+        "background": {
+          "value": null,
+          "type": null,
+          "lineWidth": 0,
+          "__type__": "sketch.framework.Brush"
+        },
+        "children": [
+          {
+            "type": "sketch.ui.common.PortableDevice",
+            "version": 1,
+            "id": "010f70eb-97de-6a3e-df4c-68f87f3a4483",
+            "properties": {
+              "width": 3130,
+              "height": 2320
+            },
+            "children": [
+              {
+                "type": "sketch.ui.android.ActionBar",
+                "version": 1,
+                "id": "c7718a04-6150-8553-c0d4-7c0408c15a8f",
+                "properties": {
+                  "name": "Action Bar [746]",
+                  "left": 0,
+                  "top": 0,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ActionBarTemplate"
+                },
+                "tags": "Bar",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "a05864fa-9b94-e62d-b623-86a07960e5bd",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "name": "Icon [102]",
+                      "left": 420,
+                      "top": 10,
+                      "anchor.left": false,
+                      "anchor.right": true,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "475b467a-249a-fe07-aa3d-961f1b12c6dc",
+                    "properties": {
+                      "width": 25,
+                      "height": 42,
+                      "name": "Icon [2414]",
+                      "top": 5,
+                      "clipSelf": true,
+                      "left": 9,
+                      "source.name": "NavigationBack",
+                      "source.__type__": "sketch.framework.ImageSourceFont"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "b338eeae-8625-15e7-d690-8a5bbeaefb1c",
+                    "properties": {
+                      "width": 36,
+                      "height": 48,
+                      "name": "Icon [5129]",
+                      "left": 38,
+                      "clipSelf": true,
+                      "top": null,
+                      "source.name": "LocationMap",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(11,153,68,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "11a797cb-1e6a-fc51-83ea-3fd16d7e304b",
+                    "properties": {
+                      "width": 220,
+                      "height": 48,
+                      "name": "Label [5148]",
+                      "left": 78.993603196568444,
+                      "top": 0.73300107036590845,
+                      "text": "Flight to Paris",
+                      "textVerticalAlign": "middle",
+                      "font.family": "Tahoma",
+                      "font.size": 26,
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.Rectangle",
+                "version": 3,
+                "id": "8666de77-5fe4-5137-fdbb-25caf17e08ae",
+                "properties": {
+                  "left": -1340,
+                  "top": -760
+                }
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "c2c2b56a-e13f-7687-b391-d00652cc5c68",
+                "properties": {
+                  "width": 395.94164456281032,
+                  "height": 95.373908037579554,
+                  "left": 16.022917557362462,
+                  "top": 77,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "a2d11055-a11f-af3e-31ad-131a8babe955",
+                    "properties": {
+                      "width": 82,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 1.9394361425779607,
+                      "top": 24.3138387061839,
+                      "text": "London",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "bca74ad3-b81d-bd5c-a88f-63dc164b97f8",
+                    "properties": {
+                      "width": 53,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 342.94164456281032,
+                      "top": 25.060778812843296,
+                      "text": "Paris",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Line",
+                    "version": 2,
+                    "id": "9b59a85b-d36b-f4d4-60e0-c84db4c90f90",
+                    "properties": {
+                      "width": 244,
+                      "height": 0,
+                      "left": 90.977082442637538,
+                      "top": 40,
+                      "x2": 244,
+                      "x1": 0,
+                      "y1": 0,
+                      "y2": 0
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "b78a115c-4256-4740-0340-2815833ed329",
+                    "properties": {
+                      "width": 40,
+                      "height": 40,
+                      "name": "Icon [7100d997-6d7b-6963-68f9-de145e81076c]",
+                      "left": 192.97708244263754,
+                      "top": 0,
+                      "clipSelf": true,
+                      "source.name": "AllertsAndStatesAirplaneModeOff",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(14,128,119,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "195df019-745c-95b4-f76c-5ff76cc1fa8f",
+                    "properties": {
+                      "width": 318,
+                      "height": 21,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 0,
+                      "top": 74.373908037579554,
+                      "text": "Departure Date & Time : 13-Aug-18 09:22",
+                      "font.family": "Tahoma",
+                      "font.size": 17,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "8da8e85f-2834-fc7e-34dc-016c9314b0a6",
+                    "properties": {
+                      "width": 48,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 338.00310874744969,
+                      "top": 70.017680863702708,
+                      "text": "£ 120",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "aba3c705-5827-86f5-1390-7df2999c3bd9",
+                    "properties": {
+                      "width": 71,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 181.00135724174811,
+                      "top": 46.200702674028776,
+                      "text": "BA 1332",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "edef5dc8-6a0d-fc08-8593-4cb01f703e37",
+                "properties": {
+                  "width": 395.94164456281032,
+                  "height": 95.373908037579554,
+                  "left": 19.022917557362462,
+                  "top": 202,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "f41c97e8-30a0-9242-5af8-098a76abcb17",
+                    "properties": {
+                      "width": 82,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 1.9394361425779607,
+                      "top": 24.3138387061839,
+                      "text": "London",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "cbd6b789-11ab-517a-c832-d2e1199e1905",
+                    "properties": {
+                      "width": 53,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 342.94164456281032,
+                      "top": 25.060778812843296,
+                      "text": "Paris",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Line",
+                    "version": 2,
+                    "id": "efb9d0ca-b3e2-e33d-66d2-51fb372b831a",
+                    "properties": {
+                      "width": 244,
+                      "height": 0,
+                      "left": 90.977082442637538,
+                      "top": 40,
+                      "x2": 244
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "2610e65f-a08f-8d50-fa90-0d6e8126538a",
+                    "properties": {
+                      "width": 40,
+                      "height": 40,
+                      "name": "Icon [7100d997-6d7b-6963-68f9-de145e81076c]",
+                      "left": 192.97708244263754,
+                      "top": 0,
+                      "source.name": "AllertsAndStatesAirplaneModeOff",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true,
+                      "backgroundBrush.value": "rgba(14,128,119,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "6939cd9d-0cf1-08c7-d7ad-dddef318833a",
+                    "properties": {
+                      "width": 318,
+                      "height": 21,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 0,
+                      "top": 74.373908037579554,
+                      "text": "Departure Date & Time : 13-Aug-18 09:22",
+                      "font.family": "Tahoma",
+                      "font.size": 17,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "02929902-c62e-fe79-a359-df29656b41e6",
+                    "properties": {
+                      "width": 48,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 338.00310874744969,
+                      "top": 70.017680863702708,
+                      "text": "£ 120",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "f09f144b-fcc2-59d8-eff0-5272b0a1bd1f",
+                    "properties": {
+                      "width": 71,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 181.00135724174811,
+                      "top": 46.200702674028776,
+                      "text": "BA 1332",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "e6f7a262-763f-9f68-fa53-a982e81bff16",
+                "properties": {
+                  "width": 395.94164456281032,
+                  "height": 95.373908037579554,
+                  "left": 22.022917557362462,
+                  "top": 340,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "e727afd2-b7e1-1729-091b-7b0e58132f18",
+                    "properties": {
+                      "width": 82,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 1.9394361425779607,
+                      "top": 24.3138387061839,
+                      "text": "London",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "66d56abf-e355-0eee-80a5-cb35f91c94f6",
+                    "properties": {
+                      "width": 53,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 342.94164456281032,
+                      "top": 25.060778812843296,
+                      "text": "Paris",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Line",
+                    "version": 2,
+                    "id": "3b442d5b-a089-9a2a-f9df-6205b70bf8de",
+                    "properties": {
+                      "width": 244,
+                      "height": 0,
+                      "left": 90.977082442637538,
+                      "top": 40,
+                      "x2": 244
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "f3d0ad10-6080-983a-0884-5298d7a8b7f1",
+                    "properties": {
+                      "width": 40,
+                      "height": 40,
+                      "name": "Icon [7100d997-6d7b-6963-68f9-de145e81076c]",
+                      "left": 192.97708244263754,
+                      "top": 0,
+                      "source.name": "AllertsAndStatesAirplaneModeOff",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true,
+                      "backgroundBrush.value": "rgba(14,128,119,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "b490d151-e94b-d6cd-96ee-09a15e430e5b",
+                    "properties": {
+                      "width": 318,
+                      "height": 21,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 0,
+                      "top": 74.373908037579554,
+                      "text": "Departure Date & Time : 13-Aug-18 09:22",
+                      "font.family": "Tahoma",
+                      "font.size": 17,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "9341e1ed-d3b9-d004-1e70-444133270769",
+                    "properties": {
+                      "width": 48,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 338.00310874744969,
+                      "top": 70.017680863702708,
+                      "text": "£ 120",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "04659b64-ced8-21c1-2ef9-350235f121ce",
+                    "properties": {
+                      "width": 71,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 181.00135724174811,
+                      "top": 46.200702674028776,
+                      "text": "BA 1332",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "fe559a33-549d-bcce-51dc-2b31fb86032a",
+                "properties": {
+                  "width": 395.94164456281032,
+                  "height": 95.373908037579554,
+                  "left": 24.022917557362462,
+                  "top": 460.01768086370271,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "6be3482c-35e1-a443-db55-1401f1190565",
+                    "properties": {
+                      "width": 82,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 1.9394361425779607,
+                      "top": 24.3138387061839,
+                      "text": "London",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "5bebc2f8-664b-6305-b230-4fa6f7b3a47f",
+                    "properties": {
+                      "width": 53,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 342.94164456281032,
+                      "top": 25.060778812843296,
+                      "text": "Paris",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Line",
+                    "version": 2,
+                    "id": "9d78c18b-2ca7-9f2d-08d6-962b8f91b342",
+                    "properties": {
+                      "width": 244,
+                      "height": 0,
+                      "left": 90.977082442637538,
+                      "top": 40,
+                      "x2": 244
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "19502759-48b4-7ddd-428d-704c44f4b0be",
+                    "properties": {
+                      "width": 40,
+                      "height": 40,
+                      "name": "Icon [7100d997-6d7b-6963-68f9-de145e81076c]",
+                      "left": 192.97708244263754,
+                      "top": 0,
+                      "source.name": "AllertsAndStatesAirplaneModeOff",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true,
+                      "backgroundBrush.value": "rgba(14,128,119,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "e76c9661-0316-a80b-5ad2-91b2725b53ee",
+                    "properties": {
+                      "width": 318,
+                      "height": 21,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 0,
+                      "top": 74.373908037579554,
+                      "text": "Departure Date & Time : 13-Aug-18 09:22",
+                      "font.family": "Tahoma",
+                      "font.size": 17,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "c1a413e4-8b9c-9118-f4f3-378a5be897c5",
+                    "properties": {
+                      "width": 48,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 338.00310874744969,
+                      "top": 70.017680863702708,
+                      "text": "£ 120",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "b123bc42-223f-1aab-a532-9102bd05651b",
+                    "properties": {
+                      "width": 71,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 181.00135724174811,
+                      "top": 46.200702674028776,
+                      "text": "BA 1332",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "33f7e54a-02e7-3546-07ca-89c71c8ee59a",
+                "properties": {
+                  "width": 395.94164456281032,
+                  "height": 95.373908037579554,
+                  "left": 25.022917557362462,
+                  "top": 587.01768086370271,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "d8a2476d-30df-81bf-8e6d-ca62249a8bc5",
+                    "properties": {
+                      "width": 82,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 1.9394361425779607,
+                      "top": 24.3138387061839,
+                      "text": "London",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "91cf2bcc-1e8f-a919-955a-8d9297a87931",
+                    "properties": {
+                      "width": 53,
+                      "height": 30,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 342.94164456281032,
+                      "top": 25.060778812843296,
+                      "text": "Paris",
+                      "font.family": "Tahoma",
+                      "font.size": 25,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Line",
+                    "version": 2,
+                    "id": "dad79b45-2990-28d9-f5ee-02aa808af88a",
+                    "properties": {
+                      "width": 244,
+                      "height": 0,
+                      "left": 90.977082442637538,
+                      "top": 40,
+                      "x2": 244
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "c43297a7-f36f-6e84-3a7f-1644a600ad4e",
+                    "properties": {
+                      "width": 40,
+                      "height": 40,
+                      "name": "Icon [7100d997-6d7b-6963-68f9-de145e81076c]",
+                      "left": 192.97708244263754,
+                      "top": 0,
+                      "source.name": "AllertsAndStatesAirplaneModeOff",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true,
+                      "backgroundBrush.value": "rgba(14,128,119,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "506a43dc-87d7-7263-54cd-f2e18cd7e9f7",
+                    "properties": {
+                      "width": 318,
+                      "height": 21,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 0,
+                      "top": 74.373908037579554,
+                      "text": "Departure Date & Time : 13-Aug-18 09:22",
+                      "font.family": "Tahoma",
+                      "font.size": 17,
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "e4f9b593-d28e-ba73-6db4-dca5c9d18d07",
+                    "properties": {
+                      "width": 48,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 338.00310874744969,
+                      "top": 70.017680863702708,
+                      "text": "£ 120",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "e81d9c3a-d8e7-50be-5d17-7f1f4029afad",
+                    "properties": {
+                      "width": 71,
+                      "height": 23,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 181.00135724174811,
+                      "top": 46.200702674028776,
+                      "text": "BA 1332",
+                      "font.family": "Tahoma",
+                      "font.size": 19,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  }
+                ]
+              }
+            ],
+            "panelProperties": {
+              "type": "sketch.ui.common.PortableDevicePanel",
+              "version": 1,
+              "id": "7093fd74-81dc-102b-6bf8-966731634cb9",
+              "properties": {
+                "width": 450,
+                "height": 800,
+                "left": 1340,
+                "top": 760,
+                "clipSelf": true
+              }
+            }
+          }
+        ],
+        "isDeleted": false,
+        "groupId": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+        "screenType": "Android"
+      },
+      {
+        "version": 1,
+        "id": "3dec5b41-1011-55e3-13f9-eef0bd7b1af8",
+        "type": "sketch.ui.pages.PortableDevicePage",
+        "name": "Page 5",
+        "background": {
+          "value": null,
+          "type": null,
+          "lineWidth": 0,
+          "__type__": "sketch.framework.Brush"
+        },
+        "children": [
+          {
+            "type": "sketch.ui.common.PortableDevice",
+            "version": 1,
+            "id": "6fc6e0a7-d71a-d40c-ce3a-2d69f2d7bf08",
+            "properties": {
+              "width": 3130,
+              "height": 2320
+            },
+            "children": [
+              {
+                "type": "sketch.ui.android.ActionBar",
+                "version": 1,
+                "id": "1d3c9ce8-5bd7-4e0b-ec86-cfb1fd113eac",
+                "properties": {
+                  "name": "Action Bar [746]",
+                  "left": 0,
+                  "top": 0,
+                  "enableGroupLocking": true,
+                  "templateId": "ui.android.templates.ActionBarTemplate"
+                },
+                "tags": "Bar",
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "8b5a22e3-03e7-fff9-cde9-98f03dd53cc1",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "name": "Icon [102]",
+                      "left": 420,
+                      "top": 10,
+                      "anchor.left": false,
+                      "anchor.right": true,
+                      "anchor.__type__": "sketch.framework.Anchor",
+                      "backgroundBrush.value": "default.text",
+                      "backgroundBrush.type": "resource",
+                      "backgroundBrush.lineWidth": 0,
+                      "backgroundBrush.__type__": "sketch.framework.Brush",
+                      "borderBrush.lineWidth": 0,
+                      "borderBrush.__type__": "sketch.framework.Brush",
+                      "source.name": "NavigationMore",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "2dfc2bfa-ce9a-9f9e-89d0-04e3e7115d0a",
+                    "properties": {
+                      "width": 25,
+                      "height": 42,
+                      "name": "Icon [2414]",
+                      "top": 5,
+                      "clipSelf": true,
+                      "left": 8,
+                      "source.name": "NavigationBack",
+                      "source.__type__": "sketch.framework.ImageSourceFont"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Icon",
+                    "version": 6,
+                    "id": "914b0b2a-3951-cae8-2d36-683661f62759",
+                    "properties": {
+                      "width": 36,
+                      "height": 48,
+                      "name": "Icon [5129]",
+                      "left": 37,
+                      "clipSelf": true,
+                      "top": null,
+                      "source.name": "LocationMap",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "backgroundBrush.value": "rgba(11,153,68,1)",
+                      "backgroundBrush.type": "color",
+                      "backgroundBrush.__type__": "sketch.framework.Brush"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "0918a6c7-85db-71fa-a2fc-673ef8d6a44e",
+                    "properties": {
+                      "width": 136,
+                      "height": 48,
+                      "name": "Label [5148]",
+                      "left": 75,
+                      "text": "Resturant",
+                      "textVerticalAlign": "middle",
+                      "font.family": "Tahoma",
+                      "font.size": 26,
+                      "font.__type__": "sketch.framework.Font"
+                    }
+                  }
+                ],
+                "states": {
+                  "default": {
+                    "properties": {}
+                  }
+                }
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "93560155-ecd2-419f-8c60-ebb678fd3a10",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 25,
+                  "top": 76,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "7da59918-ff6d-d105-50a4-f2ae226a678e",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "clipSelf": true,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont"
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "60abc332-1bb1-e757-f963-f796c7d6a075",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "135a27de-532c-9f6d-d33d-85215bf485ff",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "5fa05357-8cc9-8ff0-8b68-76e4ddd24d75",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "4df692aa-7512-dc33-52e3-c8f964296428",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "032b884e-217f-dfc4-7db6-55d43d8f7470",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "69a0be4e-6ed7-db88-5559-6ced921fb1fc",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "47757460-f4c8-9f02-7e36-1d881c921f00",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 243,
+                  "top": 75,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "22826b8d-676f-28e2-7f51-1fff27eacbb6",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "0c959acd-32b4-892b-87be-15ba59527f28",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "f4dd84b2-de9b-11cc-41d3-520cb53d842d",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "26800b7d-99ac-6aac-6e58-a0d673baac2c",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "98afc7d1-cc68-2775-795b-591862f307d0",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "b16dcbe5-1ff3-e745-81c2-1c32f2ba674c",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "240d600b-4f4f-8d3d-b49b-c24c25a55efa",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "cd71b6f3-45aa-d71c-4f56-3cc42a1ebde3",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 25,
+                  "top": 295,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "a6ed8e01-41a8-c0a2-5c7e-547cd575197b",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "08c3470f-2225-1634-2b22-2be0c225d418",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "6d2d2b81-3554-864c-69d3-9d2fba73e7ba",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "e7339912-f179-d27c-edc9-bf257c7ca84c",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "040e7e46-8b32-d8ff-a52f-0d4731fe09f7",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "c4a7a1e2-ecda-3bb5-87e5-3637af5d6d61",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "9adf165c-a54a-eaee-32ac-38cddd0049db",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "268379be-1095-8d2a-76b7-44dc5bd0763c",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 243,
+                  "top": 292,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "792d8f1e-59ab-1e17-20fe-c932d8c9e169",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "d46c25b4-e8d3-0aae-73cc-fc2d748f4647",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "587288a8-7abd-69b2-0cc0-bfa48013f154",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "b95111b2-b5aa-9134-7e6b-d7c82b30ae39",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "7f74a4dd-f93a-e501-fc0f-acdfef6700d4",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "11a18605-7a29-c3ab-8eb9-b4ddc804336e",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "1145356e-414c-cbf4-d551-c4a2621891f4",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "6fe4043b-aee4-84e8-9e9e-28032ae9c3dd",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 248,
+                  "top": 521,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "62f936aa-bf26-9e17-788c-e553b271b6a3",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "9ceb61b1-75bd-960a-635f-70094d4f9794",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "b7f9b5df-10ef-7011-9040-6b17d81c3259",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "13de81d4-532b-f95d-d4cb-1f9f599f83cf",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "900064ca-36fd-bde4-39aa-6bcf3072194c",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "fce2c8d5-a239-062f-129d-342383fdf2ff",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "12f8c006-27a5-7431-92e4-a7ff19a39280",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sketch.framework.GroupContainer",
+                "version": 1,
+                "id": "89309163-9a87-9a6b-c701-239d5f70c28a",
+                "properties": {
+                  "width": 177,
+                  "height": 184.97802013228397,
+                  "left": 20,
+                  "top": 529,
+                  "enableGroupLocking": true
+                },
+                "children": [
+                  {
+                    "type": "sketch.ui.common.Image",
+                    "version": 6,
+                    "id": "e1ff135f-0f40-2718-92af-bd26e21f20d5",
+                    "properties": {
+                      "width": 177,
+                      "height": 111,
+                      "name": "Image [a60b8d59-31fd-050e-81bb-0e53bfc58eff]",
+                      "left": 0,
+                      "top": 0,
+                      "source.name": "ContentPicture",
+                      "source.__type__": "sketch.framework.ImageSourceFont",
+                      "clipSelf": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "ee22b136-81cb-a8cd-c82c-e70c53f9e1fb",
+                    "properties": {
+                      "width": 157,
+                      "height": 27,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 5.9828208779611032,
+                      "top": 111.96853240484745,
+                      "text": "Resturant Name",
+                      "font.family": "Tahoma",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.ui.common.Label",
+                    "version": 3,
+                    "id": "ada71ac3-88d2-ff2d-d4eb-8af96d418d75",
+                    "properties": {
+                      "width": 158,
+                      "height": 17,
+                      "name": "Label [c1305a81-00b8-362d-3746-ae6c384da2ea]",
+                      "left": 6.0528276356867536,
+                      "top": 167.97802013228397,
+                      "text": "Open - Close : Open Now",
+                      "font.family": "Tahoma",
+                      "font.size": 14,
+                      "font.color.value": "default.text",
+                      "font.color.type": "resource",
+                      "font.color.__type__": "sketch.framework.Brush",
+                      "font.__type__": "sketch.framework.Font",
+                      "scaleWithFontSize": true
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "b8f049d5-1fec-ab6a-f001-d64392864f79",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 3,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "ce8a38f7-34e9-3323-0408-3fbfdc6182f4",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 35,
+                      "top": 137.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "48d318d6-61e7-4587-b5bc-2f94292db3da",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 68,
+                      "top": 138.96853240484745
+                    }
+                  },
+                  {
+                    "type": "sketch.framework.Star",
+                    "version": 2,
+                    "id": "ce3b3ab4-8523-5a61-4e98-55704af74517",
+                    "properties": {
+                      "width": 30,
+                      "height": 30,
+                      "left": 102,
+                      "top": 138.96853240484745
+                    }
+                  }
+                ]
+              }
+            ],
+            "panelProperties": {
+              "type": "sketch.ui.common.PortableDevicePanel",
+              "version": 1,
+              "id": "946fef12-a775-cb0a-08a1-274435ae02f5",
+              "properties": {
+                "width": 450,
+                "height": 800,
+                "left": 1340,
+                "top": 760,
+                "clipSelf": true
+              }
+            }
+          }
+        ],
+        "isDeleted": false,
+        "groupId": "2866cbb9-a3a0-0b02-5a1b-c41ef2b15337",
+        "screenType": "Android"
+      }
+    ],
+    "resources": {
+      "templates": {},
+      "colorPallet": []
+    },
+    "modelVersion": 5,
+    "version": "4e221225-08e4-449b-afff-8539e529f718",
+    "pageStatuses": [],
+    "projectType": "AndroidProject"
+  }
+}
