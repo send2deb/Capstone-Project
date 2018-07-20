@@ -24,11 +24,14 @@ public interface NearbyResultDao {
     List<NearbyResultEntity> loadAllNearbyResultEntity();
 
     @Query("SELECT * FROM nearby_result WHERE id = :id")
-    NearbyResultEntity loadSingleNearbyResultEntity(int id);
+    NearbyResultEntity loadSingleNearbyResultEntity(String id);
 
     @Query("SELECT * FROM nearby_result")
     LiveData<List<NearbyResultEntity>> loadAllNearbyResultEntityAsLiveData();
 
     @Query("SELECT * FROM nearby_result WHERE id = :id")
-    LiveData<NearbyResultEntity> loadSingleNearbyResultEntityAsLiveData(int id);
+    LiveData<NearbyResultEntity> loadSingleNearbyResultEntityAsLiveData(String id);
+
+    @Query("DELETE from nearby_result")
+    void deleteAllResults();
 }

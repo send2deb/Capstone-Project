@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Permission to check Internet connectivity status -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Permission to find out user's location using Google Place API -->
+    <!-- Permission to find out device's current location using Google Place API  PlaceDetectionClient.getCurrentPlace() -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application

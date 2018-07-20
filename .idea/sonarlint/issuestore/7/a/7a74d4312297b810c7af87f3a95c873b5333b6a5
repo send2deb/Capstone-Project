@@ -1,0 +1,9 @@
+
+isquid:UselessImportCheck"@Remove this unused import 'com.debdroid.tinru.datamodel.Result'.(©Ù–È8Ì³Ã¤Ë,
+dsquid:S1068"CRemove this unused "nearbyGridAdapterOnClickHandler" private field.(…ÖØ ûÿÿÿÿ8Ì³Ã¤Ë,
+Ssquid:S1135"2Complete the task associated to this TODO comment.(ˆ‹®¾ûÿÿÿÿ8Ì³Ã¤Ë,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(ªÑ‰í8Ì³Ã¤Ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÅÄ±Êúÿÿÿÿ8Ì³Ã¤Ë,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ€ÿ…8Ì³Ã¤Ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‘‰ÍÃûÿÿÿÿ8Ì³Ã¤Ë,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Ì³Ã¤Ë,

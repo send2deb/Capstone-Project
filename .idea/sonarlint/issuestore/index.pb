@@ -105,3 +105,17 @@ t
 Dapp/src/main/java/com/debdroid/tinru/repository/TinruRepository.java,e/3/e34e0379cec56f2324b67eea1cbe72e7ceea52b5
 c
 3app/src/main/res/layout/single_nearby_card_item.xml,5/3/53d4d0d744ea7b55984924b44ecb3358f0ee3879
+m
+=app/src/main/java/com/debdroid/tinru/dagger/ViewModelKey.java,5/0/5043855b6586e9660891058ac045c8b8d25a4a04
+y
+Iapp/src/main/java/com/debdroid/tinru/viewmodel/TinruViewModelFactory.java,6/1/61a65eec75e97612b4474a9347743ad142156437
+p
+@app/src/main/java/com/debdroid/tinru/dagger/ViewModelModule.java,3/d/3dea0f7c7c5a1042c7ffd36aae6cf6396ff79a7a
+w
+Gapp/src/main/java/com/debdroid/tinru/viewmodel/NearbyGridViewModel.java,6/6/66d3dd39bc72b69c09a4f238bc3ac6f6818a4364
+r
+Bapp/src/main/java/com/debdroid/tinru/database/NearbyResultDao.java,9/d/9d951e67cf5bb259837e436b52264ea16ecc5d96
+u
+Eapp/src/main/java/com/debdroid/tinru/database/NearbyResultEntity.java,d/3/d3418776d854cbaa9fa4aaec36764b3fc6dd19ec
+v
+Fapp/src/main/java/com/debdroid/tinru/ui/adapter/NearbyGridAdapter.java,7/a/7a74d4312297b810c7af87f3a95c873b5333b6a5

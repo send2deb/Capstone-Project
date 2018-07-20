@@ -1,3 +1,7 @@
 
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ðã8ŒÿÕèÊ,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(žå¡Ö8ŒÿÕèÊ,
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(“™è§8Ú¡á£Ë,
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏÌ˜ý8Ú¡á£Ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ¹Ÿšüÿÿÿÿ8Ú¡á£Ë,
+Jsquid:S1068".Remove this unused "nearbyData" private field.(ÏÌ˜ý8Ú¡á£Ë,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ðã8Ú¡á£Ë,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(žå¡Ö8Ú¡á£Ë,

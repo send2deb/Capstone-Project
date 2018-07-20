@@ -97,7 +97,7 @@ class TinruApplicationModule {
     @Provides
     @TinruCustomScope.TinruApplicationScope
     static Cache provideCache(File cacheFile) {
-        int cacheSize = 10 * 1024 * 1024; //Create a cache of 10 MB
+        int cacheSize = 100 * 1024 * 1024; //Create a cache of 100 MB
         return new Cache(cacheFile, cacheSize);
     }
 

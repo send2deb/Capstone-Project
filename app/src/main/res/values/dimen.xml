@@ -6,10 +6,10 @@
     <dimen name="home_search_button_bottom_padding">40dp</dimen>
     <dimen name="home_nearby_bottom_padding">4dp</dimen>
     <dimen name="home_nearby_bottom_elevation">4dp</dimen>
-    <dimen name="single_nearby_item_margin">8dp</dimen>
+    <dimen name="single_nearby_item_margin">4dp</dimen>
     <dimen name="single_nearby_item_image_height">200dp</dimen>
     <dimen name="single_nearby_item_image_width">180dp</dimen>
-    <dimen name="single_nearby_item_text_padding">8dp</dimen>
+    <dimen name="single_nearby_item_text_padding">4dp</dimen>
     <dimen name="card_view_elevation">2dp</dimen>
     <dimen name="card_view_corner_radius">2dp</dimen>
 

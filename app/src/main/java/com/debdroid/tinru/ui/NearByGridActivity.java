@@ -43,6 +43,7 @@ public class NearByGridActivity extends AppCompatActivity {
     public static final String EXTRA_NEARBY_LATLNG = "extra_nearby_latlng";
     public static final String EXTRA_NEARBY_RADIUS = "extra_nearby_radius";
     public static final String EXTRA_NEARBY_TYPE = "extra_nearby_type";
+    public static final String EXTRA_NEARBY_TYPE_NAME = "extra_nearby_type_name";
     private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
 
     @Override
@@ -64,11 +65,16 @@ public class NearByGridActivity extends AppCompatActivity {
         String latLng = "51.509865,-0.118092"; // Default latlng - London
         int radius = 500; // Default 500 meter
         String type = getString(R.string.google_places_api_nearby_type_restaurant); // Default type - restaurant
+        String typeName = getString(R.string.home_activity_layout_nearby_restaurant); // Default type - restaurant
         String apiKey = getString(R.string.google_maps_key);
 
         if(intent.hasExtra(EXTRA_NEARBY_LATLNG)) latLng = intent.getStringExtra(EXTRA_NEARBY_LATLNG);
         if(intent.hasExtra(EXTRA_NEARBY_RADIUS)) radius = intent.getIntExtra(EXTRA_NEARBY_RADIUS, radius);
         if(intent.hasExtra(EXTRA_NEARBY_TYPE)) type = intent.getStringExtra(EXTRA_NEARBY_TYPE);
+        if(intent.hasExtra(EXTRA_NEARBY_TYPE_NAME)) typeName = intent.getStringExtra(EXTRA_NEARBY_TYPE_NAME);
+
+        // Set the action bar title
+        setTitle(typeName);
 
         //Setup adapter and ViewModel
         nearbyGridAdapter = new NearbyGridAdapter(picasso, apiKey, vh -> {
@@ -103,13 +109,21 @@ public class NearByGridActivity extends AppCompatActivity {
                         linearLayoutManagerState = null;
                     }
                 });
-    }
+        }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         linearLayoutManagerState = recyclerView.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(STATE_LINEAR_LAYOUT_MANAGER, linearLayoutManagerState);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Timber.d("onBackPressed is called");
+        // Destroy the activity so that ViewModle also gets destroyed for fresh data load next time
+        finish();
     }
 
     /**

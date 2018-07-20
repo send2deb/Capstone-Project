@@ -1,2 +1,12 @@
 
-osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆ¿”úÿÿÿÿ8ùÈîûÉ,
+squid:S1488"cImmediately return this expression instead of assigning it to the temporary variable "numOfColumn".(èò‡ˆ8±‘—¤Ë,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(ŸñÉº8±‘—¤Ë,
+esquid:S1611"DRemove the parentheses around the "nearbyResultEntityList" parameter(§¯µòÿÿÿÿÿ8±‘—¤Ë,
+dsquid:UnusedPrivateMethod":Remove this unused private "determineNumOfColumns" method.(Ò¦Æ8Ž¸—¤Ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Ž¸—¤Ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥æôŒýÿÿÿÿ8Ž¸—¤Ë,
+Xsquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰þÿÿÿÿ8±‘—¤Ë,
+ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡ÚŽ8±‘—¤Ë,
+osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆ¿”úÿÿÿÿ8±‘—¤Ë,
+=squid:S1170"!Make this final field static too.(õ¡ÚŽ8±‘—¤Ë,
+squid:S1450"`Remove the "nearbyGridAdapter" field and declare it as a local variable in the relevant methods.(Ãô†¹üÿÿÿÿ8±‘—¤Ë,

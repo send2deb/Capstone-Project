@@ -7,4 +7,8 @@
     <color name="divider_color">#33FFFFFF</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
+    <color name="black_color_opacity_30">#4D000000</color>
+    <color name="black_color_opacity_20">#33000000</color>
+    <color name="black_color_opacity_10">#1A000000</color>
+    <color name="black_color_opacity_5">#0D000000</color>
 </resources>

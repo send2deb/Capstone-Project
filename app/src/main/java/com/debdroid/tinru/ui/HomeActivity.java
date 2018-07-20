@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.debdroid.tinru.R;
@@ -50,25 +53,35 @@ public class HomeActivity extends AppCompatActivity {
 //    @Inject
 //    TinruRepository tinruRepository;
 
-    @BindView(R.id.bt_location_search)
-    Button locationSearchButton;
+    @BindView(R.id.tv_current_place_city_country) TextView currentCityCountryTextView;
+    @BindView(R.id.bt_location_search) Button locationSearchButton;
+    @BindView(R.id.pb_home_actvity) ProgressBar progressBar;
+    @BindView(R.id.tv_progressbar_text_msg) TextView progressBarTextMsg;
+    @BindView(R.id.home_activity_linear_layout) LinearLayout linearLayout;
 
     // The entry points to the Places API.
-    private GeoDataClient mGeoDataClient;
+//    private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
     // The entry point to the Fused Location Provider.
-    private FusedLocationProviderClient mFusedLocationProviderClient;
+//    private FusedLocationProviderClient mFusedLocationProviderClient;
     // A default location (London, UK) and default zoom to use when location permission is
     // not granted.
-    private final LatLng mDefaultLocation = new LatLng(51.5074, 0.1278);
-    private static final int DEFAULT_ZOOM = 15;
+//    private final LatLng mDefaultLocation = new LatLng(51.5074, 0.1278);
+//    private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
     // The geographical location where the device is currently located. That is, the last-known
     // location retrieved by the Fused Location Provider.
-    private Location mLastKnownLocation;
+//    private Location mLastKnownLocation;
     // Google place picker request number
     private int PLACE_PICKER_REQUEST = 1;
+
+    private String currentPlaceName;
+    private String currentPlaceId;
+    private LatLng currentPlaceLatLng;
+    private String currentPlaceCity;
+    private String currentPlaceCountry;
+    private String currentPostalCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,15 +94,19 @@ public class HomeActivity extends AppCompatActivity {
         //tinruRepository.getPointsOfInterest();
 
         // Construct a GeoDataClient.
-        mGeoDataClient = Places.getGeoDataClient(this);
+//        mGeoDataClient = Places.getGeoDataClient(this);
 
         // Construct a PlaceDetectionClient.
         mPlaceDetectionClient = Places.getPlaceDetectionClient(this);
 
         // Construct a FusedLocationProviderClient.
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //getDeviceLocation();
+        // Show the progress bar and hide the layout
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressBarTextMsg.setVisibility(TextView.VISIBLE);
+        linearLayout.setVisibility(LinearLayout.INVISIBLE);
+        getDeviceLocation();
 
 //        tinruRepository.getGooglePlaceNearbyData("51.5073509,-0.1277583",
 //                1000,
@@ -118,16 +135,49 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.bt_nearby_cafe)
-    public void openNearbyCafe(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_cafe));
+    @OnClick(R.id.bt_nearby_restaurant)
+    public void openNearbyRestaurant(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_restaurant),
+                getString(R.string.home_activity_layout_nearby_restaurant));
     }
 
-    private void startNearbyGridActivity(String type) {
+    @OnClick(R.id.bt_nearby_cafe)
+    public void openNearbyCafe(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_cafe),
+                getString(R.string.home_activity_layout_nearby_cafe));
+    }
+
+    @OnClick(R.id.bt_nearby_bar)
+    public void openNearbyBar(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_bar),
+                getString(R.string.home_activity_layout_nearby_bar));
+    }
+
+    @OnClick(R.id.bt_nearby_atm)
+    public void openNearbyATM(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_atm),
+                getString(R.string.home_activity_layout_nearby_atm));
+    }
+
+    @OnClick(R.id.bt_nearby_shopping)
+    public void openNearbyShopping(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_shopping),
+                getString(R.string.home_activity_layout_nearby_shopping));
+    }
+
+    @OnClick(R.id.bt_nearby_petrol_pump)
+    public void openNearbyPetrolPump(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_petrol_pump),
+                getString(R.string.home_activity_layout_nearby_petrol_pump));
+    }
+
+    private void startNearbyGridActivity(String type, String typeName) {
         Intent intent = new Intent(this, NearByGridActivity.class);
-        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, "51.5073509,-0.1277583");
+        String latLng = String.format("%s,%s",currentPlaceLatLng.latitude,currentPlaceLatLng.longitude);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, latLng);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_RADIUS, 1000);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE, type);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE_NAME, typeName);
         startActivity(intent);
     }
 
@@ -175,27 +225,61 @@ public class HomeActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<PlaceLikelihoodBufferResponse> task) {
                         PlaceLikelihoodBufferResponse likelyPlaces = task.getResult();
                         for (PlaceLikelihood placeLikelihood : likelyPlaces) {
-                            Timber.i(String.format("Place '%s' has likelihood: %g",
+                            Timber.d(String.format("Place '%s' has likelihood: %g",
                                     placeLikelihood.getPlace().getName(),
                                     placeLikelihood.getLikelihood()));
-                            Timber.e("Latitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().latitude));
-                            Timber.e("Longitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().longitude));
-                            Timber.e("Address -> " + placeLikelihood.getPlace().getAddress().toString());
+                            Timber.d("Latitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().latitude));
+                            Timber.d("Longitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().longitude));
+                            Timber.d("Address -> " + placeLikelihood.getPlace().getAddress().toString());
 
                             Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
                             try {
                                 List<Address> addresses = mGeocoder.getFromLocation(placeLikelihood.getPlace().getLatLng().latitude,
                                 placeLikelihood.getPlace().getLatLng().longitude, 1);
                                 if (addresses != null && addresses.size() > 0) {
-                                    Timber.e("Locality -> " + addresses.get(0).getLocality());
-                                    Timber.e("Country -> " + addresses.get(0).getCountryName());
-                                    Timber.e("PostalCode -> " + addresses.get(0).getPostalCode());
-                                    Timber.e("Phone -> " + addresses.get(0).getPhone());
+                                    Timber.d("Locality -> " + addresses.get(0).getLocality());
+                                    Timber.d("Country -> " + addresses.get(0).getCountryName());
+                                    Timber.d("PostalCode -> " + addresses.get(0).getPostalCode());
+                                    Timber.d("Phone -> " + addresses.get(0).getPhone());
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
+
+                        Place place = likelyPlaces.get(0).getPlace();
+                        float placeLikelihoodValue = likelyPlaces.get(0).getLikelihood();
+
+                        // Pick the place which has maximum likelihood value
+                        for(PlaceLikelihood placeLikelihood : likelyPlaces) {
+                            if(placeLikelihood.getLikelihood() > placeLikelihoodValue) {
+                                place = placeLikelihood.getPlace();
+                                placeLikelihoodValue = placeLikelihood.getLikelihood();
+                            }
+                        }
+
+                        currentPlaceName = place.getName().toString();
+                        currentPlaceId = place.getId();
+                        currentPlaceLatLng = place.getLatLng();
+                        Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
+                        try {
+                            List<Address> addresses = mGeocoder.getFromLocation(currentPlaceLatLng.latitude,
+                                    currentPlaceLatLng.longitude, 1);
+                            currentPlaceCity = addresses.get(0).getLocality();
+                            currentPlaceCountry = addresses.get(0).getCountryName();
+                            currentPostalCode = addresses.get(0).getPostalCode();
+                        } catch (IOException e) {
+                            Timber.e("Geocoder error: " + e.getMessage());
+                            e.printStackTrace();
+                        }
+
+                        Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
+                                currentPlaceName, currentPlaceCity, currentPlaceCountry,
+                                currentPostalCode, placeLikelihoodValue));
+
+                        updateUi();
+
+                        // Release the buffer to avoid memory leak
                         likelyPlaces.release();
                     }
                 });
@@ -203,6 +287,24 @@ public class HomeActivity extends AppCompatActivity {
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+
+    private void updateUi() {
+        // Set the current City & Country
+        String currentPlaceCityCountry = "";
+        if(currentPlaceCity != null && currentPlaceCountry != null) {
+            currentPlaceCityCountry = String.format("%s, %s",currentPlaceCity,currentPlaceCountry);
+        } else if (currentPlaceCity == null && currentPlaceCountry != null) {
+            currentPlaceCityCountry = currentPlaceCountry;
+        } else if(currentPlaceCity != null && currentPlaceCountry == null) {
+            currentPlaceCityCountry = currentPlaceCity;
+        }
+        currentCityCountryTextView.setText(currentPlaceCityCountry);
+
+        // Hide the progress bar and show the layout
+        progressBar.setVisibility(ProgressBar.GONE);
+        progressBarTextMsg.setVisibility(TextView.GONE);
+        linearLayout.setVisibility(LinearLayout.VISIBLE);
     }
 
     /**

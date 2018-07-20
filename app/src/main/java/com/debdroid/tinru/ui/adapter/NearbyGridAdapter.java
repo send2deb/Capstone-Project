@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.database.NearbyResultEntity;
-import com.debdroid.tinru.datamodel.Result;
-import com.debdroid.tinru.ui.NearByGridActivity;
 import com.debdroid.tinru.utility.NetworkUtility;
 import com.squareup.picasso.Picasso;
 
@@ -44,7 +42,9 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
     public class NearbyGridViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_single_nearby_image) ImageView nearbyImage;
         @BindView(R.id.tv_single_nearby_name) TextView nearbyName;
-        @BindView(R.id.tv_single_nearby_rating) RatingBar nearbyRatingBar;
+        @BindView(R.id.tv_single_nearby_vicinity) TextView nearbyVicinity;
+        @BindView(R.id.tv_single_nearby_rating_value) TextView nearbyRatingValue;
+        @BindView(R.id.rb_single_nearby_rating) RatingBar nearbyRatingBar;
         @BindView(R.id.tv_single_nearby_open_close_status) TextView nearbyOpenCloseStatus;
 
         private NearbyGridViewHolder(final View view) {
@@ -73,11 +73,15 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
     public void onBindViewHolder(@NonNull NearbyGridViewHolder holder, int position) {
         Timber.d("onBindViewHolder is called");
         String nearbyName = nearbyResultEntityList.get(position).nearbyName;
+        String nearbyVicinity = nearbyResultEntityList.get(position).vicinity;
         float nearbyRating = (float) nearbyResultEntityList.get(position).rating;
+        String nearbyRatingValue = String.format("%.2f", nearbyRating);
         String nearbyOpenCloseStatus = nearbyResultEntityList.get(position).openStatus;
         String nearbyPhotoReference = nearbyResultEntityList.get(position).photoReference;
 
         if(nearbyName != null) holder.nearbyName.setText(nearbyName);
+        if(nearbyVicinity != null) holder.nearbyVicinity.setText(nearbyVicinity);
+        holder.nearbyRatingValue.setText(nearbyRatingValue);
         holder.nearbyRatingBar.setRating(nearbyRating);
         holder.nearbyOpenCloseStatus.setText(nearbyOpenCloseStatus);
 
@@ -105,9 +109,9 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
         } else {
         picasso.load(photoReferenceUrlString)
                 //TODO add placehodler and fallback later
-//                    .placeholder(CommonUtility.getFallbackImageId(position))
-//                    .error(CommonUtility.getFallbackImageId(position))
-                    .into(holder.nearbyImage);
+//              .placeholder(CommonUtility.getFallbackImageId(position))
+//              .error(CommonUtility.getFallbackImageId(position))
+                .into(holder.nearbyImage);
         }
     }
 

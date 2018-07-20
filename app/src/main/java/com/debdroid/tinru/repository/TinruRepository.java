@@ -30,7 +30,7 @@ public class TinruRepository {
     private GooglePlacesNearbySearchApiService googlePlacesNearbySearchApiService;
     private NearbyResultDao nearbyResultDao;
     private MutableLiveData<List<Result>> nearbyData = new MutableLiveData<List<Result>>();
-    private static boolean isFirstTimeDataLoad = true;
+//    private static boolean isFirstTimeDataLoad = true;
 
     @Inject
     public TinruRepository(AmadeusSandboxPointOfInterestApiService amadeusSandboxPointOfInterestApiService,
@@ -41,11 +41,11 @@ public class TinruRepository {
         this.nearbyResultDao = nearbyResultDao;
     }
 
-    public LiveData<List<NearbyResultEntity>> getResult(String latLng, int radius, String type, String apiKey) {
+    public LiveData<List<NearbyResultEntity>> getResult(String latLng, int radius, String type,
+                                                        String apiKey, boolean needFreshData) {
         Timber.d("getResult is called");
-        // Initiate the load api
-        // Load the data only once
-        if(isFirstTimeDataLoad) {
+        // Load the data only when ViewModel need it
+        if(needFreshData) {
             loadGooglePlaceNearbyData(latLng, radius, type, apiKey);
         }
         // Return current data from the database
@@ -64,6 +64,9 @@ public class TinruRepository {
                     Timber.d("Google place nearby api call successful ->" + response.toString());
 //                    //use postValue since it is running on background thread.
 //                    nearbyData.postValue(response.body().getResults());
+                    // First delete all records
+                    deleteDataFromNearbyResultTable();
+                    // Now insert the new records
                     insertDataToNearbyResultTable(response.body().getResults());
                 } else {
                     Timber.e("Google place nearby api response not successful -> "
@@ -88,19 +91,27 @@ public class TinruRepository {
                     List<NearbyResultEntity> nearbyResultEntities = new ArrayList<>();
                     for(Result result : resultList) {
                         NearbyResultEntity nearbyResultEntity = new NearbyResultEntity();
+                        nearbyResultEntity.id = result.getId();
                         nearbyResultEntity.nearbyName = result.getName();
                         nearbyResultEntity.rating = result.getRating();
-                        if(result.getOpeningHours().getOpenNow()) {
-                            nearbyResultEntity.openStatus = "Open Now";
+                        nearbyResultEntity.vicinity = result.getVicinity();
+                        if(result.getOpeningHours() != null) {
+                            if (result.getOpeningHours().getOpenNow()) {
+                                nearbyResultEntity.openStatus = "Open Now";
+                            } else {
+                                nearbyResultEntity.openStatus = "Closed Now";
+                            }
                         } else {
-                            nearbyResultEntity.openStatus = "Closed";
+                            nearbyResultEntity.openStatus = "Open / Close data not available";
                         }
-                        nearbyResultEntity.photoReference = result.getPhotos().get(0).getPhotoReference();
+                        if(result.getPhotos() != null) {
+                            nearbyResultEntity.photoReference = result.getPhotos().get(0).getPhotoReference();
+                        }
                         nearbyResultEntities.add(nearbyResultEntity);
                     }
 
                     nearbyResultDao.insertBulkResults(nearbyResultEntities);
-                    isFirstTimeDataLoad = false; // Ensure load happens only once
+//                    isFirstTimeDataLoad = false; // Ensure load happens only once
                 } else {
                     Timber.e("Json response is null");
                 }
@@ -110,10 +121,21 @@ public class TinruRepository {
         asyncTask.execute();
     }
 
+    private void deleteDataFromNearbyResultTable() {
+        Timber.d("deleteDataFromNearbyResultTable is called");
+        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                nearbyResultDao.deleteAllResults();
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
 
     public void getPointsOfInterest() {
         String city = "London";
-        String key = "AxTDwJnLIyxmgoKTnQ0TiRcdPTXnMIVQ";
+        String key = "";
         Call<AmadeusPointsOfInterestResponse> amadeusPointsOfInterestResponseCall =
                 amadeusSandboxPointOfInterestApiService.getAmadeusPointsOfInterestResponse(city,key);
         amadeusPointsOfInterestResponseCall.enqueue(new Callback<AmadeusPointsOfInterestResponse>() {
