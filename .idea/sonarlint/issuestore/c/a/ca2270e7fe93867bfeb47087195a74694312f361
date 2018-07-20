@@ -1,0 +1,24 @@
+
+squid:S00116"_Rename this field "PLACE_PICKER_REQUEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óñ€ıÿÿÿÿ8’˜¼èÊ,
+Wsquid:S1068"6Remove this unused "mLastKnownLocation" private field.(¦´úşÿÿÿÿ8’˜¼èÊ,
+Ssquid:S1068"2Remove this unused "mGeoDataClient" private field.(Ä¯Šúÿÿÿÿ8’˜¼èÊ,
+Psquid:S1066"/Merge this if statement with the enclosing one.(±„‘‰ıÿÿÿÿ8’˜¼èÊ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ƒéÜ’8’˜¼èÊ,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ8’˜¼èÊ,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Æ¼¾Î8’˜¼èÊ,
+Nsquid:S1199"-Extract this nested code block into a method.(¶»Ó«ÿÿÿÿÿ8’˜¼èÊ,
+‡squid:S1450"kRemove the "mFusedLocationProviderClient" field and declare it as a local variable in the relevant methods.(¾àŸ£8’˜¼èÊ,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8’˜¼èÊ,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(úˆËéşÿÿÿÿ8’˜¼èÊ,
+Tsquid:S1197"8Move the array designator from the variable to the type.(³Ûü¢8’˜¼èÊ,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8’˜¼èÊ,
+_squid:S1155">Use isEmpty() to check whether the collection is empty or not.(¦Áøÿÿÿÿ8’˜¼èÊ,
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8’˜¼èÊ,
+Isquid:S1604"(Make this anonymous inner class a lambda(»‰éœùÿÿÿÿ8’˜¼èÊ,
+esquid:UnusedPrivateMethod"6Remove this unused private "getDeviceLocation" method.(–üê–ÿÿÿÿÿ8’˜¼èÊ,
+zsquid:UselessImportCheck"LRemove this unused import 'com.google.android.gms.maps.CameraUpdateFactory'.(ÁËòøúÿÿÿÿ8’˜¼èÊ,
+Osquid:S1068"4Remove this unused "mDefaultLocation" private field.(ıâÉ:8’˜¼èÊ,
+Qsquid:S1068"0Remove this unused "DEFAULT_ZOOM" private field.(¹ÒÔ¹ùÿÿÿÿ8’˜¼èÊ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Æ®â¤8’˜¼èÊ,
+~squid:S1450"]Remove the "mGeoDataClient" field and declare it as a local variable in the relevant methods.(Ä¯Šúÿÿÿÿ8’˜¼èÊ,
+\squid:S1068"@Remove this unused "mFusedLocationProviderClient" private field.(¾àŸ£8’˜¼èÊ,

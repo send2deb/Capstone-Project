@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">tinru</string>
+
+    <!-- Shared Preference related string values -->
+    <string name="preference_file_key">com.debdroid.bakingapp.PREFERENCE_FILE_KEY</string>
+
+    <!-- Toast or Error messages -->
+    <string name="no_network_error_msg">No internet connection available</string>
+
+    <!-- Miscellaneous -->
+    <string name="database_name">TinruDatabase.db</string>
+    <string name="okhttp_cache_name">okhttp_cache</string>
+    <!-- add here for new type -->
+
+    <string name="home_activity_layout_search_button_text">Where do you want to go?</string>
+    <string name="home_activity_layout_image_content_desc">Background image</string>
+    <string name="home_activity_layout_nearby_restaurant">Restaurant</string>
+    <string name="home_activity_layout_nearby_cafe">Cafe</string>
+    <string name="home_activity_layout_nearby_bar">Bar</string>
+    <string name="home_activity_layout_nearby_atm">ATM</string>
+    <string name="home_activity_layout_nearby_shopping">Shopping</string>
+    <string name="home_activity_layout_nearby_petrol_pump">Petrol</string>
+    
+    <string name="google_places_api_nearby_type_restaurant">restaurant</string>
+    <string name="google_places_api_nearby_type_cafe">cafe</string>
+    <string name="google_places_api_nearby_type_bar">bar</string>
+    <string name="google_places_api_nearby_type_atm">atm</string>
+    <string name="google_places_api_nearby_type_shopping">home_goods_store</string>
+    <string name="google_places_api_nearby_type_petrol_pump">gas_station</string>
+    <string name="single_nearby_item_image_content_description">Nearby place image</string>
+    <string name="single_nearby_item_open_close_heading">Open - Close: </string>
 </resources>

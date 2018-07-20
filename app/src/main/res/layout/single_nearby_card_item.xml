@@ -1,0 +1,63 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/cv_single_recipe"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    cardview:cardBackgroundColor="@color/colorPrimary"
+    cardview:cardCornerRadius="@dimen/card_view_corner_radius"
+    cardview:cardElevation="@dimen/card_view_elevation"
+    cardview:cardUseCompatPadding="true"
+    android:layout_margin="@dimen/single_nearby_item_margin"
+    android:foreground="?android:attr/selectableItemBackground">
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:background="@color/color_white">
+
+        <ImageView
+            android:id="@+id/iv_single_nearby_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/single_nearby_item_image_height"
+            android:contentDescription="@string/single_nearby_item_image_content_description"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_single_nearby_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_single_nearby_image"
+            android:fontFamily="sans-serif"
+            android:padding="@dimen/single_nearby_item_text_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tool:text="Nearby item Name"/>
+    <RatingBar
+        android:id="@+id/tv_single_nearby_rating"
+        android:layout_below="@+id/tv_single_nearby_name"
+        style = "?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.1"
+        android:numStars="5"/>
+    <LinearLayout
+        android:layout_below="@+id/tv_single_nearby_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/single_nearby_item_open_close_heading"/>
+        <TextView
+            android:id="@+id/tv_single_nearby_open_close_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tool:text="Open now"/>
+    </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

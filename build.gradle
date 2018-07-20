@@ -25,3 +25,25 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// This block encapsulates version of all libraries and makes them available to all
+// modules in the project.
+ext {
+    buildToolVersion = "27.0.3"
+    supportLibVersion = "27.1.0"
+    googlePlayServicesVersion = "15.0.1"
+    constraintLayoutLibVersion = "1.1.2"
+    junitLibVersion = "4.12"
+    testRunnerLibVersion = "1.0.2"
+    espressoLibVersion = "3.0.2"
+    daggerLibVersion = "2.16"
+    picassoLibVersion = "2.71828"
+    butterKnifeLibVersion = "8.8.1"
+    stethoLibVersion = "1.5.0"
+    gsonLibVersion = "2.8.5"
+    retrofitLibVersion = "2.4.0"
+    okHttpLibVersion = "3.11.0"
+    timberLibVersion = "4.7.1"
+    lifeCycleLibVersion = "1.1.1"
+    roomLibVersion = "1.1.1"
+}

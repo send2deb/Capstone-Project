@@ -1,13 +1,15 @@
-package com.debdroid.tinru;
+package com.debdroid.tinru.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HomeActivity extends AppCompatActivity {
+import com.debdroid.tinru.R;
+
+public class PointOfInterestDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_point_of_interest_detail);
     }
 }
