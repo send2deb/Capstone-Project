@@ -103,6 +103,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/database/PointOfInterestResultDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/database/PointOfInterestResultEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/database/TinruDatabase.java">
           <value>
             <set />
@@ -168,6 +178,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/datamodel/GooglePlacesTextSearchApi/GooglePlacesTextSearchResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/datamodel/GooglePlacesTextSearchApi/TextSearchResult.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/datamodel/Location.java">
           <value>
             <set />
@@ -229,6 +249,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/retrofit/AmadeusSandboxPointOfInterestApiService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/debdroid/tinru/retrofit/GooglePlacesApiService.java">
           <value>
             <set />
           </value>

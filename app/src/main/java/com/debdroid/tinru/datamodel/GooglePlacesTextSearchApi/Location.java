@@ -1,9 +1,10 @@
-package com.debdroid.tinru.datamodel;
+
+package com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Northeast {
+public class Location {
 
     @SerializedName("lat")
     @Expose

@@ -2,17 +2,17 @@ package com.debdroid.tinru.ui;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,16 +22,17 @@ import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceDetectionClient;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
+import com.google.android.gms.location.places.PlacePhotoMetadata;
+import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
+import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,18 +50,19 @@ import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class HomeActivity extends AppCompatActivity {
+    @Inject
+    TinruRepository tinruRepository;
 
-//    @Inject
-//    TinruRepository tinruRepository;
 
     @BindView(R.id.tv_current_place_city_country) TextView currentCityCountryTextView;
     @BindView(R.id.bt_location_search) Button locationSearchButton;
     @BindView(R.id.pb_home_actvity) ProgressBar progressBar;
     @BindView(R.id.tv_progressbar_text_msg) TextView progressBarTextMsg;
     @BindView(R.id.home_activity_linear_layout) LinearLayout linearLayout;
+    @BindView(R.id.iv_current_place_image) ImageView currentPlaceImage;
 
     // The entry points to the Places API.
-//    private GeoDataClient mGeoDataClient;
+    private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
     // The entry point to the Fused Location Provider.
 //    private FusedLocationProviderClient mFusedLocationProviderClient;
@@ -85,20 +87,20 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Timber.d("onCreate is called");
         // Always Inject before super.onCreate, otherwise it fails while orientation change
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        //tinruRepository.getPointsOfInterest();
+        tinruRepository.getPointOfInterestResult("london point of interest",
+                getString(R.string.google_maps_key), true);
 
         // Construct a GeoDataClient.
-//        mGeoDataClient = Places.getGeoDataClient(this);
-
+        mGeoDataClient = Places.getGeoDataClient(this);
         // Construct a PlaceDetectionClient.
         mPlaceDetectionClient = Places.getPlaceDetectionClient(this);
-
         // Construct a FusedLocationProviderClient.
 //        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -213,6 +215,7 @@ public class HomeActivity extends AppCompatActivity {
          * Get the best and most recent location of the device, which may be null in rare
          * cases when a location is not available.
          */
+        Timber.d("getDeviceLocation is called");
 
         //First ask for permission
         getLocationPermission();
@@ -220,84 +223,91 @@ public class HomeActivity extends AppCompatActivity {
         try {
             if (mLocationPermissionGranted) {
                 Task<PlaceLikelihoodBufferResponse> placeResult = mPlaceDetectionClient.getCurrentPlace(null);
-                placeResult.addOnCompleteListener(new OnCompleteListener<PlaceLikelihoodBufferResponse>() {
-                    @Override
-                    public void onComplete(@NonNull Task<PlaceLikelihoodBufferResponse> task) {
-                        PlaceLikelihoodBufferResponse likelyPlaces = task.getResult();
-                        for (PlaceLikelihood placeLikelihood : likelyPlaces) {
-                            Timber.d(String.format("Place '%s' has likelihood: %g",
-                                    placeLikelihood.getPlace().getName(),
-                                    placeLikelihood.getLikelihood()));
-                            Timber.d("Latitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().latitude));
-                            Timber.d("Longitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().longitude));
-                            Timber.d("Address -> " + placeLikelihood.getPlace().getAddress().toString());
+                placeResult.addOnCompleteListener(task -> {
+                    PlaceLikelihoodBufferResponse likelyPlaces = task.getResult();
+                    for (PlaceLikelihood placeLikelihood : likelyPlaces) {
+                        Timber.d(String.format("Place '%s' has likelihood: %g",
+                                placeLikelihood.getPlace().getName(),
+                                placeLikelihood.getLikelihood()));
+                        Timber.d("Latitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().latitude));
+                        Timber.d("Longitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().longitude));
+                        Timber.d("Address -> " + placeLikelihood.getPlace().getAddress().toString());
 
-                            Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-                            try {
-                                List<Address> addresses = mGeocoder.getFromLocation(placeLikelihood.getPlace().getLatLng().latitude,
-                                placeLikelihood.getPlace().getLatLng().longitude, 1);
-                                if (addresses != null && addresses.size() > 0) {
-                                    Timber.d("Locality -> " + addresses.get(0).getLocality());
-                                    Timber.d("Country -> " + addresses.get(0).getCountryName());
-                                    Timber.d("PostalCode -> " + addresses.get(0).getPostalCode());
-                                    Timber.d("Phone -> " + addresses.get(0).getPhone());
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        Place place = likelyPlaces.get(0).getPlace();
-                        float placeLikelihoodValue = likelyPlaces.get(0).getLikelihood();
-
-                        // Pick the place which has maximum likelihood value
-                        for(PlaceLikelihood placeLikelihood : likelyPlaces) {
-                            if(placeLikelihood.getLikelihood() > placeLikelihoodValue) {
-                                place = placeLikelihood.getPlace();
-                                placeLikelihoodValue = placeLikelihood.getLikelihood();
-                            }
-                        }
-
-                        currentPlaceName = place.getName().toString();
-                        currentPlaceId = place.getId();
-                        currentPlaceLatLng = place.getLatLng();
                         Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
                         try {
-                            List<Address> addresses = mGeocoder.getFromLocation(currentPlaceLatLng.latitude,
-                                    currentPlaceLatLng.longitude, 1);
+                            List<Address> addresses = mGeocoder.getFromLocation(placeLikelihood.getPlace().getLatLng().latitude,
+                            placeLikelihood.getPlace().getLatLng().longitude, 1);
+                            if (addresses != null && addresses.size() > 0) {
+                                Timber.d("Locality -> " + addresses.get(0).getLocality());
+                                Timber.d("Country -> " + addresses.get(0).getCountryName());
+                                Timber.d("PostalCode -> " + addresses.get(0).getPostalCode());
+                                Timber.d("Phone -> " + addresses.get(0).getPhone());
+                            }
+                        } catch (IOException e) {
+                            Timber.e("PlaceDetectionClient error: " + e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+
+                    Place place = likelyPlaces.get(0).getPlace();
+                    float placeLikelihoodValue = likelyPlaces.get(0).getLikelihood();
+                    // Pick the place which has maximum likelihood value
+                    for(PlaceLikelihood placeLikelihood : likelyPlaces) {
+                        if(placeLikelihood.getLikelihood() > placeLikelihoodValue) {
+                            place = placeLikelihood.getPlace();
+                            placeLikelihoodValue = placeLikelihood.getLikelihood();
+                        }
+                    }
+                    currentPlaceName = place.getName().toString();
+                    currentPlaceId = place.getId();
+                    currentPlaceLatLng = place.getLatLng();
+
+                    // Find out the locality, country and other details of the picked up place using Geocoder
+                    Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
+                    try {
+                        List<Address> addresses = mGeocoder.getFromLocation(currentPlaceLatLng.latitude,
+                                currentPlaceLatLng.longitude, 1);
+                        if (addresses.size() > 0){
                             currentPlaceCity = addresses.get(0).getLocality();
                             currentPlaceCountry = addresses.get(0).getCountryName();
                             currentPostalCode = addresses.get(0).getPostalCode();
-                        } catch (IOException e) {
-                            Timber.e("Geocoder error: " + e.getMessage());
-                            e.printStackTrace();
+                        } else {
+                            Timber.d("No address found for place  -> " + currentPlaceName);
                         }
-
-                        Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
-                                currentPlaceName, currentPlaceCity, currentPlaceCountry,
-                                currentPostalCode, placeLikelihoodValue));
-
-                        updateUi();
-
-                        // Release the buffer to avoid memory leak
-                        likelyPlaces.release();
+                    } catch (IOException e) {
+                        Timber.e("Geocoder error: " + e.getMessage());
+                        e.printStackTrace();
                     }
+                    Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
+                            currentPlaceName, currentPlaceCity, currentPlaceCountry,
+                            currentPostalCode, placeLikelihoodValue));
+
+                    // Update the ui with the details
+                    updateUi();
+
+                    // Release the buffer to avoid memory leak
+                    likelyPlaces.release();
                 });
             }
         } catch (SecurityException e)  {
-            Log.e("Exception: %s", e.getMessage());
+            Timber.e("Exception: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     private void updateUi() {
+        Timber.d("updateUi is called");
+        // Load the photo of local place
+        loadLocalPlacePhoto();
         // Set the current City & Country
-        String currentPlaceCityCountry = "";
+        String currentPlaceCityCountry = currentPlaceName;
         if(currentPlaceCity != null && currentPlaceCountry != null) {
-            currentPlaceCityCountry = String.format("%s, %s",currentPlaceCity,currentPlaceCountry);
+            currentPlaceCityCountry = currentPlaceCountry.concat(String.format("%s, %s, %s", currentPlaceName, currentPlaceCity,
+                    currentPlaceCountry));
         } else if (currentPlaceCity == null && currentPlaceCountry != null) {
-            currentPlaceCityCountry = currentPlaceCountry;
+            currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCountry);
         } else if(currentPlaceCity != null && currentPlaceCountry == null) {
-            currentPlaceCityCountry = currentPlaceCity;
+            currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCity);
         }
         currentCityCountryTextView.setText(currentPlaceCityCountry);
 
@@ -305,6 +315,37 @@ public class HomeActivity extends AppCompatActivity {
         progressBar.setVisibility(ProgressBar.GONE);
         progressBarTextMsg.setVisibility(TextView.GONE);
         linearLayout.setVisibility(LinearLayout.VISIBLE);
+    }
+
+    private void loadLocalPlacePhoto() {
+        Timber.d(("loadLocalPlacePhoto is called. currentPlaceId -> " + currentPlaceId));
+        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(currentPlaceId);
+        photoMetadataResponse.addOnCompleteListener(task -> {
+            // Get the list of photos.
+            PlacePhotoMetadataResponse photos = task.getResult();
+            // Get the PlacePhotoMetadataBuffer (metadata for all of the photos).
+            PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+            // Get the first photo in the list.
+            if(photoMetadataBuffer.getCount() > 0) {
+                PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+                // Get the attribution text.
+                CharSequence attribution = photoMetadata.getAttributions();
+                // Get a full-size bitmap for the photo.
+                Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+                photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
+                        PlacePhotoResponse photo = task.getResult();
+                        Bitmap bitmap = photo.getBitmap();
+                        currentPlaceImage.setImageBitmap(bitmap);
+                    }
+                });
+                // Release the buffer to avoid memory leak
+                photoMetadataBuffer.release();
+            } else {
+                Timber.d("No photo found for place id -> " + currentPlaceId);
+            }
+        });
     }
 
     /**
@@ -316,6 +357,7 @@ public class HomeActivity extends AppCompatActivity {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
+        Timber.d("getLocationPermission is called");
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -334,6 +376,7 @@ public class HomeActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
+        Timber.d("onRequestPermissionsResult is called");
         mLocationPermissionGranted = false;
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
@@ -344,6 +387,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }
-        //updateLocationUI();
+        // Call getDeviceLocation() - this will be for the first time only when the permission is granted
+        getDeviceLocation();
     }
 }

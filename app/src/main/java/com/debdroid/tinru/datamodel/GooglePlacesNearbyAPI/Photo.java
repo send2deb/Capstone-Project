@@ -1,4 +1,4 @@
-package com.debdroid.tinru.datamodel;
+package com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

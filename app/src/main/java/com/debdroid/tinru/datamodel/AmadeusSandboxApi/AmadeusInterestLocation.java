@@ -1,4 +1,4 @@
-package com.debdroid.tinru.datamodel;
+package com.debdroid.tinru.datamodel.AmadeusSandboxApi;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

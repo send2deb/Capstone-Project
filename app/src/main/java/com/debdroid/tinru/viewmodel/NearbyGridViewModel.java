@@ -1,11 +1,9 @@
 package com.debdroid.tinru.viewmodel;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.debdroid.tinru.database.NearbyResultEntity;
-import com.debdroid.tinru.datamodel.Result;
 import com.debdroid.tinru.repository.TinruRepository;
 
 import java.util.List;
@@ -46,8 +44,8 @@ public class NearbyGridViewModel extends ViewModel {
 
         if(nearbyResultEntityList == null) {
             Timber.d("nearbyResultEntityList is null");
-//            resultList = tinruRepository.getResult();
-            nearbyResultEntityList = tinruRepository.getResult(latLng,radius,type,apiKey, needFreshData);
+//            resultList = tinruRepository.getNearbyResult();
+            nearbyResultEntityList = tinruRepository.getNearbyResult(latLng,radius,type,apiKey, needFreshData);
 //            previousType = type;
         }
         return nearbyResultEntityList;

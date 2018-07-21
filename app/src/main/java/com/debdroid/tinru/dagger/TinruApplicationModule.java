@@ -7,10 +7,11 @@ import android.content.SharedPreferences;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.database.NearbyResultDao;
+import com.debdroid.tinru.database.PointOfInterestResultDao;
 import com.debdroid.tinru.database.TinruDatabase;
 import com.debdroid.tinru.database.UserSearchedLocationDao;
 import com.debdroid.tinru.retrofit.AmadeusSandboxPointOfInterestApiService;
-import com.debdroid.tinru.retrofit.GooglePlacesNearbySearchApiService;
+import com.debdroid.tinru.retrofit.GooglePlacesApiService;
 import com.debdroid.tinru.utility.NetworkUtility;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.squareup.picasso.OkHttp3Downloader;
@@ -43,8 +44,8 @@ class TinruApplicationModule {
     // Google Place Json data api service using Retrofit
     @Provides
     @TinruCustomScope.TinruApplicationScope
-    GooglePlacesNearbySearchApiService provideGooglePlacesNearbySearchApiService(Retrofit retrofit) {
-        return retrofit.create(GooglePlacesNearbySearchApiService.class);
+    GooglePlacesApiService provideGooglePlacesNearbySearchApiService(Retrofit retrofit) {
+        return retrofit.create(GooglePlacesApiService.class);
     }
 
     // Retrofit
@@ -146,6 +147,13 @@ class TinruApplicationModule {
     @TinruCustomScope.TinruApplicationScope
     static NearbyResultDao provideNearbyResultDao(TinruDatabase TinruDatabase) {
         return TinruDatabase.getNearbyResultDao();
+    }
+
+    // PointOfInterestResultDao
+    @Provides
+    @TinruCustomScope.TinruApplicationScope
+    static PointOfInterestResultDao providePointOfInterestResultDao(TinruDatabase TinruDatabase) {
+        return TinruDatabase.getPointOfInterestResultDao();
     }
 
     // SharedPreference

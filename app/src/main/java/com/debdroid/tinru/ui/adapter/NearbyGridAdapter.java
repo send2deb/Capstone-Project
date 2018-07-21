@@ -1,5 +1,6 @@
 package com.debdroid.tinru.ui.adapter;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -53,11 +54,16 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
             view.setOnClickListener(v -> {
                 int adapterPosition = getAdapterPosition();
                 Timber.d("NearbyGrid item is clicked. Clicked item -> " + adapterPosition);
+                String name = nearbyResultEntityList.get(adapterPosition).nearbyName;
+                double latitude = nearbyResultEntityList.get(adapterPosition).latitude;
+                double longitude = nearbyResultEntityList.get(adapterPosition).longitude;
+                Timber.d("Latitude & Longitude of" + "name" + "-> " + latitude + " & " + longitude);
+
 //                int recipeId = recipeEntityList.get(adapterPosition).id;
 //                String recipeName = recipeEntityList.get(adapterPosition).name;
 //                Timber.d("RecipeListViewHolder:Recipe id - "+recipeId);
 //                Timber.d("RecipeListViewHolder:Recipe name - "+recipeName);
-//                nearbyGridAdapterOnClickHandler.onRecipeItemClick(recipeId, recipeName,this);
+                nearbyGridAdapterOnClickHandler.onRecipeItemClick(name, latitude, longitude, this);
             });
         }
     }
@@ -142,7 +148,7 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
      * This is the interface which will be implemented by HostActivity
      */
     public interface NearbyAdapterOnClickHandler {
-        void onRecipeItemClick(NearbyAdapterOnClickHandler vh);
+        void onRecipeItemClick(String name, double latitude, double longitude, NearbyGridViewHolder vh);
     }
 
 }

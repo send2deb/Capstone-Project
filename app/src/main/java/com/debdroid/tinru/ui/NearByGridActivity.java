@@ -3,6 +3,7 @@ package com.debdroid.tinru.ui;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -77,8 +78,12 @@ public class NearByGridActivity extends AppCompatActivity {
         setTitle(typeName);
 
         //Setup adapter and ViewModel
-        nearbyGridAdapter = new NearbyGridAdapter(picasso, apiKey, vh -> {
-            //TODO implement later
+        nearbyGridAdapter = new NearbyGridAdapter(picasso, apiKey, (name, latitude, longitude, vh) -> {
+            // Creates an Intent that will load the location in Google map
+            Uri gmmIntentUri = Uri.parse(String.format("geo:%g,%g?q=%s",latitude,longitude,name));
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
         });
 //        if(isTabletMode) { // For table use the gridlayout
 //            int spanCount = determineNumOfColumns();

@@ -1,6 +1,6 @@
 package com.debdroid.tinru.retrofit;
 
-import com.debdroid.tinru.datamodel.AmadeusPointsOfInterestResponse;
+import com.debdroid.tinru.datamodel.AmadeusSandboxApi.AmadeusPointsOfInterestResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

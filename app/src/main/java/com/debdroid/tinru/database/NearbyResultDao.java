@@ -12,26 +12,26 @@ import java.util.List;
 @Dao
 public interface NearbyResultDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSingleResult(NearbyResultEntity nearbyResultEntity);
+    void insertSingleNearbyResultEntity(NearbyResultEntity nearbyResultEntity);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertBulkResults(List<NearbyResultEntity> nearbyResultEntities);
+    void insertBulkNearbyResultEntities(List<NearbyResultEntity> nearbyResultEntities);
 
     @Delete
-    int deleteResults(List<NearbyResultEntity> nearbyResultEntities);
+    int deleteNearbyResultEntities(List<NearbyResultEntity> nearbyResultEntities);
 
     @Query("SELECT * FROM nearby_result")
-    List<NearbyResultEntity> loadAllNearbyResultEntity();
+    List<NearbyResultEntity> loadAllNearbyResultEntities();
 
     @Query("SELECT * FROM nearby_result WHERE id = :id")
     NearbyResultEntity loadSingleNearbyResultEntity(String id);
 
     @Query("SELECT * FROM nearby_result")
-    LiveData<List<NearbyResultEntity>> loadAllNearbyResultEntityAsLiveData();
+    LiveData<List<NearbyResultEntity>> loadAllNearbyResultEntitiesAsLiveData();
 
     @Query("SELECT * FROM nearby_result WHERE id = :id")
-    LiveData<NearbyResultEntity> loadSingleNearbyResultEntityAsLiveData(String id);
+    LiveData<NearbyResultEntity> loadSingleNearbyResultEntitiesAsLiveData(String id);
 
     @Query("DELETE from nearby_result")
-    void deleteAllResults();
+    void deleteAllNearbyResultEntities();
 }

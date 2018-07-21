@@ -1,9 +1,9 @@
-package com.debdroid.tinru.datamodel;
+package com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Location {
+public class Northeast {
 
     @SerializedName("lat")
     @Expose
@@ -27,4 +27,5 @@ public class Location {
     public void setLng(Double lng) {
         this.lng = lng;
     }
+
 }

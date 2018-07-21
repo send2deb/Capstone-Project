@@ -13,7 +13,7 @@
     <string name="home_progressbar_text_msg">Loading.. This may take a while</string>
     <!-- add here for new type -->
 
-    <string name="home_activity_layout_search_button_text">Where do you want to go?</string>
+    <string name="home_activity_layout_search_button_text">Where do you want to travel?</string>
     <string name="home_activity_layout_image_content_desc">Background image</string>
     <string name="home_activity_layout_nearby_restaurant">Restaurant</string>
     <string name="home_activity_layout_nearby_cafe">Cafe</string>

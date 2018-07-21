@@ -1,11 +1,15 @@
-package com.debdroid.tinru.datamodel;
+
+package com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class TextSearchResult {
 
+    @SerializedName("formatted_address")
+    @Expose
+    private String formattedAddress;
     @SerializedName("geometry")
     @Expose
     private Geometry geometry;
@@ -21,6 +25,9 @@ public class Result {
     @SerializedName("opening_hours")
     @Expose
     private OpeningHours openingHours;
+    @SerializedName("photos")
+    @Expose
+    private List<Photo> photos = null;
     @SerializedName("place_id")
     @Expose
     private String placeId;
@@ -29,22 +36,21 @@ public class Result {
     private PlusCode plusCode;
     @SerializedName("rating")
     @Expose
-    private double rating;
+    private Double rating;
     @SerializedName("reference")
     @Expose
     private String reference;
-    @SerializedName("scope")
-    @Expose
-    private String scope;
     @SerializedName("types")
     @Expose
     private List<String> types = null;
-    @SerializedName("vicinity")
-    @Expose
-    private String vicinity;
-    @SerializedName("photos")
-    @Expose
-    private List<Photo> photos = null;
+
+    public String getFormattedAddress() {
+        return formattedAddress;
+    }
+
+    public void setFormattedAddress(String formattedAddress) {
+        this.formattedAddress = formattedAddress;
+    }
 
     public Geometry getGeometry() {
         return geometry;
@@ -86,6 +92,14 @@ public class Result {
         this.openingHours = openingHours;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
     public String getPlaceId() {
         return placeId;
     }
@@ -101,7 +115,6 @@ public class Result {
     public void setPlusCode(PlusCode plusCode) {
         this.plusCode = plusCode;
     }
-
 
     public Double getRating() {
         return rating;
@@ -119,36 +132,12 @@ public class Result {
         this.reference = reference;
     }
 
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
     public List<String> getTypes() {
         return types;
     }
 
     public void setTypes(List<String> types) {
         this.types = types;
-    }
-
-    public String getVicinity() {
-        return vicinity;
-    }
-
-    public void setVicinity(String vicinity) {
-        this.vicinity = vicinity;
-    }
-
-    public List<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
     }
 
 }
