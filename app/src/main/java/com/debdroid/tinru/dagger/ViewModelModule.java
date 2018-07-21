@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.debdroid.tinru.viewmodel.NearbyGridViewModel;
+import com.debdroid.tinru.viewmodel.PointOfInterestDetailViewModel;
+import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
 import com.debdroid.tinru.viewmodel.TinruViewModelFactory;
 
 import dagger.Binds;
@@ -22,17 +24,17 @@ abstract class ViewModelModule {
     @TinruCustomScope.TinruApplicationScope
     abstract ViewModel bindNearbyGridViewModel(NearbyGridViewModel nearbyGridViewModel);
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(RecipeDetailViewModel.class)
-//    @RecipeCustomScope.BakingApplicationScope
-//    abstract ViewModel bindRecipeDetailViewModel(RecipeDetailViewModel recipeDetailViewModel);
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(RecipeStepDetailViewModel.class)
-//    @RecipeCustomScope.BakingApplicationScope
-//    abstract ViewModel bindRecipeStepDetailViewModel(RecipeStepDetailViewModel recipeStepDetailViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(PointOfInterestListViewModel.class)
+    @TinruCustomScope.TinruApplicationScope
+    abstract ViewModel bindPointOfInterestListViewModel(PointOfInterestListViewModel pointOfInterestListViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PointOfInterestDetailViewModel.class)
+    @TinruCustomScope.TinruApplicationScope
+    abstract ViewModel bindPointOfInterestDetailViewModel(PointOfInterestDetailViewModel pointOfInterestDetailViewModel);
 //
 //    @Binds
 //    @IntoMap

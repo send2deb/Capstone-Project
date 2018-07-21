@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.HomeActivity">
 
     <ProgressBar
-        android:id="@+id/pb_home_actvity"
+        android:id="@+id/pb_home_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -22,7 +21,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:layout_marginBottom="@dimen/material_design_phone_grid_layout_margin"
         android:text="@string/home_progressbar_text_msg"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <LinearLayout
         android:id="@+id/home_activity_linear_layout"
@@ -66,6 +65,7 @@
                 android:layout_marginBottom="@dimen/home_search_button_bottom_padding"
                 android:alpha=".8"
                 android:drawableLeft="@drawable/tinru_search_icon"
+                android:elevation="@dimen/button_elevation"
                 android:drawablePadding="@dimen/home_search_button_drawable_padding"
                 android:text="@string/home_activity_layout_search_button_text"
                 android:textAllCaps="false" />
@@ -94,7 +94,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_restaurant_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_restaurant"
                     android:textAllCaps="false" />
@@ -108,7 +108,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_cafe_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_cafe"
                     android:textAllCaps="false" />
@@ -129,7 +129,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_bar_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_bar"
                     android:textAllCaps="false" />
@@ -143,7 +143,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_atm_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_atm"
                     android:textAllCaps="false" />
@@ -164,7 +164,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_shopping_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_shopping"
                     android:textAllCaps="false" />
@@ -178,7 +178,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_white"
                     android:drawableTop="@drawable/tinru_petrol_pump_icon"
-                    android:elevation="4dp"
+                    android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_petrol_pump"
                     android:textAllCaps="false" />

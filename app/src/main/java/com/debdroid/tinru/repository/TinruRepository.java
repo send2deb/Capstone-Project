@@ -2,6 +2,7 @@ package com.debdroid.tinru.repository;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.os.AsyncTask;
 
 import com.debdroid.tinru.dagger.TinruCustomScope;
@@ -10,6 +11,7 @@ import com.debdroid.tinru.database.NearbyResultEntity;
 import com.debdroid.tinru.database.PointOfInterestResultDao;
 import com.debdroid.tinru.database.PointOfInterestResultEntity;
 import com.debdroid.tinru.datamodel.AmadeusSandboxApi.AmadeusPointsOfInterestResponse;
+import com.debdroid.tinru.datamodel.GooglePlacesCustomPlaceDetailApi.GooglePlacesCustomPlaceDetailResponse;
 import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.GooglePlacesNearbyResponse;
 import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.Result;
 import com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi.GooglePlacesTextSearchResponse;
@@ -33,6 +35,7 @@ public class TinruRepository {
     private GooglePlacesApiService googlePlacesApiService;
     private NearbyResultDao nearbyResultDao;
     private PointOfInterestResultDao pointOfInterestResultDao;
+    private MutableLiveData<GooglePlacesCustomPlaceDetailResponse> googlePlacesCustomPlaceDetail;
 
     @Inject
     public TinruRepository(AmadeusSandboxPointOfInterestApiService amadeusSandboxPointOfInterestApiService,
@@ -64,6 +67,20 @@ public class TinruRepository {
         }
         // Return current data from the database
         return pointOfInterestResultDao.loadAllPointOfInterestResultEntitiesAsLiveData();
+    }
+
+    public LiveData<GooglePlacesCustomPlaceDetailResponse> getGooglePlaceCustomPlaceData(
+            String placeId, String apiKey,boolean needFreshData) {
+        Timber.d("getGooglePlaceCustomPlaceData is called");
+        // Load the data only when ViewModel need it
+        if(needFreshData) googlePlacesCustomPlaceDetail = null;
+
+        if(googlePlacesCustomPlaceDetail == null) {
+            googlePlacesCustomPlaceDetail = new MutableLiveData<>();
+            loadGooglePlaceCustomPlaceData(placeId, apiKey);
+        }
+        // Return current data from the database
+        return googlePlacesCustomPlaceDetail;
     }
 
     private void loadGooglePlaceNearbyData(String latLng, int radius, String type, String apiKey) {
@@ -189,7 +206,7 @@ public class TinruRepository {
                     for(TextSearchResult textSearchResult : textSearchResultList) {
                         PointOfInterestResultEntity pointOfInterestResultEntity = new PointOfInterestResultEntity();
                         pointOfInterestResultEntity.id = textSearchResult.getId();
-                        pointOfInterestResultEntity.nearbyName = textSearchResult.getName();
+                        pointOfInterestResultEntity.pointOfInterestName = textSearchResult.getName();
                         if(textSearchResult.getGeometry() != null) {
                             pointOfInterestResultEntity.latitude = textSearchResult.getGeometry().getLocation().getLat();
                             pointOfInterestResultEntity.longitude = textSearchResult.getGeometry().getLocation().getLng();
@@ -227,6 +244,31 @@ public class TinruRepository {
             }
         };
         asyncTask.execute();
+    }
+
+    private void loadGooglePlaceCustomPlaceData(String placeId, String apiKey) {
+        Timber.d("loadGooglePlaceCustomPlaceData is called");
+        Call<GooglePlacesCustomPlaceDetailResponse> googlePlacesCustomPlaceDetailResponseCall =
+                googlePlacesApiService.getGooglePlacesCustomPlaceDetails(placeId,apiKey);
+        googlePlacesCustomPlaceDetailResponseCall.enqueue(new Callback<GooglePlacesCustomPlaceDetailResponse>() {
+            @Override
+            public void onResponse(Call<GooglePlacesCustomPlaceDetailResponse> call,
+                                   Response<GooglePlacesCustomPlaceDetailResponse> response) {
+                Timber.d("Processing in thread -> " + Thread.currentThread().getName());
+                if (response.isSuccessful()) {
+                    Timber.d("Google place custom data call successful ->" + response.toString());
+                    // Use postValue method as the Retrofit running on background thread
+                    googlePlacesCustomPlaceDetail.postValue(response.body());
+                } else {
+                    Timber.e("Google place nearby api response not successful -> " + response.raw().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GooglePlacesCustomPlaceDetailResponse> call, Throwable t) {
+                Timber.e("Error happened -> " + t.toString());
+            }
+        });
     }
 
     public void getPointsOfInterest() {

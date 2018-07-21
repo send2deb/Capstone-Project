@@ -30,14 +30,10 @@ import timber.log.Timber;
 
 public class NearByGridActivity extends AppCompatActivity {
 
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
-    @Inject
-    Picasso picasso;
-    @BindView(R.id.rv_nearby_item_grid)
-    RecyclerView recyclerView;
-    @BindDimen(R.dimen.single_nearby_item_image_width)
-    float recipeCardWidth;
+    @Inject ViewModelProvider.Factory viewModelFactory;
+    @Inject Picasso picasso;
+    @BindView(R.id.rv_nearby_item_grid) RecyclerView recyclerView;
+    @BindDimen(R.dimen.single_nearby_item_image_width) float recipeCardWidth;
 
     private NearbyGridAdapter nearbyGridAdapter;
     private Parcelable linearLayoutManagerState;
@@ -123,13 +119,13 @@ public class NearByGridActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Timber.d("onBackPressed is called");
-        // Destroy the activity so that ViewModle also gets destroyed for fresh data load next time
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Timber.d("onBackPressed is called");
+//        // Destroy the activity so that ViewModle also gets destroyed for fresh data load next time
+//        finish();
+//    }
 
     /**
      * This method dynamically determines the number of column for the RecyclerView based on

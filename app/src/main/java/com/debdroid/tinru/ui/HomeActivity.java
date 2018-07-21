@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_current_place_city_country) TextView currentCityCountryTextView;
     @BindView(R.id.bt_location_search) Button locationSearchButton;
-    @BindView(R.id.pb_home_actvity) ProgressBar progressBar;
+    @BindView(R.id.pb_home_activity) ProgressBar progressBar;
     @BindView(R.id.tv_progressbar_text_msg) TextView progressBarTextMsg;
     @BindView(R.id.home_activity_linear_layout) LinearLayout linearLayout;
     @BindView(R.id.iv_current_place_image) ImageView currentPlaceImage;
@@ -186,7 +186,7 @@ public class HomeActivity extends AppCompatActivity {
     /**
      * This method is called when Google place picker returns the result
      * @param requestCode The request code used for the place picker request
-     * @param resultCode Result code of Google Place Picker intent
+     * @param resultCode CustomPlaceDetailResult code of Google Place Picker intent
      * @param data Google Place picker Intent data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -203,8 +203,18 @@ public class HomeActivity extends AppCompatActivity {
                 LatLng placeLatLng = place.getLatLng();
                 Timber.d("Lat -> " + placeLatLng.latitude);
                 Timber.d("Long -> " + placeLatLng.longitude);
+                startPointOfInterestListActivity(placeLatLng.latitude, placeLatLng.longitude);
+
             }
         }
+    }
+
+    private void startPointOfInterestListActivity(double latitude, double longitude) {
+        Address address = getAddressFromGeoCoder(latitude, longitude);
+        String poiLocation = address.getLocality();
+        Intent intent = new Intent(this, PointOfInterestListActivity.class);
+        intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_LOCATION, poiLocation);
+        startActivity(intent);
     }
 
     /**
@@ -262,22 +272,11 @@ public class HomeActivity extends AppCompatActivity {
                     currentPlaceId = place.getId();
                     currentPlaceLatLng = place.getLatLng();
 
-                    // Find out the locality, country and other details of the picked up place using Geocoder
-                    Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-                    try {
-                        List<Address> addresses = mGeocoder.getFromLocation(currentPlaceLatLng.latitude,
-                                currentPlaceLatLng.longitude, 1);
-                        if (addresses.size() > 0){
-                            currentPlaceCity = addresses.get(0).getLocality();
-                            currentPlaceCountry = addresses.get(0).getCountryName();
-                            currentPostalCode = addresses.get(0).getPostalCode();
-                        } else {
-                            Timber.d("No address found for place  -> " + currentPlaceName);
-                        }
-                    } catch (IOException e) {
-                        Timber.e("Geocoder error: " + e.getMessage());
-                        e.printStackTrace();
-                    }
+                    Address address = getAddressFromGeoCoder(currentPlaceLatLng.latitude,
+                            currentPlaceLatLng.longitude);
+                    currentPlaceCity = address.getLocality();
+                    currentPlaceCountry = address.getCountryName();
+                    currentPostalCode = address.getPostalCode();
                     Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
                             currentPlaceName, currentPlaceCity, currentPlaceCountry,
                             currentPostalCode, placeLikelihoodValue));
@@ -293,6 +292,30 @@ public class HomeActivity extends AppCompatActivity {
             Timber.e("Exception: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Find out the locality, country and other details of the picked up place using Geocoder
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    private Address getAddressFromGeoCoder(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        Address address = null;
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude,
+                    longitude, 1);
+            if (addresses.size() > 0){
+                address = addresses.get(0);
+            } else {
+                Timber.d("No address found for place  -> " + currentPlaceName);
+            }
+        } catch (IOException e) {
+            Timber.e("Geocoder error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return address;
     }
 
     private void updateUi() {

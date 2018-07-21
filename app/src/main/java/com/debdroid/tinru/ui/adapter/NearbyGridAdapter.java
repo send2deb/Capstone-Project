@@ -1,6 +1,5 @@
 package com.debdroid.tinru.ui.adapter;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -58,12 +57,7 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
                 double latitude = nearbyResultEntityList.get(adapterPosition).latitude;
                 double longitude = nearbyResultEntityList.get(adapterPosition).longitude;
                 Timber.d("Latitude & Longitude of" + "name" + "-> " + latitude + " & " + longitude);
-
-//                int recipeId = recipeEntityList.get(adapterPosition).id;
-//                String recipeName = recipeEntityList.get(adapterPosition).name;
-//                Timber.d("RecipeListViewHolder:Recipe id - "+recipeId);
-//                Timber.d("RecipeListViewHolder:Recipe name - "+recipeName);
-                nearbyGridAdapterOnClickHandler.onRecipeItemClick(name, latitude, longitude, this);
+                nearbyGridAdapterOnClickHandler.onNearbyItemClick(name, latitude, longitude, this);
             });
         }
     }
@@ -81,7 +75,7 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
         String nearbyName = nearbyResultEntityList.get(position).nearbyName;
         String nearbyVicinity = nearbyResultEntityList.get(position).vicinity;
         float nearbyRating = (float) nearbyResultEntityList.get(position).rating;
-        String nearbyRatingValue = String.format("%.2f", nearbyRating);
+        String nearbyRatingValue = String.format("%.1f", nearbyRating);
         String nearbyOpenCloseStatus = nearbyResultEntityList.get(position).openStatus;
         String nearbyPhotoReference = nearbyResultEntityList.get(position).photoReference;
 
@@ -148,7 +142,7 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
      * This is the interface which will be implemented by HostActivity
      */
     public interface NearbyAdapterOnClickHandler {
-        void onRecipeItemClick(String name, double latitude, double longitude, NearbyGridViewHolder vh);
+        void onNearbyItemClick(String name, double latitude, double longitude, NearbyGridViewHolder vh);
     }
 
 }

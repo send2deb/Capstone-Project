@@ -11,6 +11,8 @@
     <string name="database_name">TinruDatabase.db</string>
     <string name="okhttp_cache_name">okhttp_cache</string>
     <string name="home_progressbar_text_msg">Loading.. This may take a while</string>
+    <string name="point_of_interest_query_parameter_part">point of interest</string>
+    <string name="point_of_interest_flight_button_text_suffix">Flight to</string>
     <!-- add here for new type -->
 
     <string name="home_activity_layout_search_button_text">Where do you want to travel?</string>
@@ -22,7 +24,6 @@
     <string name="home_activity_layout_nearby_shopping">Shopping</string>
     <string name="home_activity_layout_nearby_petrol_pump">Gas Station</string>
 
-    <string name="google_place_api_path"></string>
 
     <string name="google_places_api_nearby_type_restaurant">restaurant</string>
     <string name="google_places_api_nearby_type_cafe">cafe</string>

@@ -14,7 +14,7 @@ public class PointOfInterestResultEntity {
     public String id;
 
     @ColumnInfo(name = "point_of_interest_name")
-    public String nearbyName;
+    public String pointOfInterestName;
 
     @ColumnInfo(name = "latitude")
     public double latitude;
@@ -36,10 +36,10 @@ public class PointOfInterestResultEntity {
 
     public PointOfInterestResultEntity() {}
 
-    public PointOfInterestResultEntity(@NotNull String id, String nearbyName, double latitude, double longitude,
+    public PointOfInterestResultEntity(@NotNull String id, String pointOfInterestName, double latitude, double longitude,
                                        String formattedAddress, String placeId, double rating, String photoReference) {
         this.id = id;
-        this.nearbyName = nearbyName;
+        this.pointOfInterestName = pointOfInterestName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.formattedAddress = formattedAddress;

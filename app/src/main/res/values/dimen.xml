@@ -11,6 +11,14 @@
     <dimen name="single_nearby_item_image_width">180dp</dimen>
     <dimen name="single_nearby_item_text_padding">4dp</dimen>
     <dimen name="card_view_elevation">2dp</dimen>
+    <dimen name="button_elevation">4dp</dimen>
     <dimen name="card_view_corner_radius">2dp</dimen>
+    <dimen name="poi_list_elevation">4dp</dimen>
+    <dimen name="poi_list_left_text_padding">4dp</dimen>
+    <dimen name="poi_list_left_rating_bar_padding">8dp</dimen>
+    <dimen name="poi_list_flight_button_drawable_padding">10dp</dimen>
+    <dimen name="poi_list_flight_button_left_right_padding">20dp</dimen>
+    <dimen name="poi_detail_image_width">280dp</dimen>
+
 
 </resources>

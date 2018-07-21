@@ -1,5 +1,6 @@
 package com.debdroid.tinru.retrofit;
 
+import com.debdroid.tinru.datamodel.GooglePlacesCustomPlaceDetailApi.GooglePlacesCustomPlaceDetailResponse;
 import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.GooglePlacesNearbyResponse;
 import com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi.GooglePlacesTextSearchResponse;
 
@@ -16,4 +17,8 @@ public interface GooglePlacesApiService {
     @GET("maps/api/place/textsearch/json")
     Call<GooglePlacesTextSearchResponse> getGooglePlacesTextSearchResponse
             (@Query("query") String locationPointOfInterest, @Query("key") String apiKey);
+
+    @GET("maps/api/place/details/json?fields=url,website,reviews,opening_hours")
+    Call<GooglePlacesCustomPlaceDetailResponse> getGooglePlacesCustomPlaceDetails
+            (@Query("placeid") String placeId, @Query("key") String apiKey);
 }
