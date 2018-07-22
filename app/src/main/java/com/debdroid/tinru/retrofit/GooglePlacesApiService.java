@@ -9,16 +9,16 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface GooglePlacesApiService {
-    @GET("maps/api/place/nearbysearch/json")
+    @GET("nearbysearch/json")
     Call<GooglePlacesNearbyResponse> getGooglePlacesNearbyResponse
             (@Query("location") String locationLatLng, @Query("radius") int radius,
              @Query("type") String type, @Query("key") String apiKey);
 
-    @GET("maps/api/place/textsearch/json")
+    @GET("textsearch/json")
     Call<GooglePlacesTextSearchResponse> getGooglePlacesTextSearchResponse
             (@Query("query") String locationPointOfInterest, @Query("key") String apiKey);
 
-    @GET("maps/api/place/details/json?fields=url,website,reviews,opening_hours")
+    @GET("details/json?fields=url,website,reviews,opening_hours")
     Call<GooglePlacesCustomPlaceDetailResponse> getGooglePlacesCustomPlaceDetails
             (@Query("placeid") String placeId, @Query("key") String apiKey);
 }

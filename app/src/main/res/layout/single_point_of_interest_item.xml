@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:elevation="@dimen/poi_list_elevation"
-    android:layout_margin="@dimen/material_design_phone_grid_layout_margin"
+    android:padding="@dimen/material_design_phone_grid_layout_margin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

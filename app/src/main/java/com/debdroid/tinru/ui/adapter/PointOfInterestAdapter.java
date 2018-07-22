@@ -1,6 +1,6 @@
 package com.debdroid.tinru.ui.adapter;
 
-import android.net.Uri;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +12,9 @@ import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.database.PointOfInterestResultEntity;
-import com.debdroid.tinru.utility.NetworkUtility;
+import com.debdroid.tinru.utility.CommonUtility;
 import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +28,15 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     private Picasso picasso;
     private PointOfInterestAdapterOnClickHandler pointOfInterestAdapterOnClickHandler;
     private String apiKey;
+    private Context context;
 
-    public PointOfInterestAdapter(Picasso picasso, String apiKey, PointOfInterestAdapterOnClickHandler clickHandler) {
+    public PointOfInterestAdapter(Context context, Picasso picasso, String apiKey,
+                                  PointOfInterestAdapterOnClickHandler clickHandler) {
         Timber.d("PointOfInterestAdapter constructor is called");
-        pointOfInterestAdapterOnClickHandler = clickHandler;
+        this.context = context;
         this.picasso = picasso;
         this.apiKey = apiKey;
+        pointOfInterestAdapterOnClickHandler = clickHandler;
     }
 
     public class PointOfInterestViewHolder extends RecyclerView.ViewHolder {
@@ -86,23 +87,9 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
         holder.pointOfInterestRatingValue.setText(pointOfInterestRatingValue);
         holder.pointOfInterestRatingBar.setRating(nearbyRating);
 
-        Uri uri = Uri.parse(NetworkUtility.getGooglePlaceApiBaseUrl())
-                .buildUpon()
-                .path("maps/api/place/photo")
-                .appendQueryParameter("maxwidth","200")
-                .appendQueryParameter("key",apiKey)
-                .appendQueryParameter("photoreference", pointOfInterestPhotoReference)
-                .build();
-
-        String photoReferenceUrlString = null;
-
-        try {
-            URL url = new URL(uri.toString());
-            photoReferenceUrlString = url.toString();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
+        String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(context,
+                Integer.toString(context.getResources().getInteger(R.integer.poi_list_photo_download_width_size)),
+                pointOfInterestPhotoReference);
         if(photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
 //            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
             //TODO set fallback image
@@ -118,10 +105,8 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     @Override
     public int getItemCount() {
         if (pointOfInterestResultEntityList.isEmpty()) {
-//            Timber.d("getItemCount is called, pointOfInterestResultEntityList is empty");
             return 0;
         } else {
-//            Timber.d("getItemCount is called, pointOfInterestResultEntityList count -> " + pointOfInterestResultEntityList.size());
             return pointOfInterestResultEntityList.size();
         }
     }

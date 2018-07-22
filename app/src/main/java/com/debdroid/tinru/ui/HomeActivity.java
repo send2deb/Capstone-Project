@@ -43,7 +43,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
-import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,6 +56,7 @@ import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class HomeActivity extends AppCompatActivity {
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     @Inject
     TinruRepository tinruRepository;
     @Inject
@@ -63,31 +64,27 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     SharedPreferences sharedPreferences;
 
-    @BindView(R.id.tv_current_place_city_country) TextView currentCityCountryTextView;
-    @BindView(R.id.bt_location_search) Button locationSearchButton;
-    @BindView(R.id.pb_home_activity) ProgressBar progressBar;
-    @BindView(R.id.tv_progressbar_text_msg) TextView progressBarTextMsg;
-    @BindView(R.id.home_activity_linear_layout) LinearLayout linearLayout;
-    @BindView(R.id.iv_current_place_image) ImageView currentPlaceImage;
-    @BindView(R.id.fab_home) FloatingActionButton fab;
+    @BindView(R.id.tv_current_place_city_country)
+    TextView currentCityCountryTextView;
+    @BindView(R.id.bt_location_search)
+    Button locationSearchButton;
+    @BindView(R.id.pb_home_activity)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_progressbar_text_msg)
+    TextView progressBarTextMsg;
+    @BindView(R.id.home_activity_linear_layout)
+    LinearLayout linearLayout;
+    @BindView(R.id.iv_current_place_image)
+    ImageView currentPlaceImage;
+    @BindView(R.id.fab_home)
+    FloatingActionButton fab;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
-    // The entry point to the Fused Location Provider.
-//    private FusedLocationProviderClient mFusedLocationProviderClient;
-    // A default location (London, UK) and default zoom to use when location permission is
-    // not granted.
-//    private final LatLng mDefaultLocation = new LatLng(51.5074, 0.1278);
-//    private static final int DEFAULT_ZOOM = 15;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private boolean mLocationPermissionGranted;
-    // The geographical location where the device is currently located. That is, the last-known
-    // location retrieved by the Fused Location Provider.
-//    private Location mLastKnownLocation;
-    // Google place picker request number
-    private int PLACE_PICKER_REQUEST = 1;
 
+    private boolean mLocationPermissionGranted;
+    private int PLACE_PICKER_REQUEST = 1;
     private String currentPlaceName;
     private String currentPlaceId;
     private LatLng currentPlaceLatLng;
@@ -105,26 +102,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        tinruRepository.getPointOfInterestResult("london point of interest",
-                getString(R.string.google_maps_key), true);
-
         // Construct a GeoDataClient.
         mGeoDataClient = Places.getGeoDataClient(this);
         // Construct a PlaceDetectionClient.
         mPlaceDetectionClient = Places.getPlaceDetectionClient(this);
-        // Construct a FusedLocationProviderClient.
-//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Show the progress bar and hide the layout
+        // Show the progress bar and hide the layout & fab
         progressBar.setVisibility(ProgressBar.VISIBLE);
         progressBarTextMsg.setVisibility(TextView.VISIBLE);
         linearLayout.setVisibility(LinearLayout.INVISIBLE);
-        getDeviceLocation();
+        fab.setVisibility(FloatingActionButton.INVISIBLE);
 
-//        tinruRepository.getGooglePlaceNearbyData("51.5073509,-0.1277583",
-//                1000,
-//                "cafe",
-//                getString(R.string.google_maps_key));
+        // Get current location of the device
+        getDeviceLocation();
 
         // Create the viewmodel
         viewModel = ViewModelProviders.of(this, viewModelFactory)
@@ -132,8 +122,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Open Google Places Api Place Picker to select a place
-     * @param view
+     * Handle search button action
+     *
+     * @param view The associated view
      */
     @OnClick(R.id.bt_location_search)
     public void locationSearchAction(View view) {
@@ -141,6 +132,86 @@ public class HomeActivity extends AppCompatActivity {
         openPlacePicker();
     }
 
+    /**
+     * Handle click action of NearbyRestaurant button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_restaurant)
+    public void nearbyRestaurantAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_restaurant),
+                getString(R.string.home_activity_layout_nearby_restaurant));
+    }
+
+    /**
+     * Handle click action of NearbyCafe button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_cafe)
+    public void nearbyCafeAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_cafe),
+                getString(R.string.home_activity_layout_nearby_cafe));
+    }
+
+    /**
+     * Handle click action of NearbyBar button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_bar)
+    public void nearbyBarAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_bar),
+                getString(R.string.home_activity_layout_nearby_bar));
+    }
+
+    /**
+     * Handle click action of NearbyATM button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_atm)
+    public void nearbyATMAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_atm),
+                getString(R.string.home_activity_layout_nearby_atm));
+    }
+
+    /**
+     * Handle click action of NearbyShopping button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_shopping)
+    public void nearbyShoppingAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_shopping),
+                getString(R.string.home_activity_layout_nearby_shopping));
+    }
+
+    /**
+     * Handle click action of NearbyPetrolPump button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.bt_nearby_petrol_pump)
+    public void nearbyPetrolPumpAction(View view) {
+        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_petrol_pump),
+                getString(R.string.home_activity_layout_nearby_petrol_pump));
+    }
+
+    /**
+     * Handle click action of fab button
+     *
+     * @param view Associated view
+     */
+    @OnClick(R.id.fab_home)
+    public void fabAction(View view) {
+        openPlacePicker();
+    }
+
+
+    /**
+     * Open Google Places Api Place Picker to select a place
+     */
     private void openPlacePicker() {
         Timber.d("openPlacePicker is called");
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
@@ -157,64 +228,12 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.bt_nearby_restaurant)
-    public void openNearbyRestaurant(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_restaurant),
-                getString(R.string.home_activity_layout_nearby_restaurant));
-    }
-
-    @OnClick(R.id.bt_nearby_cafe)
-    public void openNearbyCafe(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_cafe),
-                getString(R.string.home_activity_layout_nearby_cafe));
-    }
-
-    @OnClick(R.id.bt_nearby_bar)
-    public void openNearbyBar(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_bar),
-                getString(R.string.home_activity_layout_nearby_bar));
-    }
-
-    @OnClick(R.id.bt_nearby_atm)
-    public void openNearbyATM(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_atm),
-                getString(R.string.home_activity_layout_nearby_atm));
-    }
-
-    @OnClick(R.id.bt_nearby_shopping)
-    public void openNearbyShopping(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_shopping),
-                getString(R.string.home_activity_layout_nearby_shopping));
-    }
-
-    @OnClick(R.id.bt_nearby_petrol_pump)
-    public void openNearbyPetrolPump(View view) {
-        startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_petrol_pump),
-                getString(R.string.home_activity_layout_nearby_petrol_pump));
-    }
-
-    @OnClick(R.id.fab_home)
-    public void fabAction(View view) {
-        Toast.makeText(this,"Fab is clicked", Toast.LENGTH_LONG).show();
-        Timber.d("Fab is clicked");
-        openPlacePicker();
-    }
-
-    private void startNearbyGridActivity(String type, String typeName) {
-        Intent intent = new Intent(this, NearByGridActivity.class);
-        String latLng = String.format("%s,%s",currentPlaceLatLng.latitude,currentPlaceLatLng.longitude);
-        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, latLng);
-        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_RADIUS, 1000);
-        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE, type);
-        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE_NAME, typeName);
-        startActivity(intent);
-    }
-
     /**
      * This method is called when Google place picker returns the result
+     *
      * @param requestCode The request code used for the place picker request
-     * @param resultCode CustomPlaceDetailResult code of Google Place Picker intent
-     * @param data Google Place picker Intent data
+     * @param resultCode  CustomPlaceDetailResult code of Google Place Picker intent
+     * @param data        Google Place picker Intent data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Timber.d("onActivityResult is called");
@@ -225,7 +244,7 @@ public class HomeActivity extends AppCompatActivity {
                 String toastMsg = String.format("Place: %s", place.getName());
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
                 List<Integer> placeTypes = place.getPlaceTypes();
-                for(int type : placeTypes) {
+                for (int type : placeTypes) {
                     Timber.d("Place Type -> " + type);
                 }
                 LatLng placeLatLng = place.getLatLng();
@@ -234,29 +253,18 @@ public class HomeActivity extends AppCompatActivity {
                 // Load airport code of destination
                 viewModel.getAirportCode(placeLatLng.latitude, placeLatLng.longitude,
                         getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
-                            Timber.d("Destination airport code -> " + airportCode);
+                    Timber.d("Destination airport code -> " + airportCode);
                     saveDataInSharedPreference(
                             getString(R.string.preference_destination_airport_code_key), airportCode);
-                        });
-                // Start place of interest activity
-                startPointOfInterestListActivity(placeLatLng.latitude, placeLatLng.longitude);
+                    // Start place of interest activity - start activity only after the airport code is retrieved
+                    prepareAndStartPointOfInterestListActivity(placeLatLng.latitude, placeLatLng.longitude);
+                });
             }
         }
     }
 
-    private void startPointOfInterestListActivity(double latitude, double longitude) {
-        Address address = getAddressFromGeoCoder(latitude, longitude);
-        String poiLocation = address.getLocality();
-        // Save city to SharedPreference - used for Flight list activity
-        saveDataInSharedPreference(getString(R.string.preference_destination_airport_city_key),
-                poiLocation);
-        Intent intent = new Intent(this, PointOfInterestListActivity.class);
-        intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_LOCATION, poiLocation);
-        startActivity(intent);
-    }
-
     /**
-     * Gets the current location of the device, and positions the map's camera.
+     * Gets the current location of the device using Google Place Api SDK
      */
     private void getDeviceLocation() {
         /*
@@ -270,38 +278,21 @@ public class HomeActivity extends AppCompatActivity {
 
         try {
             if (mLocationPermissionGranted) {
-                Task<PlaceLikelihoodBufferResponse> placeResult = mPlaceDetectionClient.getCurrentPlace(null);
+                Task<PlaceLikelihoodBufferResponse> placeResult =
+                        mPlaceDetectionClient.getCurrentPlace(null);
                 placeResult.addOnCompleteListener(task -> {
                     PlaceLikelihoodBufferResponse likelyPlaces = task.getResult();
                     for (PlaceLikelihood placeLikelihood : likelyPlaces) {
                         Timber.d(String.format("Place '%s' has likelihood: %g",
                                 placeLikelihood.getPlace().getName(),
                                 placeLikelihood.getLikelihood()));
-                        Timber.d("Latitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().latitude));
-                        Timber.d("Longitude-> " + Double.toString(placeLikelihood.getPlace().getLatLng().longitude));
-                        Timber.d("Address -> " + placeLikelihood.getPlace().getAddress().toString());
-
-                        Geocoder mGeocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-                        try {
-                            List<Address> addresses = mGeocoder.getFromLocation(placeLikelihood.getPlace().getLatLng().latitude,
-                            placeLikelihood.getPlace().getLatLng().longitude, 1);
-                            if (addresses != null && addresses.size() > 0) {
-                                Timber.d("Locality -> " + addresses.get(0).getLocality());
-                                Timber.d("Country -> " + addresses.get(0).getCountryName());
-                                Timber.d("PostalCode -> " + addresses.get(0).getPostalCode());
-                                Timber.d("Phone -> " + addresses.get(0).getPhone());
-                            }
-                        } catch (IOException e) {
-                            Timber.e("PlaceDetectionClient error: " + e.getMessage());
-                            e.printStackTrace();
-                        }
                     }
 
+                    // Pick the place which has maximum likelihood value
                     Place place = likelyPlaces.get(0).getPlace();
                     float placeLikelihoodValue = likelyPlaces.get(0).getLikelihood();
-                    // Pick the place which has maximum likelihood value
-                    for(PlaceLikelihood placeLikelihood : likelyPlaces) {
-                        if(placeLikelihood.getLikelihood() > placeLikelihoodValue) {
+                    for (PlaceLikelihood placeLikelihood : likelyPlaces) {
+                        if (placeLikelihood.getLikelihood() > placeLikelihoodValue) {
                             place = placeLikelihood.getPlace();
                             placeLikelihoodValue = placeLikelihood.getLikelihood();
                         }
@@ -310,6 +301,7 @@ public class HomeActivity extends AppCompatActivity {
                     currentPlaceId = place.getId();
                     currentPlaceLatLng = place.getLatLng();
 
+                    // Get the address of the location for city and country name
                     Address address = getAddressFromGeoCoder(currentPlaceLatLng.latitude,
                             currentPlaceLatLng.longitude);
                     currentPlaceCity = address.getLocality();
@@ -326,7 +318,7 @@ public class HomeActivity extends AppCompatActivity {
                     saveDataInSharedPreference(getString(R.string.preference_origin_airport_city_key),
                             currentPlaceCity);
 
-                    // Load airport code of current place
+                    // Load airport code of current place - used for Flight list activity
                     viewModel.getAirportCode(currentPlaceLatLng.latitude, currentPlaceLatLng.longitude,
                             getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
                         Timber.d("Current place airport code -> " + airportCode);
@@ -338,7 +330,7 @@ public class HomeActivity extends AppCompatActivity {
                     likelyPlaces.release();
                 });
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Timber.e("Exception: " + e.getMessage());
             e.printStackTrace();
         }
@@ -346,17 +338,18 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * Find out the locality, country and other details of the picked up place using Geocoder
-     * @param latitude
-     * @param longitude
-     * @return
+     * @param latitude The latitude of the place
+     * @param longitude The longitude of the place
+     * @return Address of the place
      */
+
     private Address getAddressFromGeoCoder(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         Address address = null;
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,
                     longitude, 1);
-            if (addresses.size() > 0){
+            if (addresses.size() > 0) {
                 address = addresses.get(0);
             } else {
                 Timber.d("No address found for place  -> " + currentPlaceName);
@@ -368,28 +361,36 @@ public class HomeActivity extends AppCompatActivity {
         return address;
     }
 
+    /**
+     * Update ui with the data
+     */
     private void updateUi() {
         Timber.d("updateUi is called");
         // Load the photo of local place
+        // TODO need to check if bitmap loading needs to be optimised further
         loadLocalPlacePhoto();
         // Set the current City & Country
         String currentPlaceCityCountry = currentPlaceName;
-        if(currentPlaceCity != null && currentPlaceCountry != null) {
+        if (currentPlaceCity != null && currentPlaceCountry != null) {
             currentPlaceCityCountry = currentPlaceCountry.concat(String.format("%s, %s, %s", currentPlaceName, currentPlaceCity,
                     currentPlaceCountry));
         } else if (currentPlaceCity == null && currentPlaceCountry != null) {
             currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCountry);
-        } else if(currentPlaceCity != null && currentPlaceCountry == null) {
+        } else if (currentPlaceCity != null && currentPlaceCountry == null) {
             currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCity);
         }
         currentCityCountryTextView.setText(currentPlaceCityCountry);
 
-        // Hide the progress bar and show the layout
+        // Hide the progress bar and show the layout & fab
         progressBar.setVisibility(ProgressBar.GONE);
         progressBarTextMsg.setVisibility(TextView.GONE);
         linearLayout.setVisibility(LinearLayout.VISIBLE);
+        fab.setVisibility(FloatingActionButton.VISIBLE);
     }
 
+    /**
+     * Load the photo of the current place using Google Places Api SDK
+     */
     private void loadLocalPlacePhoto() {
         Timber.d(("loadLocalPlacePhoto is called. currentPlaceId -> " + currentPlaceId));
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(currentPlaceId);
@@ -399,9 +400,10 @@ public class HomeActivity extends AppCompatActivity {
             // Get the PlacePhotoMetadataBuffer (metadata for all of the photos).
             PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
             // Get the first photo in the list.
-            if(photoMetadataBuffer.getCount() > 0) {
+            if (photoMetadataBuffer.getCount() > 0) {
                 PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
                 // Get the attribution text.
+                //TODO need to add the attribution for all Google Place Api usage
                 CharSequence attribution = photoMetadata.getAttributions();
                 // Get a full-size bitmap for the photo.
                 Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
@@ -413,22 +415,68 @@ public class HomeActivity extends AppCompatActivity {
                         currentPlaceImage.setImageBitmap(bitmap);
                     }
                 });
-                // Release the buffer to avoid memory leak
-                photoMetadataBuffer.release();
             } else {
                 Timber.d("No photo found for place id -> " + currentPlaceId);
             }
+            // Release the buffer to avoid memory leak
+            photoMetadataBuffer.release();
         });
     }
 
+    /**
+     * Save data to SharedPreference
+     * @param key The key of the SharedPreference data
+     * @param value The value of the SharedPReference data
+     */
     private void saveDataInSharedPreference(String key, String value) {
         Timber.d("saveDataInSharedPreference is called");
-        Timber.d("saveDataInSharedPreference:key - "+key);
-        Timber.d("saveDataInSharedPreference:value - "+value);
+        Timber.d("saveDataInSharedPreference:key - " + key);
+        Timber.d("saveDataInSharedPreference:value - " + value);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.apply(); // Write asynchronously
+    }
+
+    /**
+     * Start Nearby activity
+     *
+     * @param type     The type for which the Nearby activity is to be started
+     * @param typeName The user friendly nme of the corresponding type
+     */
+    private void startNearbyGridActivity(String type, String typeName) {
+        Intent intent = new Intent(this, NearByGridActivity.class);
+        String latLng = String.format("%s,%s", currentPlaceLatLng.latitude, currentPlaceLatLng.longitude);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, latLng);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_RADIUS,
+                getResources().getInteger(R.integer.nearby_search_radius_meter));
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE, type);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_TYPE_NAME, typeName);
+        startActivity(intent);
+    }
+
+    /**
+     * Start point of interest list activity. Store data before starting the activity
+     *
+     * @param latitude  The latitude of the point of interest
+     * @param longitude The longitude of the point of interest
+     */
+    private void prepareAndStartPointOfInterestListActivity(double latitude, double longitude) {
+        Address address = getAddressFromGeoCoder(latitude, longitude);
+        String poiLocation = address.getLocality();
+
+        // Save city to SharedPreference - used for Flight list activity
+        saveDataInSharedPreference(getString(R.string.preference_destination_airport_city_key),
+                poiLocation);
+
+        // Save data to UserSearchedLocation table - used for Widget
+        Date date = new Date();
+        viewModel.addSearchedLocationData(poiLocation, latitude, longitude, date);
+
+        // Now start the activity
+        Intent intent = new Intent(this, PointOfInterestListActivity.class);
+        intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_LOCATION, poiLocation);
+        startActivity(intent);
     }
 
     /**
@@ -456,8 +504,7 @@ public class HomeActivity extends AppCompatActivity {
      * Handles the result of the request for location permissions.
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
         Timber.d("onRequestPermissionsResult is called");
         mLocationPermissionGranted = false;

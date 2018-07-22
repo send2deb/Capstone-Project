@@ -11,7 +11,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.debdroid.tinru.R;
@@ -33,15 +32,15 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     ViewModelProvider.Factory viewModelFactory;
     @Inject
     Picasso picasso;
+
     @BindView(R.id.rv_poi_list)
     RecyclerView recyclerView;
-    @BindView(R.id.bt_flight)
-    Button flightButton;
 
     private PointOfInterestAdapter pointOfInterestAdapter;
     private Parcelable linearLayoutManagerState;
-    public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
     private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
+
+    public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,26 +58,22 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
         // Get extras from the intent
         Intent intent = getIntent();
-        String location = "London"; // Default location - London
+        String location = getString(R.string.default_location_london); // Default location - London
         String apiKey = getString(R.string.google_maps_key);
 
-        if(intent.hasExtra(EXTRA_POINT_OF_INTEREST_LOCATION)) location =
+        if (intent.hasExtra(EXTRA_POINT_OF_INTEREST_LOCATION)) location =
                 intent.getStringExtra(EXTRA_POINT_OF_INTEREST_LOCATION);
 
         // Set the action bar title
         setTitle(location);
 
-        // Set the button text
-        String buttonText = getString(R.string.point_of_interest_flight_button_text_suffix)
-                .concat(" ").concat(location);
-        flightButton.setText(buttonText);
-
         //Setup adapter and ViewModel
-        pointOfInterestAdapter = new PointOfInterestAdapter(picasso, apiKey, (placeId, name, address,
-                                     latitude, longitude, rating, photoReference, vh) -> {
-            startPointOfDetailActivity(placeId, name, address,
-                    latitude, longitude, rating, photoReference);
+        pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, apiKey, (placeId, name, address,
+                                                                              latitude, longitude, rating,
+                                                                              photoReference, vh) -> {
+            startPointOfDetailActivity(placeId, name, address, latitude, longitude, rating, photoReference);
         });
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
@@ -99,7 +94,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
                 .concat(getString(R.string.point_of_interest_query_parameter_part));
         viewModel.getPointOfInterestResultList(locationPointOfInterest, apiKey).observe(this,
                 (pointOfInterestResultEntityList) -> {
-                    Timber.d("viewModel refreshed!!");
+                    Timber.d("PointOfInterestListViewModel refreshed!!");
                     pointOfInterestAdapter.swapData(pointOfInterestResultEntityList);
                     // Restore the position
                     if (linearLayoutManagerState != null) {
@@ -117,18 +112,30 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Handle fab click action
+     * @param view Associated view
+     */
     @OnClick(R.id.fab_poi_list)
     public void fabAction(View view) {
-        Toast.makeText(this,"Fab is clicked", Toast.LENGTH_LONG).show();
-        Timber.d("Fab is clicked");
         startFlightListActivity();
     }
 
-    private void startPointOfDetailActivity(String placeId, String loation, String address, double latitude,
+    /**
+     * Start the point of interest detail activity
+     * @param placeId Place id of the point of interest item
+     * @param location Location of the point of interest
+     * @param address Address of the point of interest item
+     * @param latitude Latitude of the point of interest item
+     * @param longitude Longitude of the point of interest item
+     * @param rating Rating of the point of interest item
+     * @param photoReference Photo reference of the point of interest item
+     */
+    private void startPointOfDetailActivity(String placeId, String location, String address, double latitude,
                                             double longitude, double rating, String photoReference) {
         Intent intent = new Intent(this, PointOfInterestDetailActivity.class);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_PLACE_ID, placeId);
-        intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LOCATION, loation);
+        intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LOCATION, location);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_ADDRESS, address);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LATITUDE, latitude);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LONGITUDE, longitude);
@@ -137,6 +144,9 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Start flight list activity
+     */
     private void startFlightListActivity() {
         Intent intent = new Intent(this, FlightListActivity.class);
         startActivity(intent);

@@ -4,14 +4,16 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Date;
+
 @Entity(tableName = "user_searched_location")
 public class UserSearchedLocationEntity {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    public int id;
 
+    @PrimaryKey
     @ColumnInfo(name = "city_name")
-    public String cityName;
+    public @NotNull String cityName;
 
     @ColumnInfo(name = "latitude")
     public double latitude;
@@ -19,16 +21,17 @@ public class UserSearchedLocationEntity {
     @ColumnInfo(name = "longitude")
     public double longitude;
 
-    @ColumnInfo(name = "google_maps_link")
-    public String googleMapsLink;
+    @ColumnInfo(name = "datetimestamp")
+    public Date datetimestamp;
+
 
     public UserSearchedLocationEntity() {}
 
-    public UserSearchedLocationEntity(int id, String cityName, double latitude, double longitude, String googleMapsLink) {
-        this.id = id;
+    public UserSearchedLocationEntity(@NotNull String cityName, double latitude,
+                                      double longitude, Date datetimestamp) {
         this.cityName = cityName;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.googleMapsLink = googleMapsLink;
+        this.datetimestamp = datetimestamp;
     }
 }

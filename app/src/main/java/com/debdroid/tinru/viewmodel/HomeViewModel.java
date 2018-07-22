@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModel;
 
 import com.debdroid.tinru.repository.TinruRepository;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import timber.log.Timber;
@@ -47,5 +49,9 @@ public class HomeViewModel extends ViewModel {
                     .getAirportCode(latitude, longitude, apiKey, needFreshData);
         }
         return airportCode;
+    }
+
+    public void addSearchedLocationData(String location, double lat, double lng, Date datetimestamp) {
+        tinruRepository.addSearchedLocationData(location, lat, lng, datetimestamp);
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="nearby_search_radius_meter">1000</integer>
+    <integer name="poi_list_photo_download_width_size">200</integer>
+    <integer name="poi_detail_photo_download_width_size">600</integer>
+    <integer name="nearby_photo_download_width_size">400</integer>
+    <integer name="default_nearby_search_radius_meter">500</integer>
+</resources>

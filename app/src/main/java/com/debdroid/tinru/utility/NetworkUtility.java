@@ -21,7 +21,7 @@ import timber.log.Timber;
 
 public class NetworkUtility {
     private static final String AMADEUS_SANDBOX_BASE_URL = "https://api.sandbox.amadeus.com/v1.2/";
-    private static final String GOOGLE_PLACES_API_BASE_URL = "https://maps.googleapis.com/";
+    private static final String GOOGLE_PLACES_API_BASE_URL = "https://maps.googleapis.com/maps/api/place/";
 
     /**
      * This method returns the base url of the recipe

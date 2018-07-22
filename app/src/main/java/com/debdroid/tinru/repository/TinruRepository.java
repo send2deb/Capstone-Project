@@ -10,6 +10,8 @@ import com.debdroid.tinru.database.NearbyResultDao;
 import com.debdroid.tinru.database.NearbyResultEntity;
 import com.debdroid.tinru.database.PointOfInterestResultDao;
 import com.debdroid.tinru.database.PointOfInterestResultEntity;
+import com.debdroid.tinru.database.UserSearchedLocationDao;
+import com.debdroid.tinru.database.UserSearchedLocationEntity;
 import com.debdroid.tinru.datamodel.AmadeusSandboxAirportSearchApi.AmadeusSandboxAirportSearchResponse;
 import com.debdroid.tinru.datamodel.AmadeusSandboxApi.AmadeusPointsOfInterestResponse;
 import com.debdroid.tinru.datamodel.AmadeusSandboxLowFareSearchApi.AmadeusSandboxLowFareSearchResponse;
@@ -22,6 +24,7 @@ import com.debdroid.tinru.retrofit.AmadeusSandboxApiService;
 import com.debdroid.tinru.retrofit.GooglePlacesApiService;
 import com.debdroid.tinru.utility.RepositoryUtility;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +41,7 @@ public class TinruRepository {
     private GooglePlacesApiService googlePlacesApiService;
     private NearbyResultDao nearbyResultDao;
     private PointOfInterestResultDao pointOfInterestResultDao;
+    private UserSearchedLocationDao userSearchedLocationDao;
     private MutableLiveData<GooglePlacesCustomPlaceDetailResponse> googlePlacesCustomPlaceDetail;
     private MutableLiveData<String> airportCode;
     private MutableLiveData<AmadeusSandboxLowFareSearchResponse> amadeusSandboxLowFareSearchResult;
@@ -45,11 +49,13 @@ public class TinruRepository {
     @Inject
     public TinruRepository(AmadeusSandboxApiService amadeusSandboxApiService,
                            GooglePlacesApiService googlePlacesApiService, NearbyResultDao nearbyResultDao,
-                           PointOfInterestResultDao pointOfInterestResultDao) {
+                           PointOfInterestResultDao pointOfInterestResultDao,
+                           UserSearchedLocationDao userSearchedLocationDao) {
         this.amadeusSandboxApiService = amadeusSandboxApiService;
         this.googlePlacesApiService = googlePlacesApiService;
         this.nearbyResultDao = nearbyResultDao;
         this.pointOfInterestResultDao = pointOfInterestResultDao;
+        this.userSearchedLocationDao = userSearchedLocationDao;
     }
 
     public LiveData<List<NearbyResultEntity>> getNearbyResult(String latLng, int radius, String type,
@@ -113,6 +119,10 @@ public class TinruRepository {
             loadAmadeusSandboxLowFareSearchData(origin, destination, nonStop, departureDate, apiKey);
         }
         return amadeusSandboxLowFareSearchResult;
+    }
+
+    public void addSearchedLocationData(String location, double lat, double lng, Date datetimestamp) {
+        insertDataToUserSearchedLocationTable(location, lat, lng, datetimestamp);
     }
 
     private void loadGooglePlaceNearbyData(String latLng, int radius, String type, String apiKey) {
@@ -240,7 +250,7 @@ public class TinruRepository {
                     amadeusSandboxLowFareSearchResult.postValue(response.body());
                     Timber.d("currency -> " + response.body().getCurrency());
                 } else {
-                    Timber.e("Amadeus sandbox low fare data call not successful -> " + response.raw().toString());
+                    Timber.e("Amadeus sandbox low fare data call not successful -> " + response.raw().message());
                 }
             }
 
@@ -260,7 +270,7 @@ public class TinruRepository {
             protected Void doInBackground(Void... voids) {
                 if (resultList != null) {
                     List<NearbyResultEntity> nearbyResultEntities =
-                            RepositoryUtility.parseNearbyResultEntity(resultList);
+                            RepositoryUtility.buildNearbyResultEntity(resultList);
                     nearbyResultDao.insertBulkNearbyResultEntities(nearbyResultEntities);
                 } else {
                     Timber.e("Google Place nearby api Json response is null");
@@ -291,7 +301,7 @@ public class TinruRepository {
             protected Void doInBackground(Void... voids) {
                 if (textSearchResultList != null) {
                     List<PointOfInterestResultEntity> pointOfInterestResultEntities =
-                            RepositoryUtility.parsePointOfInterestResultEntity(textSearchResultList);
+                            RepositoryUtility.buildPointOfInterestResultEntity(textSearchResultList);
                     // Insert the point of interest list to the table
                     pointOfInterestResultDao.insertBulkPointOfInterestResultEntities(pointOfInterestResultEntities);
                 } else {
@@ -309,6 +319,23 @@ public class TinruRepository {
             @Override
             protected Void doInBackground(Void... voids) {
                 pointOfInterestResultDao.deleteAllPointOfInterestResultEntities();
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
+
+    private void insertDataToUserSearchedLocationTable(String location, double lat, double lng,
+                                                       Date datetimestamp) {
+        Timber.d("insertDataToUserSearchedLocationTable is called");
+        final UserSearchedLocationEntity userSearchedLocationEntity =
+                RepositoryUtility.buildUserSearchedLocationEntity(location, lat, lng, datetimestamp);
+
+        // Room does not allow operation on main thread
+        @SuppressLint("StaticFieldLeak") final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                userSearchedLocationDao.insertSingleLocation(userSearchedLocationEntity);
                 return null;
             }
         };

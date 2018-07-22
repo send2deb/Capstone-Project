@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:elevation="@dimen/poi_list_elevation"
+    android:padding="@dimen/material_design_phone_grid_layout_margin">
 
     <ImageView
         android:id="@+id/iv_single_flight_origin_rectangle"

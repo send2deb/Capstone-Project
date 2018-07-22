@@ -3,20 +3,21 @@ package com.debdroid.tinru.ui;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.FlightListAdapter;
-import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
+import com.debdroid.tinru.utility.CommonUtility;
 import com.debdroid.tinru.viewmodel.FlightListViewModel;
-import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
 
 import javax.inject.Inject;
 
@@ -27,20 +28,24 @@ import timber.log.Timber;
 
 public class FlightListActivity extends AppCompatActivity {
 
+    private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     @Inject
     SharedPreferences sharedPreferences;
 
+    @BindView(R.id.pb_flight_list_activity)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_flight_list_pb_text_msg)
+    TextView progressMsgTextView;
+    @BindView(R.id.flight_list_relative_layout)
+    RelativeLayout relativeLayout;
     @BindView(R.id.tv_flight_list_orig_to_destination_value)
     TextView originToDestinationTextView;
     @BindView(R.id.rv_flight_list)
     RecyclerView recyclerView;
-
     private FlightListAdapter flightListAdapter;
     private Parcelable linearLayoutManagerState;
-    private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +63,13 @@ public class FlightListActivity extends AppCompatActivity {
 
         // Retrieve data from SharedPreference
         String originAirportCity = sharedPreferences.getString(getString(R.string.preference_origin_airport_city_key),
-                "London"); // Default value London
+                getString(R.string.default_location_london)); // Default value London
         String destinationAirportCity = sharedPreferences.getString(getString(R.string.preference_destination_airport_city_key),
-                "Delhi"); // Default value Delhi
+                getString(R.string.default_destination_location_delhi)); // Default value Delhi
         String originAirportCode = sharedPreferences.getString(getString(R.string.preference_origin_airport_code_key),
-                "LHR"); // Default value LHR (London Heathrow)
+                getString(R.string.default_origin_airport_code_london)); // Default value LHR (London Heathrow)
         String destinationAirportCode = sharedPreferences.getString(getString(R.string.preference_destination_airport_code_key),
-                "DEL"); // Default value DEL (Delhi)
+                getString(R.string.default_destination_airport_code_delhi)); // Default value DEL (Delhi)
 
         Timber.d("originAirportCity -> " + originAirportCity);
         Timber.d("destinationAirportCity -> " + destinationAirportCity);
@@ -75,7 +80,13 @@ public class FlightListActivity extends AppCompatActivity {
         setTitle(getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
 
         // Set the flight from to destination view
-        originToDestinationTextView.setText(originAirportCity.concat(" to ").concat(destinationAirportCity));
+        originToDestinationTextView.setText(getString(R.string.flight_list_orig_to_dest_msg,
+                originAirportCity, destinationAirportCity));
+
+        // Show the progress bar and hide the layout
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressMsgTextView.setVisibility(TextView.VISIBLE);
+        relativeLayout.setVisibility(LinearLayout.INVISIBLE);
 
         //Setup adapter and ViewModel
         flightListAdapter = new FlightListAdapter(vh -> {
@@ -96,11 +107,18 @@ public class FlightListActivity extends AppCompatActivity {
         // Create the ViewModel
         FlightListViewModel viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(FlightListViewModel.class);
-        viewModel.getFlightData(originAirportCode, destinationAirportCode, true,
-                "2018-07-23", getString(R.string.amadeus_sandbox_key)).observe(this,
+        Timber.d("getAmadeusLowFareFlightSearchDateFormat: " + CommonUtility.getAmadeusLowFareFlightSearchDateFormat());
+        viewModel.getFlightData(originAirportCode, destinationAirportCode,
+                getResources().getBoolean(R.bool.amadeus_flight_search_non_stop_flag),
+                CommonUtility.getAmadeusLowFareFlightSearchDateFormat(), getString(R.string.amadeus_sandbox_key)).observe(this,
                 (amadeusSandboxLowFareSearchResponse) -> {
                     Timber.d("FlightListViewModel refreshed!!");
                     flightListAdapter.swapData(amadeusSandboxLowFareSearchResponse);
+                    // Hide the progressbar and associated text view
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    progressMsgTextView.setVisibility(TextView.INVISIBLE);
+                    // Show the Relative layout
+                    relativeLayout.setVisibility(RelativeLayout.VISIBLE);
                     // Restore the position
                     if (linearLayoutManagerState != null) {
                         recyclerView.getLayoutManager().onRestoreInstanceState(linearLayoutManagerState);

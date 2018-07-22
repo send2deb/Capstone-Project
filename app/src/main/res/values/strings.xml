@@ -18,6 +18,20 @@
     <string name="home_progressbar_text_msg">Loading.. This may take a while</string>
     <string name="point_of_interest_query_parameter_part">point of interest</string>
     <string name="point_of_interest_flight_button_text_suffix">Flight to</string>
+    <string name="default_location_london">London</string>
+    <string name="default_destination_location_delhi">Delhi</string>
+    <string name="default_origin_airport_code_london">LHR</string>
+    <string name="default_destination_airport_code_delhi">DEL</string>
+    <string name="default_place_id_london">ChIJdd4hrwug2EcRmSrV3Vo6llI</string>
+    <string name="default_address_london">London, UK</string>
+    <string name="default_photo_reference_london">CmRbAAAAaKRxb5Wh3d0IT66PwSJNFIGg4VZY8CtQiqOA27yUBpGJEhm29tT4TQA-g_LUyfhWWvVIwfWroj0eRug8M8_GAQNKqWjXp_TipLUx8RVDHgFYqDU8LlNIOfH7U2VUim_2EhC4Xxal6jHE9HPJAXVAe4Y9GhRnUb9UlgIySXNL12G-Z4Sx-F-6zg</string>
+    <string name="default_latlng_london">51.509865,-0.11809</string>
+    <string name="google_places_api_path_segment_photo">photo</string>
+    <string name="google_places_api_photo_query_parm_maxwidth_key">maxwidth</string>
+    <!--<string name="google_places_api_photo_query_parm_maxwidth_value">600</string>-->
+    <string name="google_places_api_query_apikey">key</string>
+    <string name="google_places_api_photo_query_parm_photoreference_key">photoreference</string>
+
     <!-- add here for new type -->
 
     <string name="home_activity_layout_search_button_text">Where do you want to travel?</string>
@@ -44,4 +58,5 @@
     <string name="single_flight_duration_title">Duration:</string>
     <string name="single_flight_fare_title">Fare:</string>
     <string name="flight_list_activity_title_prefix">Flights to</string>
+    <string name="flight_list_orig_to_dest_msg">%1$s to %2$s</string>
 </resources>

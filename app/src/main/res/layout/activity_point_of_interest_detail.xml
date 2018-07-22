@@ -21,7 +21,8 @@
             android:id="@+id/tv_poi_detail_pb_text_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
+            android:layout_marginTop="@dimen/progressbar_text_msg_top_margin"
+            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/material_design_phone_grid_layout_margin"
             android:fontFamily="sans-serif"
             android:text="@string/home_progressbar_text_msg"
@@ -32,7 +33,7 @@
             android:id="@+id/poi_detail_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/iv_poi_detail_image"

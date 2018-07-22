@@ -2,15 +2,17 @@ package com.debdroid.tinru.utility;
 
 import com.debdroid.tinru.database.NearbyResultEntity;
 import com.debdroid.tinru.database.PointOfInterestResultEntity;
+import com.debdroid.tinru.database.UserSearchedLocationEntity;
 import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.Result;
 import com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi.TextSearchResult;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RepositoryUtility {
 
-    public static List<NearbyResultEntity> parseNearbyResultEntity(List<Result> resultList) {
+    public static List<NearbyResultEntity> buildNearbyResultEntity(List<Result> resultList) {
         List<NearbyResultEntity> nearbyResultEntities = new ArrayList<>();
         for(Result result : resultList) {
             NearbyResultEntity nearbyResultEntity = new NearbyResultEntity();
@@ -43,7 +45,7 @@ public class RepositoryUtility {
         return nearbyResultEntities;
     }
 
-    public static List<PointOfInterestResultEntity> parsePointOfInterestResultEntity
+    public static List<PointOfInterestResultEntity> buildPointOfInterestResultEntity
             (List<TextSearchResult> textSearchResultList) {
         List<PointOfInterestResultEntity> pointOfInterestResultEntities = new ArrayList<>();
         for(TextSearchResult textSearchResult : textSearchResultList) {
@@ -68,5 +70,15 @@ public class RepositoryUtility {
         }
 
         return pointOfInterestResultEntities;
+    }
+
+    public static UserSearchedLocationEntity buildUserSearchedLocationEntity(String location, double lat, double lng,
+                                                                             Date datetimestamp) {
+        UserSearchedLocationEntity userSearchedLocationEntity = new UserSearchedLocationEntity();
+        userSearchedLocationEntity.cityName = location;
+        userSearchedLocationEntity.latitude = lat;
+        userSearchedLocationEntity.longitude = lng;
+        userSearchedLocationEntity.datetimestamp = datetimestamp;
+        return userSearchedLocationEntity;
     }
 }

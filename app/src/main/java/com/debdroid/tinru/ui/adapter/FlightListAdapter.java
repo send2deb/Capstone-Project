@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.datamodel.AmadeusSandboxLowFareSearchApi.AmadeusSandboxLowFareSearchResponse;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,33 +22,6 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     public FlightListAdapter(FlightListAdapterOnClickHandler clickHandler) {
         Timber.d("FlightListAdapter constructor is called");
         flightListAdapterOnClickHandler = clickHandler;
-    }
-
-    public class FlightListViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_single_item_origin_city_code)
-        TextView originCityCodeTextView;
-        @BindView(R.id.tv_single_item_destination_city_code)
-        TextView destinationCityCodeTextView;
-        @BindView(R.id.tv_single_item_departure_value)
-        TextView departureTextView;
-        @BindView(R.id.tv_single_item_arrival_value)
-        TextView arrivalTextView;
-        @BindView(R.id.tv_single_item_duration_value)
-        TextView durationTextView;
-        @BindView(R.id.tv_single_item_flight_fare_value)
-        TextView fareTextView;
-        @BindView(R.id.tv_single_item_flight_number)
-        TextView flightNumber;
-
-        private FlightListViewHolder(final View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-            view.setOnClickListener(v -> {
-                int adapterPosition = getAdapterPosition();
-                Timber.d("Flight item is clicked. Clicked item -> " + adapterPosition);
-                flightListAdapterOnClickHandler.onFlightListItemClick(this);
-            });
-        }
     }
 
     @Override
@@ -83,7 +55,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
 
         String fare = amadeusSandboxLowFareSearchResponse.getResults()
                 .get(position).getFare().getTotalPrice();
-        
+
         String displayFare = currency.concat(" ").concat(fare);
         String displayFlightNumber = airline.concat(" ").concat(flightNumber);
         String displayDeparture = departure.replace("T", " ");
@@ -114,7 +86,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
 
     public void swapData(AmadeusSandboxLowFareSearchResponse amadeusSandboxLowFareSearchResponse) {
         Timber.d("swapData is called");
-        if(amadeusSandboxLowFareSearchResponse != null)
+        if (amadeusSandboxLowFareSearchResponse != null)
             this.amadeusSandboxLowFareSearchResponse = amadeusSandboxLowFareSearchResponse;
         notifyDataSetChanged();
     }
@@ -130,6 +102,33 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
      */
     public interface FlightListAdapterOnClickHandler {
         void onFlightListItemClick(FlightListViewHolder vh);
+    }
+
+    public class FlightListViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_single_item_origin_city_code)
+        TextView originCityCodeTextView;
+        @BindView(R.id.tv_single_item_destination_city_code)
+        TextView destinationCityCodeTextView;
+        @BindView(R.id.tv_single_item_departure_value)
+        TextView departureTextView;
+        @BindView(R.id.tv_single_item_arrival_value)
+        TextView arrivalTextView;
+        @BindView(R.id.tv_single_item_duration_value)
+        TextView durationTextView;
+        @BindView(R.id.tv_single_item_flight_fare_value)
+        TextView fareTextView;
+        @BindView(R.id.tv_single_item_flight_number)
+        TextView flightNumber;
+
+        private FlightListViewHolder(final View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+            view.setOnClickListener(v -> {
+                int adapterPosition = getAdapterPosition();
+                Timber.d("Flight item is clicked. Clicked item -> " + adapterPosition);
+                flightListAdapterOnClickHandler.onFlightListItemClick(this);
+            });
+        }
     }
 
 }
