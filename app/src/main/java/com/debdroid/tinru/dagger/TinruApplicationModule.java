@@ -10,7 +10,7 @@ import com.debdroid.tinru.database.NearbyResultDao;
 import com.debdroid.tinru.database.PointOfInterestResultDao;
 import com.debdroid.tinru.database.TinruDatabase;
 import com.debdroid.tinru.database.UserSearchedLocationDao;
-import com.debdroid.tinru.retrofit.AmadeusSandboxPointOfInterestApiService;
+import com.debdroid.tinru.retrofit.AmadeusSandboxApiService;
 import com.debdroid.tinru.retrofit.GooglePlacesApiService;
 import com.debdroid.tinru.utility.NetworkUtility;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -37,8 +37,8 @@ class TinruApplicationModule {
     // Amadeus Sandbox Point Of Interest Json data api service using Retrofit
     @Provides
     @TinruCustomScope.TinruApplicationScope
-    AmadeusSandboxPointOfInterestApiService provideAmadeusSandboxPointOfInterestApiService(Retrofit retrofit) {
-        return retrofit.create(AmadeusSandboxPointOfInterestApiService.class);
+    AmadeusSandboxApiService provideAmadeusSandboxPointOfInterestApiService(Retrofit retrofit) {
+        return retrofit.create(AmadeusSandboxApiService.class);
     }
 
     // Google Place Json data api service using Retrofit

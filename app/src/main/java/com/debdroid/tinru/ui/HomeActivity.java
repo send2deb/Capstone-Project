@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.tv_progressbar_text_msg) TextView progressBarTextMsg;
     @BindView(R.id.home_activity_linear_layout) LinearLayout linearLayout;
     @BindView(R.id.iv_current_place_image) ImageView currentPlaceImage;
+    @BindView(R.id.fab_home) FloatingActionButton fab;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -121,7 +123,12 @@ public class HomeActivity extends AppCompatActivity {
      * @param view
      */
     @OnClick(R.id.bt_location_search)
-    public void openPlacePicker(View view) {
+    public void locationSearchAction(View view) {
+        Timber.d("locationSearchAction is called");
+        openPlacePicker();
+    }
+
+    private void openPlacePicker() {
         Timber.d("openPlacePicker is called");
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
@@ -171,6 +178,13 @@ public class HomeActivity extends AppCompatActivity {
     public void openNearbyPetrolPump(View view) {
         startNearbyGridActivity(getString(R.string.google_places_api_nearby_type_petrol_pump),
                 getString(R.string.home_activity_layout_nearby_petrol_pump));
+    }
+
+    @OnClick(R.id.fab_home)
+    public void fabAction(View view) {
+        Toast.makeText(this,"Fab is clicked", Toast.LENGTH_LONG).show();
+        Timber.d("Fab is clicked");
+        openPlacePicker();
     }
 
     private void startNearbyGridActivity(String type, String typeName) {

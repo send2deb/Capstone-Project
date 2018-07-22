@@ -29,4 +29,12 @@
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textAllCaps="false"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/tinru_fab_flight"
+        android:layout_margin="@dimen/fab_margin" />
 </RelativeLayout>

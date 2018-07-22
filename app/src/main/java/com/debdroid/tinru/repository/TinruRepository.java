@@ -16,8 +16,9 @@ import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.GooglePlacesNearbyResp
 import com.debdroid.tinru.datamodel.GooglePlacesNearbyAPI.Result;
 import com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi.GooglePlacesTextSearchResponse;
 import com.debdroid.tinru.datamodel.GooglePlacesTextSearchApi.TextSearchResult;
-import com.debdroid.tinru.retrofit.AmadeusSandboxPointOfInterestApiService;
+import com.debdroid.tinru.retrofit.AmadeusSandboxApiService;
 import com.debdroid.tinru.retrofit.GooglePlacesApiService;
+import com.debdroid.tinru.utility.RepositoryUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,17 +32,17 @@ import timber.log.Timber;
 
 @TinruCustomScope.TinruApplicationScope //Let Dagger know that this class should be constructed only once
 public class TinruRepository {
-    private AmadeusSandboxPointOfInterestApiService amadeusSandboxPointOfInterestApiService;
+    private AmadeusSandboxApiService amadeusSandboxApiService;
     private GooglePlacesApiService googlePlacesApiService;
     private NearbyResultDao nearbyResultDao;
     private PointOfInterestResultDao pointOfInterestResultDao;
     private MutableLiveData<GooglePlacesCustomPlaceDetailResponse> googlePlacesCustomPlaceDetail;
 
     @Inject
-    public TinruRepository(AmadeusSandboxPointOfInterestApiService amadeusSandboxPointOfInterestApiService,
+    public TinruRepository(AmadeusSandboxApiService amadeusSandboxApiService,
                            GooglePlacesApiService googlePlacesApiService, NearbyResultDao nearbyResultDao,
                            PointOfInterestResultDao pointOfInterestResultDao) {
-        this.amadeusSandboxPointOfInterestApiService = amadeusSandboxPointOfInterestApiService;
+        this.amadeusSandboxApiService = amadeusSandboxApiService;
         this.googlePlacesApiService = googlePlacesApiService;
         this.nearbyResultDao = nearbyResultDao;
         this.pointOfInterestResultDao = pointOfInterestResultDao;
@@ -109,63 +110,6 @@ public class TinruRepository {
         });
     }
 
-    private void insertDataToNearbyResultTable(final List<Result> resultList) { // Room does not allow operation on main thread
-        Timber.d("insertDataToNearbyResultTable is called");
-        @SuppressLint("StaticFieldLeak")
-        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                if(resultList != null) {
-                    List<NearbyResultEntity> nearbyResultEntities = new ArrayList<>();
-                    for(Result result : resultList) {
-                        NearbyResultEntity nearbyResultEntity = new NearbyResultEntity();
-                        nearbyResultEntity.id = result.getId();
-                        nearbyResultEntity.nearbyName = result.getName();
-                        if(result.getGeometry() != null) {
-                            nearbyResultEntity.latitude = result.getGeometry().getLocation().getLat();
-                            nearbyResultEntity.longitude = result.getGeometry().getLocation().getLng();
-                        } else {
-                            nearbyResultEntity.latitude = 0.0;
-                            nearbyResultEntity.longitude = 0.0;
-                        }
-                        nearbyResultEntity.rating = result.getRating();
-                        if(result.getOpeningHours() != null) {
-                            if (result.getOpeningHours().getOpenNow()) {
-                                nearbyResultEntity.openStatus = "Open Now";
-                            } else {
-                                nearbyResultEntity.openStatus = "Closed Now";
-                            }
-                        } else {
-                            nearbyResultEntity.openStatus = "Open / Close data not available";
-                        }
-                        nearbyResultEntity.vicinity = result.getVicinity();
-                        if(result.getPhotos() != null) {
-                            nearbyResultEntity.photoReference = result.getPhotos().get(0).getPhotoReference();
-                        }
-                        nearbyResultEntities.add(nearbyResultEntity);
-                    }
-
-                    nearbyResultDao.insertBulkNearbyResultEntities(nearbyResultEntities);
-                } else {
-                    Timber.e("Google Place nearby api Json response is null");
-                }
-                return null;
-            }
-        };
-        asyncTask.execute();
-    }
-
-    private void deleteDataFromNearbyResultTable() {
-        Timber.d("deleteDataFromNearbyResultTable is called");
-        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                nearbyResultDao.deleteAllNearbyResultEntities();
-                return null;
-            }
-        };
-        asyncTask.execute();
-    }
 
     private void loadGooglePlacePointOfInterestData(String locationPointOfInterest, String apiKey) {
         Timber.d("loadGooglePlacePointOfInterestData is called");
@@ -194,58 +138,6 @@ public class TinruRepository {
         });
     }
 
-    private void insertDataToPointOfInterestResultTable(
-            final List<TextSearchResult> textSearchResultList) { // Room does not allow operation on main thread
-        Timber.d("insertDataToPointOfInterestResultTable is called");
-        @SuppressLint("StaticFieldLeak")
-        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                if(textSearchResultList != null) {
-                    List<PointOfInterestResultEntity> pointOfInterestResultEntities = new ArrayList<>();
-                    for(TextSearchResult textSearchResult : textSearchResultList) {
-                        PointOfInterestResultEntity pointOfInterestResultEntity = new PointOfInterestResultEntity();
-                        pointOfInterestResultEntity.id = textSearchResult.getId();
-                        pointOfInterestResultEntity.pointOfInterestName = textSearchResult.getName();
-                        if(textSearchResult.getGeometry() != null) {
-                            pointOfInterestResultEntity.latitude = textSearchResult.getGeometry().getLocation().getLat();
-                            pointOfInterestResultEntity.longitude = textSearchResult.getGeometry().getLocation().getLng();
-                        } else {
-                            pointOfInterestResultEntity.latitude = 0.0;
-                            pointOfInterestResultEntity.longitude = 0.0;
-                        }
-                        pointOfInterestResultEntity.formattedAddress = textSearchResult.getFormattedAddress();
-                        pointOfInterestResultEntity.placeId = textSearchResult.getPlaceId();
-                        pointOfInterestResultEntity.rating = textSearchResult.getRating();
-                        if(textSearchResult.getPhotos() != null) {
-                            pointOfInterestResultEntity.photoReference = textSearchResult.getPhotos().get(0).getPhotoReference();
-                        }
-                        // Add the individual point of interest item to the list for bulk insert
-                        pointOfInterestResultEntities.add(pointOfInterestResultEntity);
-                    }
-                    // Insert the point of interest list to the table
-                    pointOfInterestResultDao.insertBulkPointOfInterestResultEntities(pointOfInterestResultEntities);
-                } else {
-                    Timber.e("Google Place text search api Json response is null");
-                }
-                return null;
-            }
-        };
-        asyncTask.execute();
-    }
-
-    private void deleteDataFromPointOfInterestResultTable() {
-        Timber.d("deleteDataFromPointOfInterestResultTable is called");
-        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                pointOfInterestResultDao.deleteAllPointOfInterestResultEntities();
-                return null;
-            }
-        };
-        asyncTask.execute();
-    }
-
     private void loadGooglePlaceCustomPlaceData(String placeId, String apiKey) {
         Timber.d("loadGooglePlaceCustomPlaceData is called");
         Call<GooglePlacesCustomPlaceDetailResponse> googlePlacesCustomPlaceDetailResponseCall =
@@ -271,11 +163,77 @@ public class TinruRepository {
         });
     }
 
+    private void insertDataToNearbyResultTable(final List<Result> resultList) { // Room does not allow operation on main thread
+        Timber.d("insertDataToNearbyResultTable is called");
+        @SuppressLint("StaticFieldLeak")
+        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                if(resultList != null) {
+                    List<NearbyResultEntity> nearbyResultEntities =
+                            RepositoryUtility.parseNearbyResultEntity(resultList);
+                    nearbyResultDao.insertBulkNearbyResultEntities(nearbyResultEntities);
+                } else {
+                    Timber.e("Google Place nearby api Json response is null");
+                }
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
+
+    private void deleteDataFromNearbyResultTable() {
+        Timber.d("deleteDataFromNearbyResultTable is called");
+        @SuppressLint("StaticFieldLeak")
+        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                nearbyResultDao.deleteAllNearbyResultEntities();
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
+
+    private void insertDataToPointOfInterestResultTable(
+            final List<TextSearchResult> textSearchResultList) { // Room does not allow operation on main thread
+        Timber.d("insertDataToPointOfInterestResultTable is called");
+        @SuppressLint("StaticFieldLeak")
+        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                if(textSearchResultList != null) {
+                    List<PointOfInterestResultEntity> pointOfInterestResultEntities =
+                            RepositoryUtility.parsePointOfInterestResultEntity(textSearchResultList);
+                    // Insert the point of interest list to the table
+                    pointOfInterestResultDao.insertBulkPointOfInterestResultEntities(pointOfInterestResultEntities);
+                } else {
+                    Timber.e("Google Place text search api Json response is null");
+                }
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
+
+    private void deleteDataFromPointOfInterestResultTable() {
+        Timber.d("deleteDataFromPointOfInterestResultTable is called");
+        @SuppressLint("StaticFieldLeak")
+        final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                pointOfInterestResultDao.deleteAllPointOfInterestResultEntities();
+                return null;
+            }
+        };
+        asyncTask.execute();
+    }
+
     public void getPointsOfInterest() {
         String city = "London";
         String key = "";
         Call<AmadeusPointsOfInterestResponse> amadeusPointsOfInterestResponseCall =
-                amadeusSandboxPointOfInterestApiService.getAmadeusPointsOfInterestResponse(city,key);
+                amadeusSandboxApiService.getAmadeusPointsOfInterestResponse(city,key);
         amadeusPointsOfInterestResponseCall.enqueue(new Callback<AmadeusPointsOfInterestResponse>() {
             @Override
             public void onResponse(Call<AmadeusPointsOfInterestResponse> call,
