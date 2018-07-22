@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/iv_single_flight_origin_rectangle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tinru_vec_shape_rectangle_stroke" />
+
+    <ImageView
+        android:id="@+id/iv_single_flight_destination_rectangle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tinru_vec_shape_rectangle_stroke" />
+
+    <ImageView
+        android:id="@+id/iv_single_flight_line_with_image_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_destination_rectangle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_single_flight_destination_rectangle"
+        app:layout_constraintStart_toEndOf="@+id/iv_single_flight_origin_rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_destination_rectangle"
+        app:srcCompat="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_single_item_origin_city_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintEnd_toStartOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintStart_toStartOf="@+id/iv_single_flight_origin_rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_line_with_image_view"
+        tools:text="LHR" />
+
+    <TextView
+        android:id="@+id/tv_single_item_destination_city_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/iv_single_flight_destination_rectangle"
+        app:layout_constraintStart_toEndOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_line_with_image_view"
+        tools:text="CCU" />
+
+    <TextView
+        android:id="@+id/tv_single_item_departure_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/iv_single_flight_origin_rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_origin_rectangle"
+        tools:text="Departure:"
+        android:text="@string/single_flight_departure_title" />
+
+    <TextView
+        android:id="@+id/tv_single_item_departure_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="2018-08-13 19:56"
+        app:layout_constraintBottom_toTopOf="@+id/tv_single_item_departure_title"
+        app:layout_constraintStart_toEndOf="@+id/tv_single_item_departure_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_departure_title" />
+
+    <TextView
+        android:id="@+id/tv_single_item_flight_fare_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/tv_single_item_flight_fare_title"
+        app:layout_constraintStart_toEndOf="@+id/tv_single_item_flight_fare_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_flight_fare_title"
+        tools:text="USD 350" />
+
+    <TextView
+        android:id="@+id/tv_single_item_flight_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="BA 1332"
+        app:layout_constraintEnd_toStartOf="@+id/tv_single_item_destination_city_code"
+        app:layout_constraintStart_toStartOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_line_with_image_view" />
+
+    <ImageView
+        android:id="@+id/iv_single_flight_plane_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
+        app:layout_constraintEnd_toStartOf="@+id/tv_single_item_destination_city_code"
+        app:layout_constraintStart_toStartOf="@+id/iv_single_flight_line_with_image_view"
+        app:srcCompat="@drawable/tinru_vec_art_plane" />
+
+    <TextView
+        android:id="@+id/tv_single_item_arrival_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/single_flight_arrival_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/tv_single_item_departure_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_departure_title"
+        tools:text="Arrival:" />
+
+    <TextView
+        android:id="@+id/tv_single_item_arrival_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/tv_single_item_arrival_title"
+        app:layout_constraintStart_toEndOf="@+id/tv_single_item_arrival_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_arrival_title"
+        tools:text="2018-08-13 22:05" />
+
+    <TextView
+        android:id="@+id/tv_single_item_duration_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/tv_single_item_duration_title"
+        app:layout_constraintStart_toEndOf="@+id/tv_single_item_duration_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_duration_title"
+        tools:text="03:45" />
+
+    <TextView
+        android:id="@+id/tv_single_item_duration_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/single_flight_duration_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/tv_single_item_departure_value"
+        app:layout_constraintStart_toEndOf="@+id/tv_single_item_departure_value"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_departure_value"
+        tools:text="Duration:" />
+
+    <TextView
+        android:id="@+id/tv_single_item_flight_fare_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="@string/single_flight_fare_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/tv_single_item_duration_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_duration_title"
+        tools:text="Fare:" />
+
+</android.support.constraint.ConstraintLayout>

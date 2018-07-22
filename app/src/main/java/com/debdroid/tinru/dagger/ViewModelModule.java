@@ -3,6 +3,8 @@ package com.debdroid.tinru.dagger;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
+import com.debdroid.tinru.viewmodel.FlightListViewModel;
+import com.debdroid.tinru.viewmodel.HomeViewModel;
 import com.debdroid.tinru.viewmodel.NearbyGridViewModel;
 import com.debdroid.tinru.viewmodel.PointOfInterestDetailViewModel;
 import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
@@ -35,10 +37,16 @@ abstract class ViewModelModule {
     @ViewModelKey(PointOfInterestDetailViewModel.class)
     @TinruCustomScope.TinruApplicationScope
     abstract ViewModel bindPointOfInterestDetailViewModel(PointOfInterestDetailViewModel pointOfInterestDetailViewModel);
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(RecipeIngredientViewModel.class)
-//    @RecipeCustomScope.BakingApplicationScope
-//    abstract ViewModel bindRecipeIngredientViewModel(RecipeIngredientViewModel recipeIngredientViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel.class)
+    @TinruCustomScope.TinruApplicationScope
+    abstract ViewModel bindHomeViewModel(HomeViewModel homeViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FlightListViewModel.class)
+    @TinruCustomScope.TinruApplicationScope
+    abstract ViewModel bindFlightListViewModel(FlightListViewModel flightListViewModel);
 }

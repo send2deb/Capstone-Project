@@ -5,6 +5,8 @@ import com.debdroid.tinru.datamodel.AmadeusSandboxApi.AmadeusPointsOfInterestRes
 import com.debdroid.tinru.datamodel.AmadeusSandboxLowFareSearchApi.AmadeusSandboxLowFareSearchResponse;
 import com.debdroid.tinru.utility.NetworkUtility;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -17,14 +19,14 @@ public interface AmadeusSandboxApiService {
             (@Query("city_name") String city, @Query("apikey") String apiKey);
 
     @GET("https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant")
-    Call<AmadeusSandboxAirportSearchResponse> getAmadeusAirportSearchResponse
-            (@Query("latitude") String latitude, @Query("longitude") String longitude,
+    Call<List<AmadeusSandboxAirportSearchResponse>> getAmadeusAirportSearchResponse
+            (@Query("latitude") double latitude, @Query("longitude") double longitude,
              @Query("apikey") String apiKey);
 
     @GET("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search")
     Call<AmadeusSandboxLowFareSearchResponse> getAmadeusLowFareSearchResponse
             (@Query("origin") String origin, @Query("destination") String destination,
-             @Query("nonstop") String nonstopFlag, @Query("departure_date") String departure_date,
+             @Query("nonstop") boolean nonstopFlag, @Query("departure_date") String departure_date,
              @Query("apikey") String amadeusApiKey);
 }
 

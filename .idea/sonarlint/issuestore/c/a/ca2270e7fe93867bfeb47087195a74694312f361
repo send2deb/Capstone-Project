@@ -1,26 +1,28 @@
 
-esquid:UnusedPrivateMethod"6Remove this unused private "getDeviceLocation" method.(–üê–ÿÿÿÿÿ8àøì£Ë,
-Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ8àøì£Ë,
-Tsquid:S1197"8Move the array designator from the variable to the type.(³Ûü¢8àøì£Ë,
-Psquid:S1066"/Merge this if statement with the enclosing one.(±„‘‰ıÿÿÿÿ8àøì£Ë,
-Ssquid:S1068"2Remove this unused "mGeoDataClient" private field.(Ä¯Šúÿÿÿÿ8àøì£Ë,
-\squid:S1068"@Remove this unused "mFusedLocationProviderClient" private field.(¾àŸ£8àøì£Ë,
-Osquid:S1068"4Remove this unused "mDefaultLocation" private field.(ıâÉ:8àøì£Ë,
-Qsquid:S1068"0Remove this unused "DEFAULT_ZOOM" private field.(¹ÒÔ¹ùÿÿÿÿ8àøì£Ë,
-Wsquid:S1068"6Remove this unused "mLastKnownLocation" private field.(¦´úşÿÿÿÿ8àøì£Ë,
-Nsquid:S1199"-Extract this nested code block into a method.(¶»Ó«ÿÿÿÿÿ8àøì£Ë,
-~squid:S1450"]Remove the "mGeoDataClient" field and declare it as a local variable in the relevant methods.(Ä¯Šúÿÿÿÿ8àøì£Ë,
-‡squid:S1450"kRemove the "mFusedLocationProviderClient" field and declare it as a local variable in the relevant methods.(¾àŸ£8àøì£Ë,
-lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8àøì£Ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(€òÄ‹şÿÿÿÿ8àøì£Ë,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Æ®â¤8àøì£Ë,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ƒéÜ’8àøì£Ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›´ÕÄÿÿÿÿÿ8àøì£Ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(úˆËéşÿÿÿÿ8àøì£Ë,
-Isquid:S1604"(Make this anonymous inner class a lambda(»‰éœùÿÿÿÿ8àøì£Ë,
-squid:S00116"_Rename this field "PLACE_PICKER_REQUEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óñ€ıÿÿÿÿ8àøì£Ë,
-zsquid:UselessImportCheck"LRemove this unused import 'com.google.android.gms.maps.CameraUpdateFactory'.(ÁËòøúÿÿÿÿ8àøì£Ë,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àøì£Ë,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àøì£Ë,
-_squid:S1155">Use isEmpty() to check whether the collection is empty or not.(¦Áøÿÿÿÿ8àøì£Ë,
-jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Æ¼¾Î8àøì£Ë,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ8êºâ‹Ì,
+nsquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ8êºâ‹Ì,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(–üê–ÿÿÿÿÿ8êºâ‹Ì,
+Nsquid:S1199"-Extract this nested code block into a method.(¶»Ó«ÿÿÿÿÿ8êºâ‹Ì,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›´ÕÄÿÿÿÿÿ8êºâ‹Ì,
+Isquid:S1604"(Make this anonymous inner class a lambda(¡ıÁßüÿÿÿÿ8êºâ‹Ì,
+msquid:S2259"QA "NullPointerException" could be thrown; "currentPlaceCountry" is nullable here.(èŠ®³8êºâ‹Ì,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›©äııÿÿÿÿ8êºâ‹Ì,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(äê—8êºâ‹Ì,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Æ¼¾Î8êºâ‹Ì,
+Ssquid:S2589"7Remove this expression which always evaluates to "true"(¢çˆµ8êºâ‹Ì,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(çòÿşÿÿÿÿ8êºâ‹Ì,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(–ã­8êºâ‹Ì,
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(›€Óß8êºâ‹Ì,
+squid:S00116"_Rename this field "PLACE_PICKER_REQUEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óñ€ıÿÿÿÿ8êºâ‹Ì,
+Psquid:S1066"/Merge this if statement with the enclosing one.(±„‘‰ıÿÿÿÿ8êºâ‹Ì,
+Lsquid:S1481"0Remove this unused "attribution" local variable.(Ñ¼ÖÕ8êºâ‹Ì,
+vsquid:UselessImportCheck"MRemove this unused import 'com.debdroid.tinru.viewmodel.NearbyGridViewModel'.(İĞ¢ô8êºâ‹Ì,
+jsquid:UselessImportCheck"<Remove this unused import 'android.arch.lifecycle.Observer'.(ŞƒşÖÿÿÿÿÿ8êºâ‹Ì,
+Tsquid:S1197"8Move the array designator from the variable to the type.(³Ûü¢8êºâ‹Ì,
+_squid:S1155">Use isEmpty() to check whether the collection is empty or not.(¦Áøÿÿÿÿ8êºâ‹Ì,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
+fsquid:S2259"EA "NullPointerException" could be thrown; "address" is nullable here.(º°Çóùÿÿÿÿ8êºâ‹Ì,
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8êºâ‹Ì,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,

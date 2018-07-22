@@ -1,3 +1,5 @@
 
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ËÂû¯ýÿÿÿÿ8ºý¿£Ë,
-lsquid:UselessImportCheck"CRemove this unused import 'android.arch.lifecycle.MutableLiveData'.(Ô…¼€8Ì¥À£Ë,
+vsquid:S1450"ZRemove the "currentType" field and declare it as a local variable in the relevant methods.(˜ªŸ8µÓœðË,
+}squid:S1450"\Remove the "needFreshData" field and declare it as a local variable in the relevant methods.(‰¡µ¤ùÿÿÿÿ8µÓœðË,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(þ½8µÓœðË,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(™…²¶8µÓœðË,

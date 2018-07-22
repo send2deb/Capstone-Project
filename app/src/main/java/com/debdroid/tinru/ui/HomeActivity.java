@@ -1,6 +1,9 @@
 package com.debdroid.tinru.ui;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Address;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
+import com.debdroid.tinru.viewmodel.HomeViewModel;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -39,6 +43,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,7 +58,10 @@ import timber.log.Timber;
 public class HomeActivity extends AppCompatActivity {
     @Inject
     TinruRepository tinruRepository;
-
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @BindView(R.id.tv_current_place_city_country) TextView currentCityCountryTextView;
     @BindView(R.id.bt_location_search) Button locationSearchButton;
@@ -86,6 +94,7 @@ public class HomeActivity extends AppCompatActivity {
     private String currentPlaceCity;
     private String currentPlaceCountry;
     private String currentPostalCode;
+    private HomeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +125,10 @@ public class HomeActivity extends AppCompatActivity {
 //                1000,
 //                "cafe",
 //                getString(R.string.google_maps_key));
+
+        // Create the viewmodel
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(HomeViewModel.class);
     }
 
     /**
@@ -204,6 +217,7 @@ public class HomeActivity extends AppCompatActivity {
      * @param data Google Place picker Intent data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Timber.d("onActivityResult is called");
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(this, data);
@@ -217,8 +231,15 @@ public class HomeActivity extends AppCompatActivity {
                 LatLng placeLatLng = place.getLatLng();
                 Timber.d("Lat -> " + placeLatLng.latitude);
                 Timber.d("Long -> " + placeLatLng.longitude);
+                // Load airport code of destination
+                viewModel.getAirportCode(placeLatLng.latitude, placeLatLng.longitude,
+                        getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
+                            Timber.d("Destination airport code -> " + airportCode);
+                    saveDataInSharedPreference(
+                            getString(R.string.preference_destination_airport_code_key), airportCode);
+                        });
+                // Start place of interest activity
                 startPointOfInterestListActivity(placeLatLng.latitude, placeLatLng.longitude);
-
             }
         }
     }
@@ -226,6 +247,9 @@ public class HomeActivity extends AppCompatActivity {
     private void startPointOfInterestListActivity(double latitude, double longitude) {
         Address address = getAddressFromGeoCoder(latitude, longitude);
         String poiLocation = address.getLocality();
+        // Save city to SharedPreference - used for Flight list activity
+        saveDataInSharedPreference(getString(R.string.preference_destination_airport_city_key),
+                poiLocation);
         Intent intent = new Intent(this, PointOfInterestListActivity.class);
         intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_LOCATION, poiLocation);
         startActivity(intent);
@@ -297,6 +321,18 @@ public class HomeActivity extends AppCompatActivity {
 
                     // Update the ui with the details
                     updateUi();
+
+                    // Save city to SharedPreference - used for Flight list activity
+                    saveDataInSharedPreference(getString(R.string.preference_origin_airport_city_key),
+                            currentPlaceCity);
+
+                    // Load airport code of current place
+                    viewModel.getAirportCode(currentPlaceLatLng.latitude, currentPlaceLatLng.longitude,
+                            getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
+                        Timber.d("Current place airport code -> " + airportCode);
+                        saveDataInSharedPreference(
+                                getString(R.string.preference_origin_airport_code_key), airportCode);
+                    });
 
                     // Release the buffer to avoid memory leak
                     likelyPlaces.release();
@@ -383,6 +419,16 @@ public class HomeActivity extends AppCompatActivity {
                 Timber.d("No photo found for place id -> " + currentPlaceId);
             }
         });
+    }
+
+    private void saveDataInSharedPreference(String key, String value) {
+        Timber.d("saveDataInSharedPreference is called");
+        Timber.d("saveDataInSharedPreference:key - "+key);
+        Timber.d("saveDataInSharedPreference:value - "+value);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply(); // Write asynchronously
     }
 
     /**

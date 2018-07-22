@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
@@ -21,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
@@ -114,6 +117,13 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    @OnClick(R.id.fab_poi_list)
+    public void fabAction(View view) {
+        Toast.makeText(this,"Fab is clicked", Toast.LENGTH_LONG).show();
+        Timber.d("Fab is clicked");
+        startFlightListActivity();
+    }
+
     private void startPointOfDetailActivity(String placeId, String loation, String address, double latitude,
                                             double longitude, double rating, String photoReference) {
         Intent intent = new Intent(this, PointOfInterestDetailActivity.class);
@@ -124,6 +134,11 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LONGITUDE, longitude);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_RATING, rating);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_PHOTO_REFERENCE, photoReference);
+        startActivity(intent);
+    }
+
+    private void startFlightListActivity() {
+        Intent intent = new Intent(this, FlightListActivity.class);
         startActivity(intent);
     }
 }

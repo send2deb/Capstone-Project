@@ -20,4 +20,5 @@
     <dimen name="poi_list_flight_button_left_right_padding">20dp</dimen>
     <dimen name="poi_detail_image_width">280dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="single_flight_rectangle_width_height">60dp</dimen>
 </resources>

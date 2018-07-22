@@ -1,7 +1,12 @@
 
-Rsquid:S2696"6Make the enclosing method "static" or remove this set.(“™è§8Ú¡á£Ë,
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏÌ˜ı8Ú¡á£Ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ¹Ÿšüÿÿÿÿ8Ú¡á£Ë,
-Jsquid:S1068".Remove this unused "nearbyData" private field.(ÏÌ˜ı8Ú¡á£Ë,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ğã8Ú¡á£Ë,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å¡Ö8Ú¡á£Ë,
+squid:S1192"tDefine a constant instead of duplicating this literal "Google place nearby api response not successful -> " 3 times.(¼’¹8€äíŒÌ,
+zsquid:S1192"YDefine a constant instead of duplicating this literal "Processing in thread -> " 5 times.(Ÿğ†èüÿÿÿÿ8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ğã8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å¡Ö8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+tsquid:S1192"SDefine a constant instead of duplicating this literal "Error happened -> " 6 times.(ÅÔÛ¨üÿÿÿÿ8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,

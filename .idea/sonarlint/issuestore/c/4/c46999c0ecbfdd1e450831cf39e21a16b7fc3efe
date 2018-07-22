@@ -1,2 +1,10 @@
 
-jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(¸ž¤€8ä’øóÉ,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(ªÑ‰í8Š‚æõË,
+_squid:UselessImportCheck"1Remove this unused import 'android.media.Rating'.(êØŽœþÿÿÿÿ8Š‚æõË,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Š‚æõË,
+Ssquid:S1135"2Complete the task associated to this TODO comment.(ˆ‹®¾ûÿÿÿÿ8Š‚æõË,
+_squid:S1611"CRemove the parentheses around the "pointOfInterestDetail" parameter(‡‡üÔ8Š‚æõË,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ€ÿ…8Š‚æõË,
+vsquid:UselessImportCheck"MRemove this unused import 'com.debdroid.tinru.viewmodel.NearbyGridViewModel'.(ÝÐ¢ô8Š‚æõË,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(¸ž¤€8Š‚æõË,
+lsquid:UselessImportCheck"CRemove this unused import 'android.support.v7.widget.RecyclerView'.(ÊŠáó8Š‚æõË,

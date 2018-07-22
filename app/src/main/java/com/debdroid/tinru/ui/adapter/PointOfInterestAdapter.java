@@ -74,7 +74,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
 
     @Override
     public void onBindViewHolder(@NonNull PointOfInterestViewHolder holder, int position) {
-        Timber.d("onBindViewHolder is called");
+        Timber.d("onBindViewHolder is called. Position -> " + position);
         String pointOfInterestName = pointOfInterestResultEntityList.get(position).pointOfInterestName;
         String pointOfInterestAddress = pointOfInterestResultEntityList.get(position).formattedAddress;
         float nearbyRating = (float) pointOfInterestResultEntityList.get(position).rating;
@@ -118,10 +118,10 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     @Override
     public int getItemCount() {
         if (pointOfInterestResultEntityList.isEmpty()) {
-            Timber.d("getItemCount is called, pointOfInterestResultEntityList is empty");
+//            Timber.d("getItemCount is called, pointOfInterestResultEntityList is empty");
             return 0;
         } else {
-            Timber.d("getItemCount is called, pointOfInterestResultEntityList count -> " + pointOfInterestResultEntityList.size());
+//            Timber.d("getItemCount is called, pointOfInterestResultEntityList count -> " + pointOfInterestResultEntityList.size());
             return pointOfInterestResultEntityList.size();
         }
     }

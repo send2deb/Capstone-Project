@@ -71,7 +71,7 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
 
     @Override
     public void onBindViewHolder(@NonNull NearbyGridViewHolder holder, int position) {
-        Timber.d("onBindViewHolder is called");
+        Timber.d("onBindViewHolder is called. Position -> " + position);
         String nearbyName = nearbyResultEntityList.get(position).nearbyName;
         String nearbyVicinity = nearbyResultEntityList.get(position).vicinity;
         float nearbyRating = (float) nearbyResultEntityList.get(position).rating;
@@ -118,10 +118,10 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
     @Override
     public int getItemCount() {
         if (nearbyResultEntityList.isEmpty()) {
-            Timber.d("getItemCount is called, nearbyResultEntityList is empty");
+//            Timber.d("getItemCount is called, nearbyResultEntityList is empty");
             return 0;
         } else {
-            Timber.d("getItemCount is called, nearbyResultEntityList count -> " + nearbyResultEntityList.size());
+//            Timber.d("getItemCount is called, nearbyResultEntityList count -> " + nearbyResultEntityList.size());
             return nearbyResultEntityList.size();
         }
     }

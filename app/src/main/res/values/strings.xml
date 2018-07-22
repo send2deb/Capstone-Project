@@ -2,7 +2,12 @@
     <string name="app_name">tinru</string>
 
     <!-- Shared Preference related string values -->
-    <string name="preference_file_key">com.debdroid.bakingapp.PREFERENCE_FILE_KEY</string>
+    <string name="preference_file_key">com.debdroid.tinru.PREFERENCE_FILE_KEY</string>
+    <string name="preference_origin_airport_code_key">com.debdroid.tinru.PREFERENCE_ORIGIN_AIRPORT_CODE_KEY</string>
+    <string name="preference_destination_airport_code_key">com.debdroid.tinru.PREFERENCE_DESTINATION_AIRPORT_CODE_KEY</string>
+    <string name="preference_origin_airport_city_key">com.debdroid.tinru.PREFERENCE_ORIGIN_AIRPORT_CITY_KEY</string>
+    <string name="preference_destination_airport_city_key">com.debdroid.tinru.PREFERENCE_DESTINATION_AIRPORT_CITY_KEY</string>
+
 
     <!-- Toast or Error messages -->
     <string name="no_network_error_msg">No internet connection available</string>
@@ -33,4 +38,10 @@
     <string name="google_places_api_nearby_type_petrol_pump">gas_station</string>
     <string name="single_nearby_item_image_content_description">Nearby place image</string>
     <string name="single_nearby_item_open_close_heading">Open - Close: </string>
+
+    <string name="single_flight_departure_title">Departure:</string>
+    <string name="single_flight_arrival_title">Arrival:</string>
+    <string name="single_flight_duration_title">Duration:</string>
+    <string name="single_flight_fare_title">Fare:</string>
+    <string name="flight_list_activity_title_prefix">Flights to</string>
 </resources>
