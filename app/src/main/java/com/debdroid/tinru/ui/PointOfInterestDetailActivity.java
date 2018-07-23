@@ -226,6 +226,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
      */
     private void startNearbyGridActivity(String type, String typeName) {
         Intent intent = new Intent(this, NearByGridActivity.class);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LOCATION, location);
         String latLng = String.format("%s,%s", latitude, longitude);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, latLng);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_RADIUS,

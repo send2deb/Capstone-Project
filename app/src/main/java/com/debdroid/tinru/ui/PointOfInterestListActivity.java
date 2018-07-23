@@ -3,6 +3,7 @@ package com.debdroid.tinru.ui;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -11,10 +12,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
+import com.debdroid.tinru.utility.CommonUtility;
 import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -32,6 +33,8 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     ViewModelProvider.Factory viewModelFactory;
     @Inject
     Picasso picasso;
+    @Inject
+    SharedPreferences sharedPreferences;
 
     @BindView(R.id.rv_poi_list)
     RecyclerView recyclerView;
@@ -41,6 +44,8 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
 
     public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
+    public static final String EXTRA_POINT_OF_INTEREST_AIRPORT_CODE = "extra_point_of_interest_airport_code";
+    public static final String EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT = "extra_point_of_interest_appwidget_intent";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +63,36 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
         // Get extras from the intent
         Intent intent = getIntent();
-        String location = getString(R.string.default_location_london); // Default location - London
+        String location = getString(R.string.default_destination_location_delhi); // Default location - Delhi
+        String airportCode = getString(R.string.default_destination_airport_code_delhi); // Default code - DEL
+        boolean isAppwidgetIntent = false; // Default - regular start
         String apiKey = getString(R.string.google_maps_key);
 
         if (intent.hasExtra(EXTRA_POINT_OF_INTEREST_LOCATION)) location =
                 intent.getStringExtra(EXTRA_POINT_OF_INTEREST_LOCATION);
+        if(intent.hasExtra(EXTRA_POINT_OF_INTEREST_AIRPORT_CODE)) airportCode =
+                intent.getStringExtra(EXTRA_POINT_OF_INTEREST_AIRPORT_CODE);
+        if(intent.hasExtra(EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT)) isAppwidgetIntent =
+                intent.getBooleanExtra(EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT, false);
+
 
         // Set the action bar title
         setTitle(location);
+
+        // If this activity is started by the widget then save the airport code and the location
+        // (i.e. destination location) to sharedpreferenes in order to Flight list activity to
+        // work properly. Note that origin city and airport code will always remain same for both
+        // regular start of this activity or started by appwidget
+        if(isAppwidgetIntent) {
+            Timber.d("Activity started by appwidget");
+            CommonUtility.saveDataInSharedPreference(sharedPreferences,
+                    getString(R.string.preference_destination_airport_city_key), location);
+            CommonUtility.saveDataInSharedPreference(sharedPreferences,
+                    getString(R.string.preference_destination_airport_code_key), airportCode);
+        } else {
+            Timber.d("Activity started by Home - Regular start");
+        }
+
 
         //Setup adapter and ViewModel
         pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, apiKey, (placeId, name, address,

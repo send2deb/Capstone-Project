@@ -24,12 +24,12 @@ public interface UserSearchedLocationDao {
     @Query("SELECT * FROM user_searched_location")
     List<UserSearchedLocationEntity> loadAllUserSearchedLocationEntity();
 
-    @Query("SELECT * FROM user_searched_location ORDER BY :date DESC")
-    UserSearchedLocationEntity loadCustomSearchedLocationEntity(Date date);
+    @Query("SELECT * FROM user_searched_location ORDER BY datetimestamp DESC")
+    List<UserSearchedLocationEntity> loadCustomSearchedLocationEntity();
 
     @Query("SELECT * FROM user_searched_location")
     LiveData<List<UserSearchedLocationEntity>> loadAllUserSearchedLocationEntityAsLiveData();
 
-    @Query("SELECT * FROM user_searched_location ORDER BY :date DESC")
-    LiveData<UserSearchedLocationEntity> loadCustomUserSearchedLocationEntityAsLiveData(Date date);
+    @Query("SELECT * FROM user_searched_location ORDER BY datetimestamp DESC")
+    LiveData<UserSearchedLocationEntity> loadCustomUserSearchedLocationEntityAsLiveData();
 }

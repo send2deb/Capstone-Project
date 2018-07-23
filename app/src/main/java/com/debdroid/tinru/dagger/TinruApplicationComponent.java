@@ -15,11 +15,11 @@ import dagger.android.support.AndroidSupportInjectionModule;
         /* The application module */
         TinruApplicationModule.class,
         /* The module for all the activities */
-        TinruActivitiesModule.class
+        TinruActivitiesModule.class,
         /* The module for widget provider which is a broadcast receiver */
-       // TinruBroadcastModule.class,
+        TinruBroadcastModule.class,
         /* The module for service used for widget */
-       // TinruServiceModule.class
+        TinruServiceModule.class
         })
 public interface TinruApplicationComponent {
     @Component.Builder

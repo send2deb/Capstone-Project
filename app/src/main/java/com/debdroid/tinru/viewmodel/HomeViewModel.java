@@ -51,7 +51,8 @@ public class HomeViewModel extends ViewModel {
         return airportCode;
     }
 
-    public void addSearchedLocationData(String location, double lat, double lng, Date datetimestamp) {
-        tinruRepository.addSearchedLocationData(location, lat, lng, datetimestamp);
+    public void addSearchedLocationData(String location, String airportCode, double lat,
+                                        double lng, Date datetimestamp) {
+        tinruRepository.addSearchedLocationData(location, airportCode, lat, lng, datetimestamp);
     }
 }

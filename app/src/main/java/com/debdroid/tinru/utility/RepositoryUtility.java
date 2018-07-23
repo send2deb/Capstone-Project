@@ -72,10 +72,12 @@ public class RepositoryUtility {
         return pointOfInterestResultEntities;
     }
 
-    public static UserSearchedLocationEntity buildUserSearchedLocationEntity(String location, double lat, double lng,
+    public static UserSearchedLocationEntity buildUserSearchedLocationEntity(String location, String airportCode,
+                                                                             double lat, double lng,
                                                                              Date datetimestamp) {
         UserSearchedLocationEntity userSearchedLocationEntity = new UserSearchedLocationEntity();
         userSearchedLocationEntity.cityName = location;
+        userSearchedLocationEntity.airportCode = airportCode;
         userSearchedLocationEntity.latitude = lat;
         userSearchedLocationEntity.longitude = lng;
         userSearchedLocationEntity.datetimestamp = datetimestamp;

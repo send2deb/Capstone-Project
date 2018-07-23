@@ -31,6 +31,7 @@
     <!--<string name="google_places_api_photo_query_parm_maxwidth_value">600</string>-->
     <string name="google_places_api_query_apikey">key</string>
     <string name="google_places_api_photo_query_parm_photoreference_key">photoreference</string>
+    <string name="appwidget_no_data_available_msg">No data available</string>
 
     <!-- add here for new type -->
 

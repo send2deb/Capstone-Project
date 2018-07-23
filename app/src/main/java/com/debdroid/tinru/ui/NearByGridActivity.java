@@ -27,6 +27,7 @@ import timber.log.Timber;
 
 public class NearByGridActivity extends AppCompatActivity {
 
+    public static final String EXTRA_NEARBY_LOCATION = "extra_nearby_location";
     public static final String EXTRA_NEARBY_LATLNG = "extra_nearby_latlng";
     public static final String EXTRA_NEARBY_RADIUS = "extra_nearby_radius";
     public static final String EXTRA_NEARBY_TYPE = "extra_nearby_type";
@@ -59,12 +60,15 @@ public class NearByGridActivity extends AppCompatActivity {
 
         // Get extras from the intent
         Intent intent = getIntent();
+        String location = getString(R.string.default_location_london); // Default location - London
         String latLng = getString(R.string.default_latlng_london); // Default latlng - London
         int radius = getResources().getInteger(R.integer.default_nearby_search_radius_meter); // Default 500 meter
         String type = getString(R.string.google_places_api_nearby_type_restaurant); // Default type - restaurant
         String typeName = getString(R.string.home_activity_layout_nearby_restaurant); // Default type - restaurant
         String apiKey = getString(R.string.google_maps_key);
 
+        if (intent.hasExtra(EXTRA_NEARBY_LOCATION))
+            location = intent.getStringExtra(EXTRA_NEARBY_LOCATION);
         if (intent.hasExtra(EXTRA_NEARBY_LATLNG))
             latLng = intent.getStringExtra(EXTRA_NEARBY_LATLNG);
         if (intent.hasExtra(EXTRA_NEARBY_RADIUS))
@@ -103,7 +107,7 @@ public class NearByGridActivity extends AppCompatActivity {
         // Create the ViewModel
         NearbyGridViewModel viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(NearbyGridViewModel.class);
-        viewModel.getResultList(latLng, radius, type, apiKey).observe(this,
+        viewModel.getResultList(location, latLng, radius, type, apiKey).observe(this,
                 (nearbyResultEntityList) -> {
                     Timber.d("NearbyGridViewModel refreshed!!");
                     nearbyGridAdapter.swapData(nearbyResultEntityList);

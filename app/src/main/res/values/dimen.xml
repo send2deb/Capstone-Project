@@ -22,4 +22,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="single_flight_rectangle_width_height">60dp</dimen>
     <dimen name="progressbar_text_msg_top_margin">70dp</dimen>
+    <dimen name="appwidget_min_width">250dp</dimen>
+    <dimen name="appwidget_min_height">150dp</dimen>
+    <dimen name="appwidget_margin">8dp</dimen>
+    <dimen name="appwidget_header_margin">16dp</dimen>
+    <dimen name="appwidget_header_text_size">35sp</dimen>
+    <dimen name="appwidget_body_text_size">25sp</dimen>
+
 </resources>

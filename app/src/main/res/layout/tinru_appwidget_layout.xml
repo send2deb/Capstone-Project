@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/appwidget_margin" >
+
+    <TextView
+        android:id="@+id/tv_appwidget_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        android:textSize="@dimen/appwidget_header_text_size"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/color_white"
+        android:gravity="center"/>
+
+<FrameLayout
+    android:id="@+id/appwidget_frame_layout"
+    android:layout_below="@+id/tv_appwidget_header"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/lv_appwidget_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"/>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tv_appwidget_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        android:text="@string/appwidget_no_data_available_msg"
+        android:textSize="@dimen/appwidget_body_text_size"
+        android:visibility="invisible"/>
+</FrameLayout>
+</RelativeLayout>

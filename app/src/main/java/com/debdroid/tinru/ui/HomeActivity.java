@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
+import com.debdroid.tinru.utility.CommonUtility;
 import com.debdroid.tinru.viewmodel.HomeViewModel;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -113,12 +114,12 @@ public class HomeActivity extends AppCompatActivity {
         linearLayout.setVisibility(LinearLayout.INVISIBLE);
         fab.setVisibility(FloatingActionButton.INVISIBLE);
 
-        // Get current location of the device
-        getDeviceLocation();
-
         // Create the viewmodel
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(HomeViewModel.class);
+
+        // Get current location of the device
+        getDeviceLocation();
     }
 
     /**
@@ -254,10 +255,11 @@ public class HomeActivity extends AppCompatActivity {
                 viewModel.getAirportCode(placeLatLng.latitude, placeLatLng.longitude,
                         getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
                     Timber.d("Destination airport code -> " + airportCode);
-                    saveDataInSharedPreference(
+                    CommonUtility.saveDataInSharedPreference(sharedPreferences,
                             getString(R.string.preference_destination_airport_code_key), airportCode);
                     // Start place of interest activity - start activity only after the airport code is retrieved
-                    prepareAndStartPointOfInterestListActivity(placeLatLng.latitude, placeLatLng.longitude);
+                    prepareAndStartPointOfInterestListActivity(place.getName().toString(), airportCode,
+                            placeLatLng.latitude, placeLatLng.longitude);
                 });
             }
         }
@@ -304,25 +306,29 @@ public class HomeActivity extends AppCompatActivity {
                     // Get the address of the location for city and country name
                     Address address = getAddressFromGeoCoder(currentPlaceLatLng.latitude,
                             currentPlaceLatLng.longitude);
-                    currentPlaceCity = address.getLocality();
-                    currentPlaceCountry = address.getCountryName();
-                    currentPostalCode = address.getPostalCode();
-                    Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
-                            currentPlaceName, currentPlaceCity, currentPlaceCountry,
-                            currentPostalCode, placeLikelihoodValue));
+                    if(address != null) {
+                        currentPlaceCity = address.getLocality();
+                        currentPlaceCountry = address.getCountryName();
+                        currentPostalCode = address.getPostalCode();
+                        Timber.d(String.format("Place '%s' of '%s', '%s' , '%s' has likelihood: %g",
+                                currentPlaceName, currentPlaceCity, currentPlaceCountry,
+                                currentPostalCode, placeLikelihoodValue));
+                    } else { // Use the place name instead if the address is null
+                        currentPlaceCity = currentPlaceName;
+                    }
 
                     // Update the ui with the details
                     updateUi();
 
                     // Save city to SharedPreference - used for Flight list activity
-                    saveDataInSharedPreference(getString(R.string.preference_origin_airport_city_key),
-                            currentPlaceCity);
+                    CommonUtility.saveDataInSharedPreference(sharedPreferences,
+                            getString(R.string.preference_origin_airport_city_key), currentPlaceCity);
 
                     // Load airport code of current place - used for Flight list activity
                     viewModel.getAirportCode(currentPlaceLatLng.latitude, currentPlaceLatLng.longitude,
                             getString(R.string.amadeus_sandbox_key)).observe(this, airportCode -> {
                         Timber.d("Current place airport code -> " + airportCode);
-                        saveDataInSharedPreference(
+                        CommonUtility.saveDataInSharedPreference(sharedPreferences,
                                 getString(R.string.preference_origin_airport_code_key), airportCode);
                     });
 
@@ -342,7 +348,6 @@ public class HomeActivity extends AppCompatActivity {
      * @param longitude The longitude of the place
      * @return Address of the place
      */
-
     private Address getAddressFromGeoCoder(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         Address address = null;
@@ -423,20 +428,20 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Save data to SharedPreference
-     * @param key The key of the SharedPreference data
-     * @param value The value of the SharedPReference data
-     */
-    private void saveDataInSharedPreference(String key, String value) {
-        Timber.d("saveDataInSharedPreference is called");
-        Timber.d("saveDataInSharedPreference:key - " + key);
-        Timber.d("saveDataInSharedPreference:value - " + value);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.apply(); // Write asynchronously
-    }
+//    /**
+//     * Save data to SharedPreference
+//     * @param key The key of the SharedPreference data
+//     * @param value The value of the SharedPReference data
+//     */
+//    private void saveDataInSharedPreference(String key, String value) {
+//        Timber.d("saveDataInSharedPreference is called");
+//        Timber.d("saveDataInSharedPreference:key - " + key);
+//        Timber.d("saveDataInSharedPreference:value - " + value);
+//
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString(key, value);
+//        editor.apply(); // Write asynchronously
+//    }
 
     /**
      * Start Nearby activity
@@ -447,6 +452,7 @@ public class HomeActivity extends AppCompatActivity {
     private void startNearbyGridActivity(String type, String typeName) {
         Intent intent = new Intent(this, NearByGridActivity.class);
         String latLng = String.format("%s,%s", currentPlaceLatLng.latitude, currentPlaceLatLng.longitude);
+        intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LOCATION, currentPlaceCity);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_LATLNG, latLng);
         intent.putExtra(NearByGridActivity.EXTRA_NEARBY_RADIUS,
                 getResources().getInteger(R.integer.nearby_search_radius_meter));
@@ -461,21 +467,31 @@ public class HomeActivity extends AppCompatActivity {
      * @param latitude  The latitude of the point of interest
      * @param longitude The longitude of the point of interest
      */
-    private void prepareAndStartPointOfInterestListActivity(double latitude, double longitude) {
+    private void prepareAndStartPointOfInterestListActivity(String placeName, String airportCode,
+                                                            double latitude, double longitude) {
+        String poiLocation = null;
         Address address = getAddressFromGeoCoder(latitude, longitude);
-        String poiLocation = address.getLocality();
+        if(address != null) poiLocation = address.getLocality();
+
+        // If city is null then use the place name returned by the Place picker
+        if(poiLocation == null) {
+            Timber.w("Location is null! Using place name instead -> " + placeName);
+            poiLocation = placeName;
+        }
 
         // Save city to SharedPreference - used for Flight list activity
-        saveDataInSharedPreference(getString(R.string.preference_destination_airport_city_key),
-                poiLocation);
+        CommonUtility.saveDataInSharedPreference(sharedPreferences,
+                getString(R.string.preference_destination_airport_city_key), poiLocation);
 
         // Save data to UserSearchedLocation table - used for Widget
         Date date = new Date();
-        viewModel.addSearchedLocationData(poiLocation, latitude, longitude, date);
+        viewModel.addSearchedLocationData(poiLocation, airportCode, latitude, longitude, date);
 
         // Now start the activity
         Intent intent = new Intent(this, PointOfInterestListActivity.class);
         intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_LOCATION, poiLocation);
+        intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_AIRPORT_CODE, airportCode);
+        intent.putExtra(PointOfInterestListActivity.EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT, false);
         startActivity(intent);
     }
 

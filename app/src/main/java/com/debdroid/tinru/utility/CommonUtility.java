@@ -1,6 +1,7 @@
 package com.debdroid.tinru.utility;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 
 import com.debdroid.tinru.R;
@@ -10,6 +11,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import timber.log.Timber;
 
 public class CommonUtility {
     /**
@@ -74,5 +77,20 @@ public class CommonUtility {
         }
 
         return photoReferenceUrlString;
+    }
+
+    /**
+     * Save data to SharedPreference
+     * @param key The key of the SharedPreference data
+     * @param value The value of the SharedPReference data
+     */
+    public static void saveDataInSharedPreference(SharedPreferences sharedPreferences ,String key, String value) {
+        Timber.d("saveDataInSharedPreference is called");
+        Timber.d("saveDataInSharedPreference:key - " + key);
+        Timber.d("saveDataInSharedPreference:value - " + value);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply(); // Write asynchronously
     }
 }

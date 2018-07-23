@@ -121,8 +121,9 @@ public class TinruRepository {
         return amadeusSandboxLowFareSearchResult;
     }
 
-    public void addSearchedLocationData(String location, double lat, double lng, Date datetimestamp) {
-        insertDataToUserSearchedLocationTable(location, lat, lng, datetimestamp);
+    public void addSearchedLocationData(String location, String airportCode,
+                                        double lat, double lng, Date datetimestamp) {
+        insertDataToUserSearchedLocationTable(location, airportCode, lat, lng, datetimestamp);
     }
 
     private void loadGooglePlaceNearbyData(String latLng, int radius, String type, String apiKey) {
@@ -325,11 +326,11 @@ public class TinruRepository {
         asyncTask.execute();
     }
 
-    private void insertDataToUserSearchedLocationTable(String location, double lat, double lng,
-                                                       Date datetimestamp) {
+    private void insertDataToUserSearchedLocationTable(String location, String airportCode, double lat,
+                                                       double lng, Date datetimestamp) {
         Timber.d("insertDataToUserSearchedLocationTable is called");
         final UserSearchedLocationEntity userSearchedLocationEntity =
-                RepositoryUtility.buildUserSearchedLocationEntity(location, lat, lng, datetimestamp);
+                RepositoryUtility.buildUserSearchedLocationEntity(location, airportCode, lat, lng, datetimestamp);
 
         // Room does not allow operation on main thread
         @SuppressLint("StaticFieldLeak") final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
