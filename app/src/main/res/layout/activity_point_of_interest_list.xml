@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.PointOfInterestListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_poi_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_poi_list"
+    <ProgressBar
+        android:id="@+id/pb_poi_list_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/tinru_fab_flight" />
-</RelativeLayout>
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_poi_list_pb_text_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/material_design_phone_grid_layout_margin"
+        android:layout_marginTop="@dimen/progressbar_text_msg_top_margin"
+        android:fontFamily="sans-serif"
+        android:text="@string/home_progressbar_text_msg"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/poi_list_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_poi_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_poi_list_powered_by_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/powered_by_google_light" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_poi_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/tinru_fab_flight" />
+    </RelativeLayout>
+</FrameLayout>

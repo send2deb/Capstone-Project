@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.datamodel.GooglePlacesCustomPlaceDetailApi.GooglePlacesCustomPlaceDetailResponse;
 import com.debdroid.tinru.utility.CommonUtility;
+import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.PointOfInterestDetailViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -75,6 +76,18 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point_of_interest_detail);
         ButterKnife.bind(this);
+
+        // If the device is not online then show a message and return
+        // Use progress bar message to show no internet connection
+        if(!NetworkUtility.isOnline(this)) {
+            progressMsgTextView.setVisibility(TextView.VISIBLE);
+            progressMsgTextView.setText(getString(R.string.no_network_error_msg));
+            progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
+            relativeLayout.setVisibility(LinearLayout.INVISIBLE); // Hide the relative layout
+            return;
+        } else { // Make sure the message is replaced properly when device is online
+            progressMsgTextView.setText(getString(R.string.home_progressbar_text_msg));
+        }
 
         // Set default values
         placeId = getString(R.string.default_place_id_london); // Default place id of London
@@ -198,7 +211,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
         String formattedRatingValue = String.format("%.1f", (float)rating);
         ratingValueTextView.setText(formattedRatingValue);
         ratingBar.setRating((float)rating);
-        if(detailResponse.getCustomPlaceDetailResult().getReviews() != null) {
+        if(detailResponse.getCustomPlaceDetailResult() != null) {
             userReviewTextView.setText(detailResponse
                     .getCustomPlaceDetailResult().getReviews().get(0).getText());
         }

@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -186,6 +186,16 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_poi_detail_powered_by_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_below="@+id/poi_detail_nearby_linear_layout"
+        android:layout_centerInParent="true"
+        android:src="@drawable/powered_by_google_light" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_home"
         android:layout_width="wrap_content"

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
 import com.debdroid.tinru.utility.CommonUtility;
+import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.HomeViewModel;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -102,6 +103,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+
+        // If the device is not online then show a message and return
+        // Use progress bar message to show no internet connection
+        if(!NetworkUtility.isOnline(this)) {
+            progressBarTextMsg.setVisibility(TextView.VISIBLE);
+            progressBarTextMsg.setText(getString(R.string.no_network_error_msg));
+            progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
+            linearLayout.setVisibility(LinearLayout.INVISIBLE); // Hide the linear layout
+            fab.setVisibility(FloatingActionButton.INVISIBLE); // Hide the fab
+            return;
+        } else { // Make sure the message is replaced properly when device is online
+            progressBarTextMsg.setText(getString(R.string.home_progressbar_text_msg));
+        }
 
         // Construct a GeoDataClient.
         mGeoDataClient = Places.getGeoDataClient(this);

@@ -7,15 +7,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.NearbyGridAdapter;
+import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.NearbyGridViewModel;
 import com.squareup.picasso.Picasso;
+
+import java.sql.Time;
 
 import javax.inject.Inject;
 
@@ -37,6 +46,13 @@ public class NearByGridActivity extends AppCompatActivity {
     ViewModelProvider.Factory viewModelFactory;
     @Inject
     Picasso picasso;
+
+    @BindView(R.id.pb_nearby_list_activity)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_nearby_list_pb_text_msg)
+    TextView progressMsgTextView;
+    @BindView(R.id.nearby_list_relative_layout)
+    RelativeLayout relativeLayout;
     @BindView(R.id.rv_nearby_item_grid)
     RecyclerView recyclerView;
     @BindDimen(R.dimen.single_nearby_item_image_width)
@@ -52,6 +68,18 @@ public class NearByGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_by_grid);
         ButterKnife.bind(this);
+
+        // If the device is not online then show a message and return
+        // Use progress bar message to show no internet connection
+        if(!NetworkUtility.isOnline(this)) {
+            progressMsgTextView.setVisibility(TextView.VISIBLE);
+            progressMsgTextView.setText(getString(R.string.no_network_error_msg));
+            progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
+            relativeLayout.setVisibility(LinearLayout.INVISIBLE); // Hide the relative layout
+            return;
+        } else { // Make sure the message is replaced properly when device is online
+            progressMsgTextView.setText(getString(R.string.home_progressbar_text_msg));
+        }
 
         // In case of orientation change, restore the layout manager state
         if (savedInstanceState != null) {
@@ -80,9 +108,16 @@ public class NearByGridActivity extends AppCompatActivity {
         // Set the action bar title
         setTitle(typeName);
 
+        // Enable up navigation
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Show the progress bar and hide the layout
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressMsgTextView.setVisibility(TextView.VISIBLE);
+        relativeLayout.setVisibility(LinearLayout.INVISIBLE);
+
         //Setup adapter and ViewModel
-        nearbyGridAdapter = new NearbyGridAdapter(this, picasso, apiKey,
-                (name, latitude, longitude, vh) -> {
+        nearbyGridAdapter = new NearbyGridAdapter(this, picasso, (name, latitude, longitude, vh) -> {
                     // Creates an Intent that will load the location in Google map
                     Uri gmmIntentUri = Uri.parse(String.format("geo:%g,%g?q=%s", latitude, longitude, name));
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -111,6 +146,11 @@ public class NearByGridActivity extends AppCompatActivity {
                 (nearbyResultEntityList) -> {
                     Timber.d("NearbyGridViewModel refreshed!!");
                     nearbyGridAdapter.swapData(nearbyResultEntityList);
+                    // Hide the progressbar and associated text view
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    progressMsgTextView.setVisibility(TextView.INVISIBLE);
+                    // Show the Relative layout
+                    relativeLayout.setVisibility(RelativeLayout.VISIBLE);
                     // Restore the position
                     if (linearLayoutManagerState != null) {
                         recyclerView.getLayoutManager().onRestoreInstanceState(linearLayoutManagerState);
@@ -118,6 +158,19 @@ public class NearByGridActivity extends AppCompatActivity {
                         linearLayoutManagerState = null;
                     }
                 });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Respond to the action bar's Up/Home button
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Timber.d("Actionbar up button is clicked");
+                // Finish the activity
+                finish();
+                return true;
+    }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

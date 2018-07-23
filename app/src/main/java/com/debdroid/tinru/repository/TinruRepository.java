@@ -74,6 +74,8 @@ public class TinruRepository {
         Timber.d("getPointOfInterestResult is called");
         // Load the data only when ViewModel need it
         if (needFreshData) {
+            // First delete all records
+            deleteDataFromPointOfInterestResultTable();
             loadGooglePlacePointOfInterestData(locationPointOfInterest, apiKey);
         }
         // Return current data from the database
@@ -165,8 +167,8 @@ public class TinruRepository {
                 Timber.d("Processing in thread -> " + Thread.currentThread().getName());
                 if (response.isSuccessful()) {
                     Timber.d("Google place text search api call successful ->" + response.toString());
-                    // First delete all records
-                    deleteDataFromPointOfInterestResultTable();
+//                    // First delete all records
+//                    deleteDataFromPointOfInterestResultTable();
                     // Now insert the new records
                     insertDataToPointOfInterestResultTable(response.body().getResults());
                 } else {
@@ -252,6 +254,9 @@ public class TinruRepository {
                     Timber.d("currency -> " + response.body().getCurrency());
                 } else {
                     Timber.e("Amadeus sandbox low fare data call not successful -> " + response.raw().message());
+                    // Use postValue method as the Retrofit running on background thread
+                    // Set it to null to indicate error
+                    amadeusSandboxLowFareSearchResult.postValue(null);
                 }
             }
 

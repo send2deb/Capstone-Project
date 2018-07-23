@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.FlightListAdapter;
 import com.debdroid.tinru.utility.CommonUtility;
+import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.FlightListViewModel;
 
 import javax.inject.Inject;
@@ -55,6 +56,18 @@ public class FlightListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_list);
         ButterKnife.bind(this);
+
+        // If the device is not online then show a message and return
+        // Use progress bar message to show no internet connection
+        if(!NetworkUtility.isOnline(this)) {
+            progressMsgTextView.setVisibility(TextView.VISIBLE);
+            progressMsgTextView.setText(getString(R.string.no_network_error_msg));
+            progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
+            relativeLayout.setVisibility(LinearLayout.INVISIBLE); // Hide the relative layout
+            return;
+        } else { // Make sure the message is replaced properly when device is online
+            progressMsgTextView.setText(getString(R.string.home_progressbar_text_msg));
+        }
 
         // In case of orientation change, restore the layout manager state
         if (savedInstanceState != null) {
@@ -113,6 +126,11 @@ public class FlightListActivity extends AppCompatActivity {
                 CommonUtility.getAmadeusLowFareFlightSearchDateFormat(), getString(R.string.amadeus_sandbox_key)).observe(this,
                 (amadeusSandboxLowFareSearchResponse) -> {
                     Timber.d("FlightListViewModel refreshed!!");
+                    if(amadeusSandboxLowFareSearchResponse == null) {
+                        Timber.e("amadeusSandboxLowFareSearchResponse is null");
+                    } else {
+                        Timber.e("amadeusSandboxLowFareSearchResponse NOT null");
+                    }
                     flightListAdapter.swapData(amadeusSandboxLowFareSearchResponse);
                     // Hide the progressbar and associated text view
                     progressBar.setVisibility(ProgressBar.INVISIBLE);

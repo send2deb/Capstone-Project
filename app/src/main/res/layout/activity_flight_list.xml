@@ -28,7 +28,8 @@
     <RelativeLayout
         android:id="@+id/flight_list_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/tv_flight_list_orig_to_destination_value"
@@ -43,7 +44,6 @@
             android:id="@+id/rv_flight_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bt_flight"
             android:layout_below="@+id/tv_flight_list_orig_to_destination_value" />
     </RelativeLayout>
 </FrameLayout>

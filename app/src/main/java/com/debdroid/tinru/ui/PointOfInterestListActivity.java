@@ -12,12 +12,19 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
 import com.debdroid.tinru.utility.CommonUtility;
+import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
 import com.squareup.picasso.Picasso;
+
+import java.util.Timer;
 
 import javax.inject.Inject;
 
@@ -36,6 +43,12 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     @Inject
     SharedPreferences sharedPreferences;
 
+    @BindView(R.id.pb_poi_list_activity)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_poi_list_pb_text_msg)
+    TextView progressMsgTextView;
+    @BindView(R.id.poi_list_relative_layout)
+    RelativeLayout relativeLayout;
     @BindView(R.id.rv_poi_list)
     RecyclerView recyclerView;
 
@@ -55,6 +68,18 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point_of_interest_list);
         ButterKnife.bind(this);
+
+        // If the device is not online then show a message and return
+        // Use progress bar message to show no internet connection
+        if(!NetworkUtility.isOnline(this)) {
+            progressMsgTextView.setVisibility(TextView.VISIBLE);
+            progressMsgTextView.setText(getString(R.string.no_network_error_msg));
+            progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
+            relativeLayout.setVisibility(LinearLayout.INVISIBLE); // Hide the relative layout
+            return;
+        } else { // Make sure the message is replaced properly when device is online
+            progressMsgTextView.setText(getString(R.string.home_progressbar_text_msg));
+        }
 
         // In case of orientation change, restore the layout manager state
         if (savedInstanceState != null) {
@@ -93,9 +118,13 @@ public class PointOfInterestListActivity extends AppCompatActivity {
             Timber.d("Activity started by Home - Regular start");
         }
 
+        // Show the progress bar and hide the layout
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressMsgTextView.setVisibility(TextView.VISIBLE);
+        relativeLayout.setVisibility(LinearLayout.INVISIBLE);
 
         //Setup adapter and ViewModel
-        pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, apiKey, (placeId, name, address,
+        pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, (placeId, name, address,
                                                                               latitude, longitude, rating,
                                                                               photoReference, vh) -> {
             startPointOfDetailActivity(placeId, name, address, latitude, longitude, rating, photoReference);
@@ -122,7 +151,17 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         viewModel.getPointOfInterestResultList(locationPointOfInterest, apiKey).observe(this,
                 (pointOfInterestResultEntityList) -> {
                     Timber.d("PointOfInterestListViewModel refreshed!!");
+                    if(pointOfInterestResultEntityList.isEmpty()) {
+                        Timber.e("pointOfInterestResultEntityList is empty");
+                    } else {
+                        Timber.e("pointOfInterestResultEntityList is NOT empty");
+                    }
                     pointOfInterestAdapter.swapData(pointOfInterestResultEntityList);
+                    // Hide the progressbar and associated text view
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    progressMsgTextView.setVisibility(TextView.INVISIBLE);
+                    // Show the Relative layout
+                    relativeLayout.setVisibility(RelativeLayout.VISIBLE);
                     // Restore the position
                     if (linearLayoutManagerState != null) {
                         recyclerView.getLayoutManager().onRestoreInstanceState(linearLayoutManagerState);
@@ -134,8 +173,10 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        linearLayoutManagerState = recyclerView.getLayoutManager().onSaveInstanceState();
-        outState.putParcelable(STATE_LINEAR_LAYOUT_MANAGER, linearLayoutManagerState);
+        if(recyclerView.getLayoutManager() != null) {
+            linearLayoutManagerState = recyclerView.getLayoutManager().onSaveInstanceState();
+            outState.putParcelable(STATE_LINEAR_LAYOUT_MANAGER, linearLayoutManagerState);
+        }
         super.onSaveInstanceState(outState);
     }
 

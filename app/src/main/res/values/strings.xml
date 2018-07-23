@@ -11,6 +11,7 @@
 
     <!-- Toast or Error messages -->
     <string name="no_network_error_msg">No internet connection available</string>
+    <string name="empty_message">Looks like there is no data.. try again later</string>
 
     <!-- Miscellaneous -->
     <string name="database_name">TinruDatabase.db</string>

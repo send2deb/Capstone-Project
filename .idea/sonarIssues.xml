@@ -43,6 +43,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/debdroid/tinru/ui/adapter/FlightListAdapter$FlightListViewHolder_ViewBinding.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/proguard-rules.pro">
           <value>
             <set />
@@ -383,6 +388,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/tinru_vec_art_plane.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/tinru_vec_shape_rectangle_fill_light.xml">
           <value>
             <set />
@@ -414,6 +424,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_point_of_interest_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/empty_message_item.xml">
           <value>
             <set />
           </value>

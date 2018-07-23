@@ -25,16 +25,32 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ui.HomeActivity">
+        <activity android:name=".ui.HomeActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PointOfInterestListActivity" />
-        <activity android:name=".ui.PointOfInterestDetailActivity" />
-        <activity android:name=".ui.FlightListActivity" />
+        <activity android:name=".ui.PointOfInterestListActivity"
+            android:launchMode="singleTop">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ui.HomeActivity" />
+        </activity>
+        <activity android:name=".ui.PointOfInterestDetailActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.PointOfInterestListActivity" />
+        </activity>
+        <activity android:name=".ui.FlightListActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.PointOfInterestListActivity" />
+        </activity>
         <activity android:name=".ui.NearByGridActivity" />
 
         <receiver android:name=".ui.appwidget.TinruAppWidgetProvider">

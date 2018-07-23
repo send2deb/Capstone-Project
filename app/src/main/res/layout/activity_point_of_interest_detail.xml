@@ -33,7 +33,7 @@
             android:id="@+id/poi_detail_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/iv_poi_detail_image"
@@ -212,6 +212,13 @@
                         android:textAllCaps="false" />
                 </LinearLayout>
             </LinearLayout>
+
         </RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_poi_detail_powered_by_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:src="@drawable/powered_by_google_light" />
     </FrameLayout>
 </ScrollView>

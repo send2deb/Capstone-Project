@@ -18,6 +18,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -25,65 +27,83 @@ import timber.log.Timber;
 
 public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.NearbyGridViewHolder> {
 
+    private static final int VIEW_TYPE_EMPTY = 0;
+    private static final int VIEW_TYPE_NON_EMPTY = 1;
     private List<NearbyResultEntity> nearbyResultEntityList = new ArrayList<>();
     private Picasso picasso;
     private NearbyAdapterOnClickHandler nearbyGridAdapterOnClickHandler;
-    private String apiKey;
     private Context context;
 
-    public NearbyGridAdapter(Context context, Picasso picasso, String apiKey,
-                             NearbyAdapterOnClickHandler clickHandler) {
+    public NearbyGridAdapter(Context context, Picasso picasso, NearbyAdapterOnClickHandler clickHandler) {
         Timber.d("NearbyGridAdapter constructor is called");
         this.context = context;
         this.picasso = picasso;
-        this.apiKey = apiKey;
         nearbyGridAdapterOnClickHandler = clickHandler;
     }
 
     @Override
     public NearbyGridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_nearby_card_item,
-                parent, false);
+        final View view;
+        if (viewType == VIEW_TYPE_NON_EMPTY) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_nearby_card_item,
+                    parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_message_item,
+                    parent, false);
+        }
         return new NearbyGridViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NearbyGridViewHolder holder, int position) {
         Timber.d("onBindViewHolder is called. Position -> " + position);
-        String nearbyName = nearbyResultEntityList.get(position).nearbyName;
-        String nearbyVicinity = nearbyResultEntityList.get(position).vicinity;
-        float nearbyRating = (float) nearbyResultEntityList.get(position).rating;
-        String nearbyRatingValue = String.format("%.1f", nearbyRating);
-        String nearbyOpenCloseStatus = nearbyResultEntityList.get(position).openStatus;
-        String nearbyPhotoReference = nearbyResultEntityList.get(position).photoReference;
+        if (holder.getItemViewType() == VIEW_TYPE_NON_EMPTY) {
+            String nearbyName = nearbyResultEntityList.get(position).nearbyName;
+            String nearbyVicinity = nearbyResultEntityList.get(position).vicinity;
+            float nearbyRating = (float) nearbyResultEntityList.get(position).rating;
+            String nearbyRatingValue = String.format("%.1f", nearbyRating);
+            String nearbyOpenCloseStatus = nearbyResultEntityList.get(position).openStatus;
+            String nearbyPhotoReference = nearbyResultEntityList.get(position).photoReference;
 
-        if (nearbyName != null) holder.nearbyName.setText(nearbyName);
-        if (nearbyVicinity != null) holder.nearbyVicinity.setText(nearbyVicinity);
-        holder.nearbyRatingValue.setText(nearbyRatingValue);
-        holder.nearbyRatingBar.setRating(nearbyRating);
-        holder.nearbyOpenCloseStatus.setText(nearbyOpenCloseStatus);
+            if (nearbyName != null) holder.nearbyName.setText(nearbyName);
+            if (nearbyVicinity != null) holder.nearbyVicinity.setText(nearbyVicinity);
+            holder.nearbyRatingValue.setText(nearbyRatingValue);
+            holder.nearbyRatingBar.setRating(nearbyRating);
+            holder.nearbyOpenCloseStatus.setText(nearbyOpenCloseStatus);
 
-        String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(context,
-                Integer.toString(context.getResources().getInteger(R.integer.nearby_photo_download_width_size)),
-                nearbyPhotoReference);
-        if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
+            String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(context,
+                    Integer.toString(context.getResources().getInteger(R.integer.nearby_photo_download_width_size)),
+                    nearbyPhotoReference);
+            if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
 //            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
-            //TODO set fallback image
-        } else {
-            picasso.load(photoReferenceUrlString)
-                    //TODO add placehodler and fallback later
+                //TODO set fallback image
+            } else {
+                picasso.load(photoReferenceUrlString)
+                        //TODO add placehodler and fallback later
 //              .placeholder(CommonUtility.getFallbackImageId(position))
 //              .error(CommonUtility.getFallbackImageId(position))
-                    .into(holder.nearbyImage);
+                        .into(holder.nearbyImage);
+            }
+        } else {
+            // Do nothing for empty view
         }
     }
 
     @Override
     public int getItemCount() {
         if (nearbyResultEntityList.isEmpty()) {
-            return 0;
+            return 1; // Return 1 instead of 0 as we are using an empty view
         } else {
             return nearbyResultEntityList.size();
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (nearbyResultEntityList.isEmpty()) {
+            return VIEW_TYPE_EMPTY;
+        } else {
+            return VIEW_TYPE_NON_EMPTY;
         }
     }
 
@@ -107,16 +127,22 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
     }
 
     public class NearbyGridViewHolder extends RecyclerView.ViewHolder {
+        @Nullable
         @BindView(R.id.iv_single_nearby_image)
         ImageView nearbyImage;
+        @Nullable
         @BindView(R.id.tv_single_nearby_name)
         TextView nearbyName;
+        @Nullable
         @BindView(R.id.tv_single_nearby_vicinity)
         TextView nearbyVicinity;
+        @Nullable
         @BindView(R.id.tv_single_nearby_rating_value)
         TextView nearbyRatingValue;
+        @Nullable
         @BindView(R.id.rb_single_nearby_rating)
         RatingBar nearbyRatingBar;
+        @Nullable
         @BindView(R.id.tv_single_nearby_open_close_status)
         TextView nearbyOpenCloseStatus;
 

@@ -18,6 +18,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -27,24 +29,121 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     private List<PointOfInterestResultEntity> pointOfInterestResultEntityList = new ArrayList<>();
     private Picasso picasso;
     private PointOfInterestAdapterOnClickHandler pointOfInterestAdapterOnClickHandler;
-    private String apiKey;
     private Context context;
+    private static final int VIEW_TYPE_EMPTY = 0;
+    private static final int VIEW_TYPE_NON_EMPTY = 1;
 
-    public PointOfInterestAdapter(Context context, Picasso picasso, String apiKey,
+    public PointOfInterestAdapter(Context context, Picasso picasso,
                                   PointOfInterestAdapterOnClickHandler clickHandler) {
         Timber.d("PointOfInterestAdapter constructor is called");
         this.context = context;
         this.picasso = picasso;
-        this.apiKey = apiKey;
         pointOfInterestAdapterOnClickHandler = clickHandler;
     }
 
+    @Override
+    public PointOfInterestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        final View view;
+        if (viewType == VIEW_TYPE_NON_EMPTY) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_point_of_interest_item,
+                    parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_message_item,
+                    parent, false);
+        }
+        return new PointOfInterestViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PointOfInterestViewHolder holder, int position) {
+        Timber.d("onBindViewHolder is called. Position -> " + position);
+        if (holder.getItemViewType() == VIEW_TYPE_NON_EMPTY) {
+            String pointOfInterestName = pointOfInterestResultEntityList.get(position).pointOfInterestName;
+            String pointOfInterestAddress = pointOfInterestResultEntityList.get(position).formattedAddress;
+            float nearbyRating = (float) pointOfInterestResultEntityList.get(position).rating;
+            String pointOfInterestRatingValue = String.format("%.1f", nearbyRating);
+            String pointOfInterestPhotoReference = pointOfInterestResultEntityList.get(position).photoReference;
+
+            if (pointOfInterestName != null)
+                holder.pointOfInterestName.setText(pointOfInterestName);
+            if (pointOfInterestAddress != null)
+                holder.pointOfInterestAddress.setText(pointOfInterestAddress);
+            holder.pointOfInterestRatingValue.setText(pointOfInterestRatingValue);
+            holder.pointOfInterestRatingBar.setRating(nearbyRating);
+
+            String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(context,
+                    Integer.toString(context.getResources().getInteger(R.integer.poi_list_photo_download_width_size)),
+                    pointOfInterestPhotoReference);
+            if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
+//            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
+                //TODO set fallback image
+            } else {
+                picasso.load(photoReferenceUrlString)
+                        //TODO add placehodler and fallback later
+//              .placeholder(CommonUtility.getFallbackImageId(position))
+//              .error(CommonUtility.getFallbackImageId(position))
+                        .into(holder.pointOfInterestImage);
+            }
+        } else {
+            // Do nothing for empty view
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (pointOfInterestResultEntityList.isEmpty()) {
+            return 1; // Return 1 instead of 0 as we are using an empty view
+        } else {
+            return pointOfInterestResultEntityList.size();
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(pointOfInterestResultEntityList.isEmpty()) {
+            return VIEW_TYPE_EMPTY;
+        } else {
+            return VIEW_TYPE_NON_EMPTY;
+        }
+    }
+
+    public void swapData(List<PointOfInterestResultEntity> pointOfInterestResultEntityList) {
+        Timber.d("swapData is called");
+        if (pointOfInterestResultEntityList != null)
+            this.pointOfInterestResultEntityList = pointOfInterestResultEntityList;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        pointOfInterestAdapterOnClickHandler = null;
+    }
+
+    /**
+     * This is the interface which will be implemented by HostActivity
+     */
+    public interface PointOfInterestAdapterOnClickHandler {
+        void onPointOfInterestItemClick(String placeId, String name, String address, double latitude,
+                                        double longitude, double rating, String photoReference, PointOfInterestViewHolder vh);
+    }
+
     public class PointOfInterestViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.iv_poi_single_item_image) ImageView pointOfInterestImage;
-        @BindView(R.id.tv_poi_single_item_name) TextView pointOfInterestName;
-        @BindView(R.id.tv_poi_single_item_address) TextView pointOfInterestAddress;
-        @BindView(R.id.tv_poi_single_item_rating_value) TextView pointOfInterestRatingValue;
-        @BindView(R.id.rb_poi_single_item_rating_bar) RatingBar pointOfInterestRatingBar;
+        @Nullable
+        @BindView(R.id.iv_poi_single_item_image)
+        ImageView pointOfInterestImage;
+        @Nullable
+        @BindView(R.id.tv_poi_single_item_name)
+        TextView pointOfInterestName;
+        @Nullable
+        @BindView(R.id.tv_poi_single_item_address)
+        TextView pointOfInterestAddress;
+        @Nullable
+        @BindView(R.id.tv_poi_single_item_rating_value)
+        TextView pointOfInterestRatingValue;
+        @Nullable
+        @BindView(R.id.rb_poi_single_item_rating_bar)
+        RatingBar pointOfInterestRatingBar;
 
         private PointOfInterestViewHolder(final View view) {
             super(view);
@@ -64,71 +163,6 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
                         latitude, longitude, rating, photoReference, this);
             });
         }
-    }
-
-    @Override
-    public PointOfInterestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_point_of_interest_item,
-                parent, false);
-        return new PointOfInterestViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull PointOfInterestViewHolder holder, int position) {
-        Timber.d("onBindViewHolder is called. Position -> " + position);
-        String pointOfInterestName = pointOfInterestResultEntityList.get(position).pointOfInterestName;
-        String pointOfInterestAddress = pointOfInterestResultEntityList.get(position).formattedAddress;
-        float nearbyRating = (float) pointOfInterestResultEntityList.get(position).rating;
-        String pointOfInterestRatingValue = String.format("%.1f", nearbyRating);
-        String pointOfInterestPhotoReference = pointOfInterestResultEntityList.get(position).photoReference;
-
-        if(pointOfInterestName != null) holder.pointOfInterestName.setText(pointOfInterestName);
-        if(pointOfInterestAddress != null) holder.pointOfInterestAddress.setText(pointOfInterestAddress);
-        holder.pointOfInterestRatingValue.setText(pointOfInterestRatingValue);
-        holder.pointOfInterestRatingBar.setRating(nearbyRating);
-
-        String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(context,
-                Integer.toString(context.getResources().getInteger(R.integer.poi_list_photo_download_width_size)),
-                pointOfInterestPhotoReference);
-        if(photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
-//            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
-            //TODO set fallback image
-        } else {
-            picasso.load(photoReferenceUrlString)
-                    //TODO add placehodler and fallback later
-//              .placeholder(CommonUtility.getFallbackImageId(position))
-//              .error(CommonUtility.getFallbackImageId(position))
-                    .into(holder.pointOfInterestImage);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (pointOfInterestResultEntityList.isEmpty()) {
-            return 0;
-        } else {
-            return pointOfInterestResultEntityList.size();
-        }
-    }
-
-    public void swapData(List<PointOfInterestResultEntity> pointOfInterestResultEntityList) {
-        Timber.d("swapData is called");
-        if(pointOfInterestResultEntityList != null) this.pointOfInterestResultEntityList = pointOfInterestResultEntityList;
-        notifyDataSetChanged();
-    }
-
-    @Override
-    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView);
-        pointOfInterestAdapterOnClickHandler = null;
-    }
-
-    /**
-     * This is the interface which will be implemented by HostActivity
-     */
-    public interface PointOfInterestAdapterOnClickHandler {
-        void onPointOfInterestItemClick(String placeId, String name, String address, double latitude,
-                  double longitude, double rating, String photoReference, PointOfInterestViewHolder vh);
     }
 
 }
