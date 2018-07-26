@@ -35,11 +35,13 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_nearby_item_grid"
+            android:layout_above="@+id/iv_nearby_powered_by_google"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <ImageView
-            android:id="@+id/iv_poi_detail_powered_by_google"
+            android:id="@+id/iv_nearby_powered_by_google"
+            android:layout_margin="@dimen/powered_by_google_logo_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

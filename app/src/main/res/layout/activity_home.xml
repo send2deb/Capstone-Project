@@ -34,7 +34,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="2">
 
             <ImageView
                 android:id="@+id/iv_current_place_image"
@@ -94,7 +94,7 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_restaurant_icon"
+                    android:drawableLeft="@drawable/tinru_restaurant_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_restaurant"
@@ -108,7 +108,7 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_cafe_icon"
+                    android:drawableLeft="@drawable/tinru_cafe_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_cafe"
@@ -129,7 +129,7 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_bar_icon"
+                    android:drawableLeft="@drawable/tinru_bar_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_bar"
@@ -143,7 +143,7 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_atm_icon"
+                    android:drawableLeft="@drawable/tinru_atm_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_atm"
@@ -164,7 +164,7 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_shopping_icon"
+                    android:drawableLeft="@drawable/tinru_shopping_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_shopping"
@@ -178,23 +178,29 @@
                     android:layout_margin="@dimen/home_nearby_bottom_padding"
                     android:layout_weight="1"
                     android:background="@color/color_white"
-                    android:drawableTop="@drawable/tinru_petrol_pump_icon"
+                    android:drawableLeft="@drawable/tinru_petrol_pump_icon"
                     android:elevation="@dimen/button_elevation"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/home_activity_layout_nearby_petrol_pump"
                     android:textAllCaps="false" />
             </LinearLayout>
         </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_home_powered_by_google"
+            android:layout_marginBottom="@dimen/powered_by_google_logo_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/powered_by_google_light" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_poi_detail_powered_by_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_below="@+id/poi_detail_nearby_linear_layout"
-        android:layout_centerInParent="true"
-        android:src="@drawable/powered_by_google_light" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_poi_detail_powered_by_google"-->
+        <!--android:layout_margin="@dimen/material_design_phone_grid_layout_margin"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center|bottom"-->
+        <!--android:src="@drawable/powered_by_google_light" />-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_home"

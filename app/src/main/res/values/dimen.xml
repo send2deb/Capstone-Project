@@ -28,5 +28,7 @@
     <dimen name="appwidget_header_margin">16dp</dimen>
     <dimen name="appwidget_header_text_size">35sp</dimen>
     <dimen name="appwidget_body_text_size">25sp</dimen>
+    <dimen name="powered_by_google_logo_margin">2dp</dimen>
+    <dimen name="single_list_view_item_padding">16dp</dimen>
 
 </resources>

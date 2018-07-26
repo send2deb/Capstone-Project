@@ -43,6 +43,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/debdroid/tinru/database/PointOfInterestResultDao_Impl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/debdroid/tinru/ui/adapter/FlightListAdapter$FlightListViewHolder_ViewBinding.java">
           <value>
             <set />

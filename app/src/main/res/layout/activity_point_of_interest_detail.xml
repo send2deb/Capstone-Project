@@ -32,7 +32,7 @@
         <RelativeLayout
             android:id="@+id/poi_detail_relative_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="visible">
 
             <ImageView
@@ -212,13 +212,20 @@
                         android:textAllCaps="false" />
                 </LinearLayout>
             </LinearLayout>
-
+            <ImageView
+                android:id="@+id/iv_poi_detail_powered_by_google"
+                android:layout_margin="@dimen/powered_by_google_logo_margin"
+                android:layout_below="@+id/poi_detail_nearby_linear_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/powered_by_google_light" />
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/iv_poi_detail_powered_by_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:src="@drawable/powered_by_google_light" />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_poi_detail_powered_by_google"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center|bottom"-->
+            <!--android:src="@drawable/powered_by_google_light" />-->
     </FrameLayout>
 </ScrollView>

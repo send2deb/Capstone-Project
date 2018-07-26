@@ -93,6 +93,7 @@ public class HomeActivity extends AppCompatActivity {
     private String currentPlaceCity;
     private String currentPlaceCountry;
     private String currentPostalCode;
+    private String currentPlacePhotoAtbrCityCountry = null;
     private HomeViewModel viewModel;
 
     @Override
@@ -386,19 +387,17 @@ public class HomeActivity extends AppCompatActivity {
     private void updateUi() {
         Timber.d("updateUi is called");
         // Load the photo of local place
-        // TODO need to check if bitmap loading needs to be optimised further
         loadLocalPlacePhoto();
         // Set the current City & Country
-        String currentPlaceCityCountry = currentPlaceName;
         if (currentPlaceCity != null && currentPlaceCountry != null) {
-            currentPlaceCityCountry = currentPlaceCountry.concat(String.format("%s, %s, %s", currentPlaceName, currentPlaceCity,
-                    currentPlaceCountry));
-        } else if (currentPlaceCity == null && currentPlaceCountry != null) {
-            currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCountry);
-        } else if (currentPlaceCity != null && currentPlaceCountry == null) {
-            currentPlaceCityCountry = currentPlaceCountry.concat(currentPlaceCity);
-        }
-        currentCityCountryTextView.setText(currentPlaceCityCountry);
+            // As per Google Place Api guideline - show the currentPlaceName which is attribution of the photo
+            currentPlacePhotoAtbrCityCountry = String.format("%s, %s, %s",currentPlaceName,
+                    currentPlaceCity, currentPlaceCountry);
+        } else if (currentPlaceCountry == null) {
+            currentPlacePhotoAtbrCityCountry = currentPlaceCity;
+        } // No 'else' for 'currentPlaceCity == null' because it will have currentPlaceName if it's null
+          // based on the logic in getDeviceLocation()
+        currentCityCountryTextView.setText(currentPlacePhotoAtbrCityCountry);
 
         // Hide the progress bar and show the layout & fab
         progressBar.setVisibility(ProgressBar.GONE);
@@ -412,6 +411,7 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void loadLocalPlacePhoto() {
         Timber.d(("loadLocalPlacePhoto is called. currentPlaceId -> " + currentPlaceId));
+        // TODO need to check if bitmap loading needs to be optimised further
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(currentPlaceId);
         photoMetadataResponse.addOnCompleteListener(task -> {
             // Get the list of photos.
@@ -424,15 +424,13 @@ public class HomeActivity extends AppCompatActivity {
                 // Get the attribution text.
                 //TODO need to add the attribution for all Google Place Api usage
                 CharSequence attribution = photoMetadata.getAttributions();
+                Timber.e("The photo attribution -> " + attribution.toString());
                 // Get a full-size bitmap for the photo.
                 Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
-                photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
-                    @Override
-                    public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
-                        PlacePhotoResponse photo = task.getResult();
-                        Bitmap bitmap = photo.getBitmap();
-                        currentPlaceImage.setImageBitmap(bitmap);
-                    }
+                photoResponse.addOnCompleteListener(task1 -> {
+                    PlacePhotoResponse photo = task1.getResult();
+                    Bitmap bitmap = photo.getBitmap();
+                    currentPlaceImage.setImageBitmap(bitmap);
                 });
             } else {
                 Timber.d("No photo found for place id -> " + currentPlaceId);
