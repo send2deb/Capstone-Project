@@ -40,6 +40,7 @@
             android:id="@+id/iv_poi_list_powered_by_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/google_powered_by_image_content_desc"
             android:layout_margin="@dimen/powered_by_google_logo_margin"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"

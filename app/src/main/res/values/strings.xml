@@ -61,4 +61,9 @@
     <string name="single_flight_fare_title">Fare:</string>
     <string name="flight_list_activity_title_prefix">Flights to</string>
     <string name="flight_list_orig_to_dest_msg">%1$s to %2$s</string>
+    <string name="google_powered_by_image_content_desc">Powered by Google image</string>
+    <string name="flight_origin_code_image_content_desc">Flight origin airport code</string>
+    <string name="flight_dest_code_image_content_desc">Flight destination airport code</string>
+    <string name="flight_origin_and_dest_code_connect_image_content_desc">Line connects origin and destination airport codes image</string>
+    <string name="flight_logo_image_content_Desc">Flight logo</string>
 </resources>

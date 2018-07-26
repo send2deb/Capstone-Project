@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="@dimen/poi_list_elevation"
-    android:padding="@dimen/material_design_phone_grid_layout_margin">
+    android:padding="@dimen/material_design_phone_grid_layout_margin"
+    tools:targetApi="lollipop">
 
     <ImageView
         android:id="@+id/iv_single_flight_origin_rectangle"
@@ -14,6 +14,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/flight_origin_code_image_content_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tinru_vec_shape_rectangle_stroke" />
@@ -24,6 +25,7 @@
         android:layout_height="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/flight_dest_code_image_content_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tinru_vec_shape_rectangle_stroke" />
@@ -32,6 +34,7 @@
         android:id="@+id/iv_single_flight_line_with_image_view"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:contentDescription="@string/flight_logo_image_content_Desc"
         app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_destination_rectangle"
         app:layout_constraintEnd_toStartOf="@+id/iv_single_flight_destination_rectangle"
         app:layout_constraintStart_toEndOf="@+id/iv_single_flight_origin_rectangle"
@@ -46,6 +49,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
         app:layout_constraintEnd_toStartOf="@+id/iv_single_flight_line_with_image_view"
         app:layout_constraintStart_toStartOf="@+id/iv_single_flight_origin_rectangle"
@@ -60,6 +64,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
         app:layout_constraintEnd_toEndOf="@+id/iv_single_flight_destination_rectangle"
         app:layout_constraintStart_toEndOf="@+id/iv_single_flight_line_with_image_view"
@@ -72,11 +77,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
+        android:text="@string/single_flight_departure_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="@+id/iv_single_flight_origin_rectangle"
         app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_origin_rectangle"
-        tools:text="Departure:"
-        android:text="@string/single_flight_departure_title" />
+        tools:text="Departure:" />
 
     <TextView
         android:id="@+id/tv_single_item_departure_value"
@@ -85,10 +90,11 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        tools:text="2018-08-13 19:56"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/tv_single_item_departure_title"
         app:layout_constraintStart_toEndOf="@+id/tv_single_item_departure_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_departure_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_item_departure_title"
+        tools:text="2018-08-13 19:56" />
 
     <TextView
         android:id="@+id/tv_single_item_flight_fare_value"
@@ -97,6 +103,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/tv_single_item_flight_fare_title"
         app:layout_constraintStart_toEndOf="@+id/tv_single_item_flight_fare_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_item_flight_fare_title"
@@ -110,10 +117,11 @@
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="BA 1332"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toStartOf="@+id/tv_single_item_destination_city_code"
         app:layout_constraintStart_toStartOf="@+id/iv_single_flight_line_with_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_line_with_image_view" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_single_flight_line_with_image_view"
+        tools:text="BA 1332" />
 
     <ImageView
         android:id="@+id/iv_single_flight_plane_image"
@@ -121,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/flight_origin_and_dest_code_connect_image_content_desc"
         app:layout_constraintBottom_toTopOf="@+id/iv_single_flight_line_with_image_view"
         app:layout_constraintEnd_toStartOf="@+id/tv_single_item_destination_city_code"
         app:layout_constraintStart_toStartOf="@+id/iv_single_flight_line_with_image_view"
@@ -145,6 +154,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/tv_single_item_arrival_title"
         app:layout_constraintStart_toEndOf="@+id/tv_single_item_arrival_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_item_arrival_title"
@@ -157,6 +167,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/tv_single_item_duration_title"
         app:layout_constraintStart_toEndOf="@+id/tv_single_item_duration_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_item_duration_title"
