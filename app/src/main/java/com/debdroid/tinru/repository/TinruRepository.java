@@ -137,19 +137,19 @@ public class TinruRepository {
             public void onResponse(Call<GooglePlacesNearbyResponse> call, Response<GooglePlacesNearbyResponse> response) {
                 Timber.d("Processing in thread -> " + Thread.currentThread().getName());
                 if (response.isSuccessful()) {
-                    Timber.d("Google place nearby api call successful ->" + response.toString());
+                    Timber.d("Google places nearby api call successful ->" + response.toString());
                     // First delete all records
                     deleteDataFromNearbyResultTable();
                     // Now insert the new records
                     insertDataToNearbyResultTable(response.body().getResults());
                 } else {
-                    Timber.e("Google place nearby api response not successful -> " + response.raw().toString());
+                    Timber.e("Google places nearby api response not successful -> " + response.raw().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<GooglePlacesNearbyResponse> call, Throwable t) {
-                Timber.e("Error happened -> " + t.toString());
+                Timber.e("Google places nearby api call. Error happened -> " + t.toString());
                 t.printStackTrace();
             }
         });
@@ -166,19 +166,19 @@ public class TinruRepository {
                                    Response<GooglePlacesTextSearchResponse> response) {
                 Timber.d("Processing in thread -> " + Thread.currentThread().getName());
                 if (response.isSuccessful()) {
-                    Timber.d("Google place text search api call successful ->" + response.toString());
+                    Timber.d("Google places text search api call successful ->" + response.toString());
 //                    // First delete all records
 //                    deleteDataFromPointOfInterestResultTable();
                     // Now insert the new records
                     insertDataToPointOfInterestResultTable(response.body().getResults());
                 } else {
-                    Timber.e("Google place nearby api response not successful -> " + response.raw().toString());
+                    Timber.e("Google places nearby api response not successful -> " + response.raw().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<GooglePlacesTextSearchResponse> call, Throwable t) {
-                Timber.e("Error happened -> " + t.toString());
+                Timber.e("Google places nearby api call. Error happened -> " + t.toString());
                 t.printStackTrace();
             }
         });
@@ -194,17 +194,17 @@ public class TinruRepository {
                                    Response<GooglePlacesCustomPlaceDetailResponse> response) {
                 Timber.d("Processing in thread -> " + Thread.currentThread().getName());
                 if (response.isSuccessful()) {
-                    Timber.d("Google place custom data call successful ->" + response.toString());
+                    Timber.d("Google places custom data call successful ->" + response.toString());
                     // Use postValue method as the Retrofit running on background thread
                     googlePlacesCustomPlaceDetail.postValue(response.body());
                 } else {
-                    Timber.e("Google place nearby api response not successful -> " + response.raw().toString());
+                    Timber.e("Google places nearby api response not successful -> " + response.raw().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<GooglePlacesCustomPlaceDetailResponse> call, Throwable t) {
-                Timber.e("Error happened -> " + t.toString());
+                Timber.e("Google places nearby api. Error happened -> " + t.toString());
                 t.printStackTrace();
             }
         });
@@ -230,7 +230,7 @@ public class TinruRepository {
 
             @Override
             public void onFailure(Call<List<AmadeusSandboxAirportSearchResponse>> call, Throwable t) {
-                Timber.e("Error happened -> " + t.toString());
+                Timber.e("Amadeus sandbox airport data call. Error happened -> " + t.toString());
                 t.printStackTrace();
             }
         });
@@ -262,7 +262,7 @@ public class TinruRepository {
 
             @Override
             public void onFailure(Call<AmadeusSandboxLowFareSearchResponse> call, Throwable t) {
-                Timber.e("Error happened -> " + t.toString());
+                Timber.e("Amadeus sandbox low fare data call. Error happened -> " + t.toString());
                 t.printStackTrace();
             }
         });
@@ -311,7 +311,7 @@ public class TinruRepository {
                     // Insert the point of interest list to the table
                     pointOfInterestResultDao.insertBulkPointOfInterestResultEntities(pointOfInterestResultEntities);
                 } else {
-                    Timber.e("Google Place text search api Json response is null");
+                    Timber.e("Google Places text search api Json response is null");
                 }
                 return null;
             }

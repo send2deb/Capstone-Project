@@ -33,6 +33,8 @@
     <string name="google_places_api_query_apikey">key</string>
     <string name="google_places_api_photo_query_parm_photoreference_key">photoreference</string>
     <string name="appwidget_no_data_available_msg">No data available</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
 
     <!-- add here for new type -->
 

@@ -11,17 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
 import com.debdroid.tinru.utility.CommonUtility;
 import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.PointOfInterestListViewModel;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
 import java.util.Timer;
@@ -55,6 +61,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     private PointOfInterestAdapter pointOfInterestAdapter;
     private Parcelable linearLayoutManagerState;
     private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
+    private InterstitialAd mInterstitialAd;
 
     public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
     public static final String EXTRA_POINT_OF_INTEREST_AIRPORT_CODE = "extra_point_of_interest_airport_code";
@@ -123,6 +130,8 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         progressMsgTextView.setVisibility(TextView.VISIBLE);
         relativeLayout.setVisibility(LinearLayout.INVISIBLE);
 
+        // Initialize Ad
+        initializeAd();
         //Setup adapter and ViewModel
         pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, (placeId, name, address,
                                                                               latitude, longitude, rating,
@@ -186,7 +195,14 @@ public class PointOfInterestListActivity extends AppCompatActivity {
      */
     @OnClick(R.id.fab_poi_list)
     public void fabAction(View view) {
-        startFlightListActivity();
+        // Show the Interstitial Ads if it's ready. otherwise show a toast
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Timber.w("The interstitial ad wasn't loaded yet.");
+            // Start the AsyncTask
+            startFlightListActivity();
+        }
     }
 
     /**
@@ -210,6 +226,27 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_RATING, rating);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_PHOTO_REFERENCE, photoReference);
         startActivity(intent);
+    }
+
+    private void  initializeAd() {
+        // Initialize the MobAd
+        MobileAds.initialize(this, getString(R.string.interstitial_ad_unit_id));
+
+        // Create an interstitial ad object
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+
+        // Load an ad
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        // Set the listener
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Start place of interest activity - start activity only after the airport code is retrieved
+                startFlightListActivity();
+            }
+        });
     }
 
     /**
