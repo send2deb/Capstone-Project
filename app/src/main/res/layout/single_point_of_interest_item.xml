@@ -17,10 +17,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
     <LinearLayout
-        android:layout_toRightOf="@+id/iv_poi_single_item_image"
+        android:layout_toEndOf="@+id/iv_poi_single_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/poi_list_left_text_padding"
+        android:paddingStart="@dimen/poi_list_left_text_padding"
         android:orientation="vertical">
     <TextView
         android:id="@+id/tv_poi_single_item_name"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        tools:text="Near London Bridge, London, UK. testing wrap content issue" />
+        tools:text="Near London Bridge, London, UK." />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
