@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -45,6 +46,9 @@ public class FlightListActivity extends AppCompatActivity {
     TextView originToDestinationTextView;
     @BindView(R.id.rv_flight_list)
     RecyclerView recyclerView;
+    @BindView(R.id.flight_list_toolbar)
+    Toolbar toolbar;
+
     private FlightListAdapter flightListAdapter;
     private Parcelable linearLayoutManagerState;
 
@@ -56,6 +60,8 @@ public class FlightListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_list);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
@@ -90,7 +96,11 @@ public class FlightListActivity extends AppCompatActivity {
         Timber.d("destinationAirportCode -> " + destinationAirportCode);
 
         // Set the action bar title
-        setTitle(getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
+//        setTitle(getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
+        getSupportActionBar().setTitle
+                (getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
+        // Enable up navigation
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Set the flight from to destination view
         originToDestinationTextView.setText(getString(R.string.flight_list_orig_to_dest_msg,

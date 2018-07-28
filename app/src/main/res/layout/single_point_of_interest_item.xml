@@ -15,6 +15,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="@string/point_of_interest_image_transition"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
     <LinearLayout
         android:layout_toEndOf="@+id/iv_poi_single_item_image"

@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/android/AndroidStudioProjects/GitHubProjects/MovieMagic/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../BakingApp/app/src/main/java/com/debdroid/bakingapp/repository/RecipeRepository.java">
           <value>
             <set />
@@ -443,6 +448,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/point_of_interest_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/single_flight_item.xml">
           <value>
             <set />
@@ -473,6 +483,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/bools.xml">
           <value>
             <set />
@@ -499,6 +514,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>

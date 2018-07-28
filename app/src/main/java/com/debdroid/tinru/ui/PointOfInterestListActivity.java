@@ -7,12 +7,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -57,6 +61,8 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     @BindView(R.id.rv_poi_list)
     RecyclerView recyclerView;
+    @BindView(R.id.poi_list_toolbar)
+    Toolbar toolbar;
 
     private PointOfInterestAdapter pointOfInterestAdapter;
     private Parcelable linearLayoutManagerState;
@@ -75,6 +81,8 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point_of_interest_list);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
@@ -110,6 +118,9 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
         // Set the action bar title
         setTitle(location);
+        getSupportActionBar().setTitle(location);
+        // Enable up navigation
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // If this activity is started by the widget then save the airport code and the location
         // (i.e. destination location) to sharedpreferenes in order to Flight list activity to
@@ -136,7 +147,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, (placeId, name, address,
                                                                               latitude, longitude, rating,
                                                                               photoReference, vh) -> {
-            startPointOfDetailActivity(placeId, name, address, latitude, longitude, rating, photoReference);
+            startPointOfDetailActivity(placeId, name, address, latitude, longitude, rating, photoReference, vh);
         });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -214,9 +225,11 @@ public class PointOfInterestListActivity extends AppCompatActivity {
      * @param longitude Longitude of the point of interest item
      * @param rating Rating of the point of interest item
      * @param photoReference Photo reference of the point of interest item
+     * @param vh ViewHolder associated with the clicked item
      */
     private void startPointOfDetailActivity(String placeId, String location, String address, double latitude,
-                                            double longitude, double rating, String photoReference) {
+                                            double longitude, double rating, String photoReference,
+                                            PointOfInterestAdapter.PointOfInterestViewHolder vh) {
         Intent intent = new Intent(this, PointOfInterestDetailActivity.class);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_PLACE_ID, placeId);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LOCATION, location);
@@ -225,7 +238,12 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_LONGITUDE, longitude);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_RATING, rating);
         intent.putExtra(PointOfInterestDetailActivity.EXTRA_POI_DETAIL_PHOTO_REFERENCE, photoReference);
-        startActivity(intent);
+
+        ImageView imageView = vh.pointOfInterestImage;
+        ActivityOptionsCompat options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, imageView,
+                        ViewCompat.getTransitionName(imageView));
+        startActivity(intent, options.toBundle());
     }
 
     private void  initializeAd() {

@@ -1,39 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/poi_detail_coordinator_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.PointOfInterestDetailActivity">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <FrameLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/poi_detail_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.PointOfInterestDetailActivity">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <ProgressBar
-            android:id="@+id/pb_poi_detail_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_poi_detail_pb_text_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/material_design_phone_grid_layout_margin"
-            android:layout_marginTop="@dimen/progressbar_text_msg_top_margin"
-            android:fontFamily="sans-serif"
-            android:text="@string/home_progressbar_text_msg"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:visibility="invisible" />
-
-        <RelativeLayout
-            android:id="@+id/poi_detail_relative_layout"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/poi_detail_collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible">
+            android:layout_height="@dimen/poi_detail_image_width"
+            app:contentScrim="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/iv_poi_detail_image"
@@ -41,202 +28,26 @@
                 android:layout_height="@dimen/poi_detail_image_width"
                 android:contentDescription="@string/home_activity_layout_image_content_desc"
                 android:scaleType="centerCrop"
-                android:src="@drawable/tinru_home_activity_fallback_image" />
-
-            <TextView
-                android:id="@+id/tv_poi_detail_place_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_poi_detail_image"
-                android:layout_marginStart="@dimen/material_design_phone_grid_layout_margin"
-                android:layout_marginEnd="@dimen/material_design_phone_grid_layout_margin"
-                android:fontFamily="sans-serif"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textIsSelectable="true"
-                tools:text="The Place Name" />
-
-            <TextView
-                android:id="@+id/tv_poi_detail_place_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_poi_detail_place_name"
-                android:layout_marginStart="@dimen/material_design_phone_grid_layout_margin"
-                android:layout_marginEnd="@dimen/material_design_phone_grid_layout_margin"
-                android:fontFamily="sans-serif"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textIsSelectable="true"
-                tools:text="The Place Address" />
-
-            <TextView
-                android:id="@+id/tv_poi_detail_place_rating_Value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_poi_detail_place_address"
-                android:layout_marginStart="@dimen/material_design_phone_grid_layout_margin"
-                android:fontFamily="sans-serif"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colorAccent"
-                android:textIsSelectable="true"
-                tools:text="4.9" />
-
-            <RatingBar
-                android:id="@+id/rb_poi_detail_rating_bar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_poi_detail_place_address"
-                android:layout_marginEnd="@dimen/material_design_phone_grid_layout_margin"
-                android:layout_marginStart="@dimen/poi_list_left_rating_bar_padding"
-                android:layout_toEndOf="@+id/tv_poi_detail_place_rating_Value" />
-
-            <TextView
-                android:id="@+id/rb_poi_detail_user_review"
+                android:src="@drawable/tinru_home_activity_fallback_image"
+                android:transitionName="@string/point_of_interest_image_transition" />
+            <!-- setting itsSystemWindows="true" for toolbar moves home up and setting buttons to status bar -->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/poi_detail_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_poi_detail_place_rating_Value"
-                android:layout_marginStart="@dimen/material_design_phone_grid_layout_margin"
-                android:layout_marginEnd="@dimen/material_design_phone_grid_layout_margin"
-                android:fontFamily="sans-serif"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textIsSelectable="true"
-                tools:text="This space is for adding user review which will be done later, still thinking whether to go with recyclerview or not" />
-
-            <LinearLayout
-                android:id="@+id/poi_detail_nearby_linear_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rb_poi_detail_user_review"
-                android:layout_margin="@dimen/material_design_phone_grid_layout_margin"
-                android:gravity="bottom"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/bt_nearby_restaurant"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_restaurant_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_restaurant"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-
-                    <Button
-                        android:id="@+id/bt_nearby_cafe"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_cafe_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_cafe"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/bt_nearby_bar"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_bar_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_bar"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-
-                    <Button
-                        android:id="@+id/bt_nearby_atm"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_atm_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_atm"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/bt_nearby_shopping"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_shopping_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_shopping"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-
-                    <Button
-                        android:id="@+id/bt_nearby_petrol_pump"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/home_nearby_bottom_padding"
-                        android:layout_weight="1"
-                        android:background="@color/color_white"
-                        android:drawableStart="@drawable/tinru_petrol_pump_icon"
-                        android:elevation="@dimen/button_elevation"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/home_activity_layout_nearby_petrol_pump"
-                        android:textAllCaps="false"
-                        tools:targetApi="lollipop" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iv_poi_detail_powered_by_google"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/poi_detail_nearby_linear_layout"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/powered_by_google_logo_margin"
-                android:contentDescription="@string/google_powered_by_image_content_desc"
-                android:src="@drawable/powered_by_google_light" />
-        </RelativeLayout>
-    </FrameLayout>
-</ScrollView>
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/material_design_toolbar_elevation"
+                app:layout_collapseMode="pin"
+                android:fitsSystemWindows="false"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/poi_detail_nested_scroll"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <include layout="@layout/point_of_interest_detail" />
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

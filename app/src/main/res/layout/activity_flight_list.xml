@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.FlightListActivity">
 
     <ProgressBar
@@ -31,8 +32,19 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/flight_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/material_design_toolbar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
         <TextView
             android:id="@+id/tv_flight_list_orig_to_destination_value"
+            android:layout_below="@+id/flight_list_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/material_design_phone_grid_layout_margin"

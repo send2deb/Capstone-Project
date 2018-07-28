@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.NearByGridActivity">
 
     <ProgressBar
@@ -32,6 +33,16 @@
         android:gravity="center"
         android:visibility="visible"
         tools:context=".ui.NearByGridActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/nearby_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/material_design_toolbar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_nearby_item_grid"

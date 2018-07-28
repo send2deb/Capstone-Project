@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tinru</string>
+    <string name="app_name">myapp</string>
 
     <!-- Shared Preference related string values -->
     <string name="preference_file_key">com.debdroid.tinru.PREFERENCE_FILE_KEY</string>
@@ -34,7 +34,7 @@
     <string name="google_places_api_photo_query_parm_photoreference_key">photoreference</string>
     <string name="appwidget_no_data_available_msg">No data available</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
-
+    <string name="point_of_interest_image_transition">poster_image_transition</string>
 
     <!-- add here for new type -->
 

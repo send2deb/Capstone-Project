@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,6 +52,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
     @BindView(R.id.bt_nearby_atm) Button nearbyButtonATM;
     @BindView(R.id.bt_nearby_shopping) Button nearbyButtonShopping;
     @BindView(R.id.bt_nearby_petrol_pump) Button nearbyButtonPetrolPump;
+    @BindView(R.id.poi_detail_toolbar) Toolbar toolbar;
 
     private String placeId ;
     private String location;
@@ -76,6 +78,8 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point_of_interest_detail);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
@@ -110,7 +114,10 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
             photoReference = intent.getStringExtra(EXTRA_POI_DETAIL_PHOTO_REFERENCE);
 
         // Set the action bar title
-        setTitle(location);
+//        setTitle(location);
+        getSupportActionBar().setTitle(location);
+        // Enable up navigation
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Show the progress bar and hide the layout
         progressBar.setVisibility(ProgressBar.VISIBLE);

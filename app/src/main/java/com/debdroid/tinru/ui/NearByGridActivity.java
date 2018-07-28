@@ -11,6 +11,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -55,6 +56,8 @@ public class NearByGridActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     @BindView(R.id.rv_nearby_item_grid)
     RecyclerView recyclerView;
+    @BindView(R.id.nearby_toolbar)
+    Toolbar toolbar;
     @BindDimen(R.dimen.single_nearby_item_image_width)
     float recipeCardWidth;
     private NearbyGridAdapter nearbyGridAdapter;
@@ -68,6 +71,9 @@ public class NearByGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_by_grid);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+//        toolbar.setTitle();
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
@@ -106,7 +112,9 @@ public class NearByGridActivity extends AppCompatActivity {
             typeName = intent.getStringExtra(EXTRA_NEARBY_TYPE_NAME);
 
         // Set the action bar title
-        setTitle(typeName);
+//        setTitle(typeName);
+//        toolbar.setTitle(typeName);
+        getSupportActionBar().setTitle(typeName);
 
         // Enable up navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

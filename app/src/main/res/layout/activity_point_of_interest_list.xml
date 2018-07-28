@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.PointOfInterestListActivity">
 
     <ProgressBar
@@ -30,9 +31,20 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/poi_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/material_design_toolbar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_poi_list"
             android:layout_above="@+id/iv_poi_list_powered_by_google"
+            android:layout_below="@+id/poi_list_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

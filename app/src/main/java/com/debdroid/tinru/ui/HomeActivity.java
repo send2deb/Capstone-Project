@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
@@ -80,6 +81,8 @@ public class HomeActivity extends AppCompatActivity {
     ImageView currentPlaceImage;
     @BindView(R.id.fab_home)
     FloatingActionButton fab;
+    @BindView(R.id.home_toolbar)
+    Toolbar toolbar;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -104,6 +107,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection

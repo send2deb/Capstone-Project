@@ -131,7 +131,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     public class PointOfInterestViewHolder extends RecyclerView.ViewHolder {
         @Nullable
         @BindView(R.id.iv_poi_single_item_image)
-        ImageView pointOfInterestImage;
+        public ImageView pointOfInterestImage;
         @Nullable
         @BindView(R.id.tv_poi_single_item_name)
         TextView pointOfInterestName;
