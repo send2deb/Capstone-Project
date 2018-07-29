@@ -75,13 +75,10 @@ public class NearbyGridAdapter extends RecyclerView.Adapter<NearbyGridAdapter.Ne
                     Integer.toString(context.getResources().getInteger(R.integer.nearby_photo_download_width_size)),
                     nearbyPhotoReference);
             if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
-//            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
-                //TODO set fallback image
             } else {
                 picasso.load(photoReferenceUrlString)
-                        //TODO add placehodler and fallback later
-//              .placeholder(CommonUtility.getFallbackImageId(position))
-//              .error(CommonUtility.getFallbackImageId(position))
+                        .placeholder(R.drawable.tinru_fallback_image)
+                        .error(R.drawable.tinru_fallback_image)
                         .into(holder.nearbyImage);
             }
         } else {

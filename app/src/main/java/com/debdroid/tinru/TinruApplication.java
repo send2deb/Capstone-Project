@@ -28,6 +28,10 @@ public class TinruApplication extends Application implements HasActivityInjector
     @Inject
     DispatchingAndroidInjector<Service> dispatchingServiceInjector;
 
+    public static TinruApplication get(Context context) {
+        return (TinruApplication) context.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,10 +49,6 @@ public class TinruApplication extends Application implements HasActivityInjector
 
         //Initialize Stetho
         Stetho.initializeWithDefaults(this);
-    }
-
-    public static TinruApplication get(Context context) {
-        return (TinruApplication) context.getApplicationContext();
     }
 
     @Override

@@ -20,14 +20,15 @@ import dagger.android.support.AndroidSupportInjectionModule;
         TinruBroadcastModule.class,
         /* The module for service used for widget */
         TinruServiceModule.class
-        })
+})
 public interface TinruApplicationComponent {
+    void inject(TinruApplication app);
+
     @Component.Builder
     interface Builder {
         @BindsInstance
         Builder application(Application application);
+
         TinruApplicationComponent build();
     }
-
-    void inject(TinruApplication app);
 }

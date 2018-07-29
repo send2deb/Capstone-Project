@@ -8,7 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "nearby_result")
 public class NearbyResultEntity {
-    @NotNull @PrimaryKey
+    @NotNull
+    @PrimaryKey
     @ColumnInfo(name = "id")
     public String id;
 
@@ -33,7 +34,8 @@ public class NearbyResultEntity {
     @ColumnInfo(name = "photo_reference")
     public String photoReference;
 
-    public NearbyResultEntity() {}
+    public NearbyResultEntity() {
+    }
 
     public NearbyResultEntity(@NotNull String id, String nearbyName, double latitude, double longitude,
                               double rating, String openStatus, String vicinity, String photoReference) {

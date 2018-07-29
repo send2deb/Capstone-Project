@@ -31,22 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 @Module(includes = ViewModelModule.class)
-//@Module
 class TinruApplicationModule {
-
-    // Amadeus Sandbox Point Of Interest Json data api service using Retrofit
-    @Provides
-    @TinruCustomScope.TinruApplicationScope
-    AmadeusSandboxApiService provideAmadeusSandboxPointOfInterestApiService(Retrofit retrofit) {
-        return retrofit.create(AmadeusSandboxApiService.class);
-    }
-
-    // Google Place Json data api service using Retrofit
-    @Provides
-    @TinruCustomScope.TinruApplicationScope
-    GooglePlacesApiService provideGooglePlacesNearbySearchApiService(Retrofit retrofit) {
-        return retrofit.create(GooglePlacesApiService.class);
-    }
 
     // Retrofit
     @Provides
@@ -54,11 +39,9 @@ class TinruApplicationModule {
     static Retrofit provideRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(NetworkUtility.getGooglePlaceApiBaseUrl())
-//                .baseUrl(NetworkUtility.getAmadeusSandboxBaseUrl())
                 .client(okHttpClient)
-//                .client(NetworkUtility.getUnsafeOkHttpClient().build())
                 .addConverterFactory(GsonConverterFactory.create())
-                //execute call back in background thread
+                //execute callback in background thread
                 .callbackExecutor(Executors.newSingleThreadExecutor())
                 .build();
     }
@@ -162,5 +145,19 @@ class TinruApplicationModule {
     static SharedPreferences provideSharedPreferences(Application app) {
         return app.getSharedPreferences(app.getResources().getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
+    }
+
+    // Amadeus Sandbox Point Of Interest Json data api service using Retrofit
+    @Provides
+    @TinruCustomScope.TinruApplicationScope
+    AmadeusSandboxApiService provideAmadeusSandboxPointOfInterestApiService(Retrofit retrofit) {
+        return retrofit.create(AmadeusSandboxApiService.class);
+    }
+
+    // Google Places Json data api service using Retrofit
+    @Provides
+    @TinruCustomScope.TinruApplicationScope
+    GooglePlacesApiService provideGooglePlacesNearbySearchApiService(Retrofit retrofit) {
+        return retrofit.create(GooglePlacesApiService.class);
     }
 }

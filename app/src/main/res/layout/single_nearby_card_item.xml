@@ -31,61 +31,61 @@
             android:id="@+id/tv_single_nearby_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/single_nearby_item_text_padding"
-            android:paddingEnd="@dimen/single_nearby_item_text_padding"
             android:layout_below="@+id/iv_single_nearby_image"
             android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/single_nearby_item_text_padding"
+            android:paddingStart="@dimen/single_nearby_item_text_padding"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tool:text="Nearby item Name"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            tool:text="Nearby item Name" />
 
         <TextView
             android:id="@+id/tv_single_nearby_vicinity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/single_nearby_item_text_padding"
-            android:paddingEnd="@dimen/single_nearby_item_text_padding"
             android:layout_below="@+id/tv_single_nearby_name"
             android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/single_nearby_item_text_padding"
+            android:paddingStart="@dimen/single_nearby_item_text_padding"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tool:text="Prince Regent Street, Hounslow"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            tool:text="Prince Regent Street, Hounslow" />
 
         <TextView
             android:id="@+id/tv_single_nearby_rating_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/single_nearby_item_text_padding"
-            android:paddingEnd="@dimen/single_nearby_item_text_padding"
             android:layout_below="@+id/tv_single_nearby_vicinity"
             android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/single_nearby_item_text_padding"
+            android:paddingStart="@dimen/single_nearby_item_text_padding"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorAccent"
-            tool:text="4.6"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            tool:text="4.6" />
 
         <RatingBar
             android:id="@+id/rb_single_nearby_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/single_nearby_item_text_padding"
-            android:paddingEnd="@dimen/single_nearby_item_text_padding"
             android:layout_below="@+id/tv_single_nearby_vicinity"
             android:layout_toEndOf="@+id/tv_single_nearby_rating_value"
             android:numStars="5"
+            android:paddingEnd="@dimen/single_nearby_item_text_padding"
+            android:paddingStart="@dimen/single_nearby_item_text_padding"
             android:stepSize="0.1" />
 
         <TextView
             android:id="@+id/tv_single_nearby_open_close_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/single_nearby_item_text_padding"
-            android:paddingEnd="@dimen/single_nearby_item_text_padding"
             android:layout_below="@+id/tv_single_nearby_rating_value"
             android:fontFamily="sans-serif"
+            android:paddingEnd="@dimen/single_nearby_item_text_padding"
+            android:paddingStart="@dimen/single_nearby_item_text_padding"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tool:text="Open now"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            tool:text="Open now" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

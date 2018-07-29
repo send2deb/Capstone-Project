@@ -9,9 +9,7 @@ import com.debdroid.tinru.R;
 
 import java.security.cert.CertificateException;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -25,6 +23,7 @@ public class NetworkUtility {
 
     /**
      * This method returns the base url of the recipe
+     *
      * @return The recipe base url
      */
     public static String getAmadeusSandboxBaseUrl() {
@@ -33,6 +32,7 @@ public class NetworkUtility {
 
     /**
      * This method returns the base url of the recipe
+     *
      * @return The recipe base url
      */
     public static String getGooglePlaceApiBaseUrl() {
@@ -41,6 +41,7 @@ public class NetworkUtility {
 
     /**
      * This method checks if the device is connected to a network to perform network operation.
+     *
      * @param ctx Application Context
      * @return True if WiFi or Mobile network is available otherwise returns False
      */
@@ -53,13 +54,14 @@ public class NetworkUtility {
 
     /**
      * This method shows a Toast message if the device is not online.
+     *
      * @param context Application Context
      */
     public static void checkInternetConnection(Context context) {
         boolean networkStatus = NetworkUtility.isOnline(context);
-        if(!networkStatus) {
+        if (!networkStatus) {
             Timber.d(context.getString(R.string.no_network_error_msg));
-            Toast.makeText(context, context.getString(R.string.no_network_error_msg),Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.no_network_error_msg), Toast.LENGTH_SHORT).show();
         } else {
             Timber.d("Internet connection available");
         }
@@ -68,6 +70,7 @@ public class NetworkUtility {
     /**
      * Custom method to handle SSLHandshakeException
      * Courtesy - https://mobikul.com/android-retrofit-handling-sslhandshakeexception/
+     *
      * @return OkHttp client builder
      */
     public static OkHttpClient.Builder getUnsafeOkHttpClient() {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.PointOfInterestListActivity">
 
     <ProgressBar
@@ -35,27 +35,27 @@
             android:id="@+id/poi_list_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@android:color/white"
             android:background="?attr/colorPrimary"
             android:elevation="@dimen/material_design_toolbar_elevation"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@android:color/white" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_poi_list"
-            android:layout_above="@+id/iv_poi_list_powered_by_google"
-            android:layout_below="@+id/poi_list_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/iv_poi_list_powered_by_google"
+            android:layout_below="@+id/poi_list_toolbar" />
 
         <ImageView
             android:id="@+id/iv_poi_list_powered_by_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/google_powered_by_image_content_desc"
-            android:layout_margin="@dimen/powered_by_google_logo_margin"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
+            android:layout_margin="@dimen/powered_by_google_logo_margin"
+            android:contentDescription="@string/google_powered_by_image_content_desc"
             android:src="@drawable/powered_by_google_light" />
 
         <android.support.design.widget.FloatingActionButton

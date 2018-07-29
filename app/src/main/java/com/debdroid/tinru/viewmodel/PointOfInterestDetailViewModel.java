@@ -27,26 +27,19 @@ public class PointOfInterestDetailViewModel extends ViewModel {
         Timber.d("getPointOfInterestDetail is called");
         currentPlaceId = placeId;
 
-        Timber.d("Previous place id -> " + previousPlaceId);
-        Timber.d("Current place id -> " + currentPlaceId);
-
         // When place id changes, set the googlePlacesCustomPlaceDetail
         // to Null to force data load for new place id
-        if(!currentPlaceId.equals(previousPlaceId)) {
-            Timber.d("Current place id '" + currentPlaceId +
-                    "' not equal to previous place id '" + previousPlaceId + "'");
+        if (!currentPlaceId.equals(previousPlaceId)) {
             googlePlacesCustomPlaceDetail = null;
             previousPlaceId = currentPlaceId;
             needFreshData = true;
         } else {
-            Timber.d("Current place id '" + currentPlaceId +
-                    "' is equal to previous place id '" + previousPlaceId + "'");
             needFreshData = false;
         }
 
-        if(googlePlacesCustomPlaceDetail == null) {
+        if (googlePlacesCustomPlaceDetail == null) {
             googlePlacesCustomPlaceDetail = tinruRepository
-                    .getGooglePlaceCustomPlaceData(placeId,apiKey,needFreshData);
+                    .getGooglePlaceCustomPlaceData(placeId, apiKey, needFreshData);
         }
         return googlePlacesCustomPlaceDetail;
     }

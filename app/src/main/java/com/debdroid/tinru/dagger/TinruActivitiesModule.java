@@ -9,7 +9,6 @@ import com.debdroid.tinru.ui.PointOfInterestListActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
-//@Module(includes = TinruFragmentsModule.class)
 @Module
 abstract class TinruActivitiesModule {
     // This is the shortcut way, refer https://google.github.io/dagger/android

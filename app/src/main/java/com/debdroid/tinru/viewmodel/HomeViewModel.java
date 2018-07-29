@@ -30,12 +30,9 @@ public class HomeViewModel extends ViewModel {
         currentlatitude = latitude;
         currentlongitude = longitude;
 
-        Timber.d("Previous latitude & longitude -> " + previouslatitude + " & " + previouslongitude);
-        Timber.d("Current latitude & longitude -> " + currentlatitude + " & " + currentlongitude);
-
         // When latitude or longitude changes, set the airportCode
         // to Null to force data load for new latitude and longitude
-        if((currentlatitude != previouslatitude) || (previouslongitude != previouslongitude)) {
+        if ((currentlatitude != previouslatitude) || (previouslongitude != previouslongitude)) {
             airportCode = null;
             previouslatitude = currentlatitude;
             previouslongitude = previouslongitude;
@@ -44,7 +41,7 @@ public class HomeViewModel extends ViewModel {
             needFreshData = false;
         }
 
-        if(airportCode == null) {
+        if (airportCode == null) {
             airportCode = tinruRepository
                     .getAirportCode(latitude, longitude, apiKey, needFreshData);
         }

@@ -65,7 +65,7 @@ public class FlightListActivity extends AppCompatActivity {
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
-        if(!NetworkUtility.isOnline(this)) {
+        if (!NetworkUtility.isOnline(this)) {
             progressMsgTextView.setVisibility(TextView.VISIBLE);
             progressMsgTextView.setText(getString(R.string.no_network_error_msg));
             progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
@@ -96,7 +96,6 @@ public class FlightListActivity extends AppCompatActivity {
         Timber.d("destinationAirportCode -> " + destinationAirportCode);
 
         // Set the action bar title
-//        setTitle(getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
         getSupportActionBar().setTitle
                 (getString(R.string.flight_list_activity_title_prefix).concat(" ").concat(destinationAirportCity));
         // Enable up navigation
@@ -136,11 +135,6 @@ public class FlightListActivity extends AppCompatActivity {
                 CommonUtility.getAmadeusLowFareFlightSearchDateFormat(), getString(R.string.amadeus_sandbox_key)).observe(this,
                 (amadeusSandboxLowFareSearchResponse) -> {
                     Timber.d("FlightListViewModel refreshed!!");
-                    if(amadeusSandboxLowFareSearchResponse == null) {
-                        Timber.e("amadeusSandboxLowFareSearchResponse is null");
-                    } else {
-                        Timber.e("amadeusSandboxLowFareSearchResponse NOT null");
-                    }
                     flightListAdapter.swapData(amadeusSandboxLowFareSearchResponse);
                     // Hide the progressbar and associated text view
                     progressBar.setVisibility(ProgressBar.INVISIBLE);

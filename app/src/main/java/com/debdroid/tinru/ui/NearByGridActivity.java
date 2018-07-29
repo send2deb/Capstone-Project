@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,8 +24,6 @@ import com.debdroid.tinru.ui.adapter.NearbyGridAdapter;
 import com.debdroid.tinru.utility.NetworkUtility;
 import com.debdroid.tinru.viewmodel.NearbyGridViewModel;
 import com.squareup.picasso.Picasso;
-
-import java.sql.Time;
 
 import javax.inject.Inject;
 
@@ -78,11 +75,10 @@ public class NearByGridActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-//        toolbar.setTitle();
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
-        if(!NetworkUtility.isOnline(this)) {
+        if (!NetworkUtility.isOnline(this)) {
             progressMsgTextView.setVisibility(TextView.VISIBLE);
             progressMsgTextView.setText(getString(R.string.no_network_error_msg));
             progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
@@ -117,8 +113,6 @@ public class NearByGridActivity extends AppCompatActivity {
             typeName = intent.getStringExtra(EXTRA_NEARBY_TYPE_NAME);
 
         // Set the action bar title
-//        setTitle(typeName);
-//        toolbar.setTitle(typeName);
         getSupportActionBar().setTitle(typeName);
 
         // Enable up navigation
@@ -131,19 +125,18 @@ public class NearByGridActivity extends AppCompatActivity {
 
         //Setup adapter and ViewModel
         nearbyGridAdapter = new NearbyGridAdapter(this, picasso, (name, latitude, longitude, vh) -> {
-                    // Creates an Intent that will load the location in Google map
-                    Uri gmmIntentUri = Uri.parse(String.format("geo:%g,%g?q=%s", latitude, longitude, name));
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    startActivity(mapIntent);
-                });
-        if(isLandscapemode) { // For landscape use the gridlayout
-//            int spanCount = determineNumOfColumns();
+            // Creates an Intent that will load the location in Google map
+            Uri gmmIntentUri = Uri.parse(String.format("geo:%g,%g?q=%s", latitude, longitude, name));
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
+        if (isLandscapemode) { // For landscape use the gridlayout
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
             recyclerView.setLayoutManager(gridLayoutManager);
         } else {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(linearLayoutManager);
         }
         //Set this to false for smooth scrolling of RecyclerView
         recyclerView.setNestedScrollingEnabled(false);
@@ -182,7 +175,7 @@ public class NearByGridActivity extends AppCompatActivity {
                 // Finish the activity
                 finish();
                 return true;
-    }
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -191,20 +184,5 @@ public class NearByGridActivity extends AppCompatActivity {
         linearLayoutManagerState = recyclerView.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(STATE_LINEAR_LAYOUT_MANAGER, linearLayoutManagerState);
         super.onSaveInstanceState(outState);
-    }
-
-    /**
-     * This method dynamically determines the number of column for the RecyclerView based on
-     * screen width and density
-     *
-     * @return number of calculated columns
-     */
-    private int determineNumOfColumns() { // Not in use but will be used for landscape/tablet mode
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        Timber.d("displayMetrics.density -> " + displayMetrics.density);
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int columnWidth = (int) (recipeCardWidth / displayMetrics.density);
-        int numOfColumn = (int) dpWidth / columnWidth;
-        return numOfColumn;
     }
 }

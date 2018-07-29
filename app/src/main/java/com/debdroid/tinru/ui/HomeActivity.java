@@ -1,6 +1,5 @@
 package com.debdroid.tinru.ui;
 
-import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -16,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.repository.TinruRepository;
@@ -47,7 +46,6 @@ import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
@@ -64,9 +62,7 @@ import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    @Inject
-    TinruRepository tinruRepository;
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     @Inject
@@ -104,6 +100,8 @@ public class HomeActivity extends AppCompatActivity {
     private String currentPlacePhotoAtbrCityCountry = null;
     private HomeViewModel viewModel;
 
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Timber.d("onCreate is called");
@@ -117,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
-        if(!NetworkUtility.isOnline(this)) {
+        if (!NetworkUtility.isOnline(this)) {
             progressBarTextMsg.setVisibility(TextView.VISIBLE);
             progressBarTextMsg.setText(getString(R.string.no_network_error_msg));
             progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
@@ -145,9 +143,6 @@ public class HomeActivity extends AppCompatActivity {
 
         // Get current location of the device
         getDeviceLocation();
-
-        // Start transition
-//        startTransition();
     }
 
     /**
@@ -334,7 +329,7 @@ public class HomeActivity extends AppCompatActivity {
                     // Get the address of the location for city and country name
                     Address address = getAddressFromGeoCoder(currentPlaceLatLng.latitude,
                             currentPlaceLatLng.longitude);
-                    if(address != null) {
+                    if (address != null) {
                         currentPlaceCity = address.getLocality();
                         currentPlaceCountry = address.getCountryName();
                         currentPostalCode = address.getPostalCode();
@@ -344,8 +339,6 @@ public class HomeActivity extends AppCompatActivity {
                     } else { // Use the place name instead if the address is null
                         currentPlaceCity = currentPlaceName;
                     }
-
-                    startTransition();
 
                     // Update the ui with the details
                     updateUi();
@@ -374,7 +367,8 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * Find out the locality, country and other details of the picked up place using Geocoder
-     * @param latitude The latitude of the place
+     *
+     * @param latitude  The latitude of the place
      * @param longitude The longitude of the place
      * @return Address of the place
      */
@@ -406,12 +400,12 @@ public class HomeActivity extends AppCompatActivity {
         // Set the current City & Country
         if (currentPlaceCity != null && currentPlaceCountry != null) {
             // As per Google Place Api guideline - show the currentPlaceName which is attribution of the photo
-            currentPlacePhotoAtbrCityCountry = String.format("%s, %s, %s",currentPlaceName,
+            currentPlacePhotoAtbrCityCountry = String.format("%s, %s, %s", currentPlaceName,
                     currentPlaceCity, currentPlaceCountry);
         } else if (currentPlaceCountry == null) {
             currentPlacePhotoAtbrCityCountry = currentPlaceCity;
         } // No 'else' for 'currentPlaceCity == null' because it will have currentPlaceName if it's null
-          // based on the logic in getDeviceLocation()
+        // based on the logic in getDeviceLocation()
         currentCityCountryTextView.setText(currentPlacePhotoAtbrCityCountry);
 
         // Hide the progress bar and show the layout & fab
@@ -426,7 +420,6 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void loadLocalPlacePhoto() {
         Timber.d(("loadLocalPlacePhoto is called. currentPlaceId -> " + currentPlaceId));
-        // TODO need to check if bitmap loading needs to be optimised further
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(currentPlaceId);
         photoMetadataResponse.addOnCompleteListener(task -> {
             // Get the list of photos.
@@ -437,7 +430,6 @@ public class HomeActivity extends AppCompatActivity {
             if (photoMetadataBuffer.getCount() > 0) {
                 PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
                 // Get the attribution text.
-                //TODO need to add the attribution for all Google Place Api usage
                 CharSequence attribution = photoMetadata.getAttributions();
                 Timber.e("The photo attribution -> " + attribution.toString());
                 // Get a full-size bitmap for the photo.
@@ -453,34 +445,6 @@ public class HomeActivity extends AppCompatActivity {
             // Release the buffer to avoid memory leak
             photoMetadataBuffer.release();
         });
-    }
-
-//    /**
-//     * Save data to SharedPreference
-//     * @param key The key of the SharedPreference data
-//     * @param value The value of the SharedPReference data
-//     */
-//    private void saveDataInSharedPreference(String key, String value) {
-//        Timber.d("saveDataInSharedPreference is called");
-//        Timber.d("saveDataInSharedPreference:key - " + key);
-//        Timber.d("saveDataInSharedPreference:value - " + value);
-//
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString(key, value);
-//        editor.apply(); // Write asynchronously
-//    }
-
-    private void startTransition() {
-        Timber.d("startTransition is called");
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Slide slide = new Slide(Gravity.BOTTOM);
-            slide.addTarget(R.id.nearby_button_container_linear_layout);
-            slide.setInterpolator(AnimationUtils.loadInterpolator(
-                    this,
-                    android.R.interpolator.linear_out_slow_in));
-            slide.setDuration(5000);
-            getWindow().setEnterTransition(slide);
-        }
     }
 
     /**
@@ -511,10 +475,10 @@ public class HomeActivity extends AppCompatActivity {
                                                             double latitude, double longitude) {
         String poiLocation = null;
         Address address = getAddressFromGeoCoder(latitude, longitude);
-        if(address != null) poiLocation = address.getLocality();
+        if (address != null) poiLocation = address.getLocality();
 
         // If city is null then use the place name returned by the Place picker
-        if(poiLocation == null) {
+        if (poiLocation == null) {
             Timber.w("Location is null! Using place name instead -> " + placeName);
             poiLocation = placeName;
         }

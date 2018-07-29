@@ -1,12 +1,11 @@
 package com.debdroid.tinru.ui;
 
-import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
@@ -37,36 +36,6 @@ import timber.log.Timber;
 
 public class PointOfInterestDetailActivity extends AppCompatActivity {
 
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
-    @Inject
-    Picasso picasso;
-
-    @BindView(R.id.pb_poi_detail_activity) ProgressBar progressBar;
-    @BindView(R.id.tv_poi_detail_pb_text_msg) TextView progressMsgTextView;
-    @BindView(R.id.poi_detail_relative_layout) RelativeLayout relativeLayout;
-    @BindView(R.id.iv_poi_detail_image) ImageView imageView;
-    @BindView(R.id.tv_poi_detail_place_name) TextView nameTextView;
-    @BindView(R.id.tv_poi_detail_place_address) TextView addressTextView;
-    @BindView(R.id.tv_poi_detail_place_rating_Value) TextView ratingValueTextView;
-    @BindView(R.id.rb_poi_detail_rating_bar) RatingBar ratingBar;
-    @BindView(R.id.rb_poi_detail_user_review) TextView userReviewTextView;
-    @BindView(R.id.bt_nearby_restaurant) Button nearbyButtonRestaurant;
-    @BindView(R.id.bt_nearby_cafe) Button nearbyButtonCafe;
-    @BindView(R.id.bt_nearby_bar) Button nearbyButtonBar;
-    @BindView(R.id.bt_nearby_atm) Button nearbyButtonATM;
-    @BindView(R.id.bt_nearby_shopping) Button nearbyButtonShopping;
-    @BindView(R.id.bt_nearby_petrol_pump) Button nearbyButtonPetrolPump;
-    @BindView(R.id.poi_detail_toolbar) Toolbar toolbar;
-
-    private String placeId ;
-    private String location;
-    private String address;
-    private double latitude;
-    private double longitude;
-    private double rating;
-    private String photoReference;
-
     public static final String EXTRA_POI_DETAIL_PLACE_ID = "extra_poi_detail_place_id";
     public static final String EXTRA_POI_DETAIL_LOCATION = "extra_poi_detail_location";
     public static final String EXTRA_POI_DETAIL_ADDRESS = "extra_poi_detail_address";
@@ -74,6 +43,49 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
     public static final String EXTRA_POI_DETAIL_LATITUDE = "extra_poi_detail_latitude";
     public static final String EXTRA_POI_DETAIL_LONGITUDE = "extra_poi_detail_longitude";
     public static final String EXTRA_POI_DETAIL_PHOTO_REFERENCE = "extra_poi_detail_photo_reference";
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    Picasso picasso;
+    @BindView(R.id.pb_poi_detail_activity)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_poi_detail_pb_text_msg)
+    TextView progressMsgTextView;
+    @BindView(R.id.poi_detail_relative_layout)
+    RelativeLayout relativeLayout;
+    @BindView(R.id.iv_poi_detail_image)
+    ImageView imageView;
+    @BindView(R.id.tv_poi_detail_place_name)
+    TextView nameTextView;
+    @BindView(R.id.tv_poi_detail_place_address)
+    TextView addressTextView;
+    @BindView(R.id.tv_poi_detail_place_rating_Value)
+    TextView ratingValueTextView;
+    @BindView(R.id.rb_poi_detail_rating_bar)
+    RatingBar ratingBar;
+    @BindView(R.id.rb_poi_detail_user_review)
+    TextView userReviewTextView;
+    @BindView(R.id.bt_nearby_restaurant)
+    Button nearbyButtonRestaurant;
+    @BindView(R.id.bt_nearby_cafe)
+    Button nearbyButtonCafe;
+    @BindView(R.id.bt_nearby_bar)
+    Button nearbyButtonBar;
+    @BindView(R.id.bt_nearby_atm)
+    Button nearbyButtonATM;
+    @BindView(R.id.bt_nearby_shopping)
+    Button nearbyButtonShopping;
+    @BindView(R.id.bt_nearby_petrol_pump)
+    Button nearbyButtonPetrolPump;
+    @BindView(R.id.poi_detail_toolbar)
+    Toolbar toolbar;
+    private String placeId;
+    private String location;
+    private String address;
+    private double latitude;
+    private double longitude;
+    private double rating;
+    private String photoReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +100,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
-        if(!NetworkUtility.isOnline(this)) {
+        if (!NetworkUtility.isOnline(this)) {
             progressMsgTextView.setVisibility(TextView.VISIBLE);
             progressMsgTextView.setText(getString(R.string.no_network_error_msg));
             progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
@@ -109,17 +121,19 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 
         // Get extras from the intent
         Intent intent = getIntent();
-        if(intent.hasExtra(EXTRA_POI_DETAIL_PLACE_ID)) placeId = intent.getStringExtra(EXTRA_POI_DETAIL_PLACE_ID);
-        if(intent.hasExtra(EXTRA_POI_DETAIL_LOCATION)) location = intent.getStringExtra(EXTRA_POI_DETAIL_LOCATION);
-        if(intent.hasExtra(EXTRA_POI_DETAIL_ADDRESS)) address = intent.getStringExtra(EXTRA_POI_DETAIL_ADDRESS);
+        if (intent.hasExtra(EXTRA_POI_DETAIL_PLACE_ID))
+            placeId = intent.getStringExtra(EXTRA_POI_DETAIL_PLACE_ID);
+        if (intent.hasExtra(EXTRA_POI_DETAIL_LOCATION))
+            location = intent.getStringExtra(EXTRA_POI_DETAIL_LOCATION);
+        if (intent.hasExtra(EXTRA_POI_DETAIL_ADDRESS))
+            address = intent.getStringExtra(EXTRA_POI_DETAIL_ADDRESS);
         latitude = intent.getDoubleExtra(EXTRA_POI_DETAIL_LATITUDE, latitude);
         longitude = intent.getDoubleExtra(EXTRA_POI_DETAIL_LONGITUDE, longitude);
         rating = intent.getDoubleExtra(EXTRA_POI_DETAIL_RATING, rating);
-        if(intent.hasExtra(EXTRA_POI_DETAIL_PHOTO_REFERENCE))
+        if (intent.hasExtra(EXTRA_POI_DETAIL_PHOTO_REFERENCE))
             photoReference = intent.getStringExtra(EXTRA_POI_DETAIL_PHOTO_REFERENCE);
 
         // Set the action bar title
-//        setTitle(location);
         getSupportActionBar().setTitle(location);
         // Enable up navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -209,6 +223,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 
     /**
      * Update the ui with the data
+     *
      * @param detailResponse Response of api call that contains data for UI
      */
     private void updateUi(GooglePlacesCustomPlaceDetailResponse detailResponse) {
@@ -221,10 +236,10 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 
         nameTextView.setText(location);
         addressTextView.setText(address);
-        String formattedRatingValue = String.format("%.1f", (float)rating);
+        String formattedRatingValue = String.format("%.1f", (float) rating);
         ratingValueTextView.setText(formattedRatingValue);
-        ratingBar.setRating((float)rating);
-        if(detailResponse.getCustomPlaceDetailResult() != null) {
+        ratingBar.setRating((float) rating);
+        if (detailResponse.getCustomPlaceDetailResult() != null) {
             userReviewTextView.setText(detailResponse
                     .getCustomPlaceDetailResult().getReviews().get(0).getText());
         }
@@ -232,21 +247,18 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
         String photoReferenceUrlString = CommonUtility.buildGooglePlacesPhotoUrl(this,
                 Integer.toString(getResources().getInteger(R.integer.poi_detail_photo_download_width_size)),
                 photoReference);
-        if(photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
-//            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
-            //TODO set fallback image
+        if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
         } else {
             picasso.load(photoReferenceUrlString)
-                    //TODO add placehodler and fallback later
-//              .placeholder(CommonUtility.getFallbackImageId(position))
-//              .error(CommonUtility.getFallbackImageId(position))
+                    .placeholder(R.drawable.tinru_fallback_image)
+                    .error(R.drawable.tinru_fallback_image)
                     .into(imageView);
         }
     }
 
     private void startTransition() {
         Timber.d("startTransition is called");
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Slide slide = new Slide(Gravity.BOTTOM);
             slide.addTarget(R.id.poi_detail_nested_scroll);
             slide.setInterpolator(AnimationUtils.loadInterpolator(
@@ -259,7 +271,6 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 
     /**
      * Start Nearby activity
-     *
      * @param type     The type for which the Nearby activity is to be started
      * @param typeName The user friendly nme of the corresponding type
      */

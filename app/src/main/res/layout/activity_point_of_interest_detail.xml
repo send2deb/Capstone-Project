@@ -1,10 +1,9 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/poi_detail_coordinator_layout"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/poi_detail_app_bar_layout"
@@ -25,27 +24,29 @@
                 android:id="@+id/iv_poi_detail_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/poi_detail_image_width"
-                android:fitsSystemWindows="true"
                 android:contentDescription="@string/home_activity_layout_image_content_desc"
+                android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/tinru_home_activity_fallback_image"
+                android:src="@drawable/tinru_fallback_image"
                 android:transitionName="@string/point_of_interest_image_transition" />
-            <!-- setting itsSystemWindows="true" for toolbar moves home up and setting buttons to status bar -->
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/poi_detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="@dimen/material_design_toolbar_elevation"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/poi_detail_nested_scroll"
-        android:background="@color/color_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <include layout="@layout/point_of_interest_detail" />
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

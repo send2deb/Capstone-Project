@@ -17,6 +17,7 @@ import timber.log.Timber;
 public class CommonUtility {
     /**
      * This utility method returns the current date
+     *
      * @return Today's date in yyyy-MM-dd format
      */
     public static String getTodayDate() {
@@ -27,6 +28,7 @@ public class CommonUtility {
 
     /**
      * This utility method returns the date which is 2 days ahead of today's date  in simple yyyy-MM-dd format
+     *
      * @return Date which is 3 days ahead of Today's date in yyyy-MM-dd format
      */
     public static String getSimpleTwoDayFutureDate() {
@@ -41,6 +43,7 @@ public class CommonUtility {
 
     /**
      * This utility method returns the date parameter format for Amadeus Sandbox low fare search
+     *
      * @return Formatted date parameter for Amadeus Sandbox api call
      */
     public static String getAmadeusLowFareFlightSearchDateFormat() {
@@ -52,8 +55,9 @@ public class CommonUtility {
 
     /**
      * This utility method builds the url for Google Places Api photo call
-     * @param context Activity context
-     * @param maxWidth Width of the photo
+     *
+     * @param context        Activity context
+     * @param maxWidth       Width of the photo
      * @param photoReference Photo reference
      * @return Google Place photo api
      */
@@ -81,10 +85,11 @@ public class CommonUtility {
 
     /**
      * Save data to SharedPreference
-     * @param key The key of the SharedPreference data
+     *
+     * @param key   The key of the SharedPreference data
      * @param value The value of the SharedPReference data
      */
-    public static void saveDataInSharedPreference(SharedPreferences sharedPreferences ,String key, String value) {
+    public static void saveDataInSharedPreference(SharedPreferences sharedPreferences, String key, String value) {
         Timber.d("saveDataInSharedPreference is called");
         Timber.d("saveDataInSharedPreference:key - " + key);
         Timber.d("saveDataInSharedPreference:value - " + value);

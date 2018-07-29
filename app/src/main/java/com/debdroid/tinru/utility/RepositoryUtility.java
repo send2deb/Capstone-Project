@@ -12,6 +12,11 @@ import java.util.List;
 
 public class RepositoryUtility {
 
+    /**
+     * This method formats the nearby api data for database entity
+     * @param resultList the nearby data to be formatted
+     * @return formatted nearby api data for database
+     */
     public static List<NearbyResultEntity> buildNearbyResultEntity(List<Result> resultList) {
         List<NearbyResultEntity> nearbyResultEntities = new ArrayList<>();
         for(Result result : resultList) {
@@ -45,6 +50,11 @@ public class RepositoryUtility {
         return nearbyResultEntities;
     }
 
+    /**
+     * This method formats the points of interest api data for database entity
+     * @param textSearchResultList the points of interest data to be formatted
+     * @return the formatted points of interest data for database
+     */
     public static List<PointOfInterestResultEntity> buildPointOfInterestResultEntity
             (List<TextSearchResult> textSearchResultList) {
         List<PointOfInterestResultEntity> pointOfInterestResultEntities = new ArrayList<>();
@@ -72,6 +82,15 @@ public class RepositoryUtility {
         return pointOfInterestResultEntities;
     }
 
+    /**
+     * This method formats the user searched location data for database entity
+     * @param location the location name
+     * @param airportCode the airport code of the location
+     * @param lat the latitude of the location
+     * @param lng the longitude of the location
+     * @param datetimestamp the system generated date and time stamp
+     * @return the formatted location data for database
+     */
     public static UserSearchedLocationEntity buildUserSearchedLocationEntity(String location, String airportCode,
                                                                              double lat, double lng,
                                                                              Date datetimestamp) {

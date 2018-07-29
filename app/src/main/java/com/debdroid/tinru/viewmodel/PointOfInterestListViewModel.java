@@ -29,26 +29,18 @@ public class PointOfInterestListViewModel extends ViewModel {
         Timber.d("getPointOfInterestResultList is called");
         currentLocationPointOfInterest = locationPointOfInterest;
 
-        Timber.d("Previous location point of interest -> " + previousLocationPointOfInterest);
-        Timber.d("Current location point of interest -> " + currentLocationPointOfInterest);
-
         // When location point of interest changes, set the pointOfInterestResultEntityList to Null
         // to force data load for new location point of interest
-        if(!currentLocationPointOfInterest.equals(previousLocationPointOfInterest)) {
-            Timber.d("Current location point of interest '" + currentLocationPointOfInterest +
-                    "' not equal to previous location point of interest '" + previousLocationPointOfInterest + "'");
+        if (!currentLocationPointOfInterest.equals(previousLocationPointOfInterest)) {
             pointOfInterestResultEntityList = null;
             previousLocationPointOfInterest = currentLocationPointOfInterest;
             needFreshData = true;
         } else {
-            Timber.d("Current location point of interest '" + currentLocationPointOfInterest +
-                    "' is equal to previous location point of interest '" + previousLocationPointOfInterest + "'");
             needFreshData = false;
         }
-        if(pointOfInterestResultEntityList == null) {
-            Timber.d("pointOfInterestResultEntityList is null");
+        if (pointOfInterestResultEntityList == null) {
             pointOfInterestResultEntityList = tinruRepository
-                    .getPointOfInterestResult(locationPointOfInterest,apiKey, needFreshData);
+                    .getPointOfInterestResult(locationPointOfInterest, apiKey, needFreshData);
         }
         return pointOfInterestResultEntityList;
     }

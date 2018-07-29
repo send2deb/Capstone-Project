@@ -31,24 +31,18 @@ public class NearbyGridViewModel extends ViewModel {
         currentType = type;
         currentLocation = location;
 
-        Timber.d("Previous type & location -> " + previousType + " & " + previousLocation);
-        Timber.d("Current type & location -> " + currentType + " & " + currentLocation);
-
         // When type changes, set the nearbyResultEntityList to Null to force data load for new type
-        if(!currentType.equals(previousType) || !currentLocation.equals(previousLocation)) {
-            Timber.d("Current type and location NOT equal to previous type and location");
+        if (!currentType.equals(previousType) || !currentLocation.equals(previousLocation)) {
             nearbyResultEntityList = null;
             previousType = currentType;
             previousLocation = currentLocation;
             needFreshData = true;
         } else {
-            Timber.d("Current type and location equal to previous type and location");
             needFreshData = false;
         }
 
-        if(nearbyResultEntityList == null) {
-            Timber.d("nearbyResultEntityList is null");
-            nearbyResultEntityList = tinruRepository.getNearbyResult(latLng,radius,type,apiKey, needFreshData);
+        if (nearbyResultEntityList == null) {
+            nearbyResultEntityList = tinruRepository.getNearbyResult(latLng, radius, type, apiKey, needFreshData);
         }
         return nearbyResultEntityList;
     }

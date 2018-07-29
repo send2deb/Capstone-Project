@@ -1,6 +1,5 @@
 package com.debdroid.tinru.ui.appwidget;
 
-import android.appwidget.AppWidgetManager;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +41,6 @@ class TinruListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFacto
     private UserSearchedLocationDao userSearchedLocationDao;
     private List<UserSearchedLocationEntity> userSearchedLocationEntityList = new ArrayList<>();
     private TinruDatabase tinruDatabase;
-
 
     public TinruListRemoteViewsFactory(Context context, Intent intent) {
         Timber.d("TinruListRemoteViewsFactory constructor is called");
@@ -130,7 +128,8 @@ class TinruListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFacto
      * This is okay as it's used by Widget only and as per developer
      * guideline (https://developer.android.com/guide/topics/appwidgets/) it is okay to do the heavy lifting
      * in either getViewAt() or onDataSetChanged()
-     * @return
+     *
+     * @return user searched locations as list
      */
     private List<UserSearchedLocationEntity> getDataFromUserSearchedLocationTable() {
         Timber.d("getDataFromUserSearchedLocationTable is called");

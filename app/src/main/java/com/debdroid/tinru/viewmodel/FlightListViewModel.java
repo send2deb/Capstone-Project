@@ -24,18 +24,15 @@ public class FlightListViewModel extends ViewModel {
         this.tinruRepository = tinruRepository;
     }
 
-    public LiveData<AmadeusSandboxLowFareSearchResponse> getFlightData(String origin, 
-             String destination, boolean nonStop, String departureDate, String apiKey) {
+    public LiveData<AmadeusSandboxLowFareSearchResponse> getFlightData(String origin,
+                                                                       String destination, boolean nonStop, String departureDate, String apiKey) {
         Timber.d("getFlightData is called");
         currentOrigin = origin;
         currentDestination = destination;
 
-        Timber.d("Previous origin & destination -> " + previousOrigin + " & " + previousDestination);
-        Timber.d("Current origin & destination -> " + currentOrigin + " & " + currentDestination);
-
         // When latitude or longitude changes, set the airportCode
         // to Null to force data load for new latitude and longitude
-        if((currentOrigin != previousOrigin) || (currentDestination != previousDestination)) {
+        if ((currentOrigin != previousOrigin) || (currentDestination != previousDestination)) {
             amadeusSandboxLowFareSearchResponseLiveData = null;
             previousOrigin = currentOrigin;
             previousDestination = currentDestination;
@@ -44,7 +41,7 @@ public class FlightListViewModel extends ViewModel {
             needFreshData = false;
         }
 
-        if(amadeusSandboxLowFareSearchResponseLiveData == null) {
+        if (amadeusSandboxLowFareSearchResponseLiveData == null) {
             amadeusSandboxLowFareSearchResponseLiveData = tinruRepository
                     .getLowFareFlights(origin, destination, nonStop, departureDate, apiKey, needFreshData);
         }

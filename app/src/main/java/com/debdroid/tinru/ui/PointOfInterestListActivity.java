@@ -15,14 +15,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.debdroid.tinru.R;
 import com.debdroid.tinru.ui.adapter.PointOfInterestAdapter;
@@ -35,8 +33,6 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
-import java.util.Timer;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -47,13 +43,16 @@ import timber.log.Timber;
 
 public class PointOfInterestListActivity extends AppCompatActivity {
 
+    public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
+    public static final String EXTRA_POINT_OF_INTEREST_AIRPORT_CODE = "extra_point_of_interest_airport_code";
+    public static final String EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT = "extra_point_of_interest_appwidget_intent";
+    private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     @Inject
     Picasso picasso;
     @Inject
     SharedPreferences sharedPreferences;
-
     @BindView(R.id.pb_poi_list_activity)
     ProgressBar progressBar;
     @BindView(R.id.tv_poi_list_pb_text_msg)
@@ -64,15 +63,9 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @BindView(R.id.poi_list_toolbar)
     Toolbar toolbar;
-
     private PointOfInterestAdapter pointOfInterestAdapter;
     private Parcelable linearLayoutManagerState;
-    private final String STATE_LINEAR_LAYOUT_MANAGER = "state_linear_layout_manager";
     private InterstitialAd mInterstitialAd;
-
-    public static final String EXTRA_POINT_OF_INTEREST_LOCATION = "extra_point_of_interest_location";
-    public static final String EXTRA_POINT_OF_INTEREST_AIRPORT_CODE = "extra_point_of_interest_airport_code";
-    public static final String EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT = "extra_point_of_interest_appwidget_intent";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +80,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
         // If the device is not online then show a message and return
         // Use progress bar message to show no internet connection
-        if(!NetworkUtility.isOnline(this)) {
+        if (!NetworkUtility.isOnline(this)) {
             progressMsgTextView.setVisibility(TextView.VISIBLE);
             progressMsgTextView.setText(getString(R.string.no_network_error_msg));
             progressBar.setVisibility(ProgressBar.INVISIBLE); // Hide the progressbar
@@ -111,14 +104,13 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
         if (intent.hasExtra(EXTRA_POINT_OF_INTEREST_LOCATION)) location =
                 intent.getStringExtra(EXTRA_POINT_OF_INTEREST_LOCATION);
-        if(intent.hasExtra(EXTRA_POINT_OF_INTEREST_AIRPORT_CODE)) airportCode =
+        if (intent.hasExtra(EXTRA_POINT_OF_INTEREST_AIRPORT_CODE)) airportCode =
                 intent.getStringExtra(EXTRA_POINT_OF_INTEREST_AIRPORT_CODE);
-        if(intent.hasExtra(EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT)) isAppwidgetIntent =
+        if (intent.hasExtra(EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT)) isAppwidgetIntent =
                 intent.getBooleanExtra(EXTRA_POINT_OF_INTEREST_IS_APPWIDGET_INTENT, false);
 
 
         // Set the action bar title
-        setTitle(location);
         getSupportActionBar().setTitle(location);
         // Enable up navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -127,7 +119,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         // (i.e. destination location) to sharedpreferenes in order to Flight list activity to
         // work properly. Note that origin city and airport code will always remain same for both
         // regular start of this activity or started by appwidget
-        if(isAppwidgetIntent) {
+        if (isAppwidgetIntent) {
             Timber.d("Activity started by appwidget");
             CommonUtility.saveDataInSharedPreference(sharedPreferences,
                     getString(R.string.preference_destination_airport_city_key), location);
@@ -145,9 +137,9 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         // Initialize Ad
         initializeAd();
         //Setup adapter and ViewModel
-        pointOfInterestAdapter = new PointOfInterestAdapter(this ,picasso, (placeId, name, address,
-                                                                              latitude, longitude, rating,
-                                                                              photoReference, vh) -> {
+        pointOfInterestAdapter = new PointOfInterestAdapter(this, picasso, (placeId, name, address,
+                                                                            latitude, longitude, rating,
+                                                                            photoReference, vh) -> {
             startPointOfDetailActivity(placeId, name, address, latitude, longitude, rating, photoReference, vh);
         });
 
@@ -171,12 +163,6 @@ public class PointOfInterestListActivity extends AppCompatActivity {
                 .concat(getString(R.string.point_of_interest_query_parameter_part));
         viewModel.getPointOfInterestResultList(locationPointOfInterest, apiKey).observe(this,
                 (pointOfInterestResultEntityList) -> {
-                    Timber.d("PointOfInterestListViewModel refreshed!!");
-                    if(pointOfInterestResultEntityList.isEmpty()) {
-                        Timber.e("pointOfInterestResultEntityList is empty");
-                    } else {
-                        Timber.e("pointOfInterestResultEntityList is NOT empty");
-                    }
                     pointOfInterestAdapter.swapData(pointOfInterestResultEntityList);
                     // Hide the progressbar and associated text view
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
@@ -194,7 +180,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        if(recyclerView.getLayoutManager() != null) {
+        if (recyclerView.getLayoutManager() != null) {
             linearLayoutManagerState = recyclerView.getLayoutManager().onSaveInstanceState();
             outState.putParcelable(STATE_LINEAR_LAYOUT_MANAGER, linearLayoutManagerState);
         }
@@ -203,6 +189,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
     /**
      * Handle fab click action
+     *
      * @param view Associated view
      */
     @OnClick(R.id.fab_poi_list)
@@ -219,14 +206,15 @@ public class PointOfInterestListActivity extends AppCompatActivity {
 
     /**
      * Start the point of interest detail activity
-     * @param placeId Place id of the point of interest item
-     * @param location Location of the point of interest
-     * @param address Address of the point of interest item
-     * @param latitude Latitude of the point of interest item
-     * @param longitude Longitude of the point of interest item
-     * @param rating Rating of the point of interest item
+     *
+     * @param placeId        Place id of the point of interest item
+     * @param location       Location of the point of interest
+     * @param address        Address of the point of interest item
+     * @param latitude       Latitude of the point of interest item
+     * @param longitude      Longitude of the point of interest item
+     * @param rating         Rating of the point of interest item
      * @param photoReference Photo reference of the point of interest item
-     * @param vh ViewHolder associated with the clicked item
+     * @param vh             ViewHolder associated with the clicked item
      */
     private void startPointOfDetailActivity(String placeId, String location, String address, double latitude,
                                             double longitude, double rating, String photoReference,
@@ -247,7 +235,10 @@ public class PointOfInterestListActivity extends AppCompatActivity {
         startActivity(intent, options.toBundle());
     }
 
-    private void  initializeAd() {
+    /**
+     * This method initializes the ad
+     */
+    private void initializeAd() {
         // Initialize the MobAd
         MobileAds.initialize(this, getString(R.string.interstitial_ad_unit_id));
 
@@ -269,7 +260,7 @@ public class PointOfInterestListActivity extends AppCompatActivity {
     }
 
     /**
-     * Start flight list activity
+     * This method starts flight list activity
      */
     private void startFlightListActivity() {
         Intent intent = new Intent(this, FlightListActivity.class);

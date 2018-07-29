@@ -14,15 +14,14 @@ import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 import timber.log.Timber;
 
 public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.FlightListViewHolder> {
 
-    private AmadeusSandboxLowFareSearchResponse amadeusSandboxLowFareSearchResponse;
-    private FlightListAdapterOnClickHandler flightListAdapterOnClickHandler;
     private static final int VIEW_TYPE_EMPTY = 0;
     private static final int VIEW_TYPE_NON_EMPTY = 1;
+    private AmadeusSandboxLowFareSearchResponse amadeusSandboxLowFareSearchResponse;
+    private FlightListAdapterOnClickHandler flightListAdapterOnClickHandler;
 
     public FlightListAdapter(FlightListAdapterOnClickHandler clickHandler) {
         Timber.d("FlightListAdapter constructor is called");
@@ -32,7 +31,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     @Override
     public FlightListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
-        if(viewType == VIEW_TYPE_NON_EMPTY) {
+        if (viewType == VIEW_TYPE_NON_EMPTY) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_flight_item,
                     parent, false);
         } else {
@@ -46,7 +45,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     public void onBindViewHolder(@NonNull FlightListViewHolder holder, int position) {
         Timber.d("onBindViewHolder is called. Position -> " + position);
 
-        if(holder.getItemViewType() == VIEW_TYPE_NON_EMPTY) {
+        if (holder.getItemViewType() == VIEW_TYPE_NON_EMPTY) {
             String currency = amadeusSandboxLowFareSearchResponse.getCurrency();
             // We retrieve only direct flight, so getFlights() will always have 1 item (i.e. used 0 as index)
             // But for direct flight, getItineraries can have multiple values; for simplicity we just take
@@ -89,11 +88,8 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     @Override
     public int getItemCount() {
         if (amadeusSandboxLowFareSearchResponse == null) {
-//            Timber.d("getItemCount is called, amadeusSandboxLowFareSearchResponse is empty");
             return 1; // Return 1 instead of 0 as we are using an empty view
         } else {
-//            Timber.d("getItemCount is called, amadeusSandboxLowFareSearchResponse count -> "
-//                    + amadeusSandboxLowFareSearchResponse.getResults().size());
             // Since we use single itinerary and flight (when non-stop), so size of getResults() is what
             // we need but in case we want to use all itineraries or multiple flight then this needs change
             return amadeusSandboxLowFareSearchResponse.getResults().size();
@@ -102,7 +98,7 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
 
     @Override
     public int getItemViewType(int position) {
-        if(amadeusSandboxLowFareSearchResponse == null) {
+        if (amadeusSandboxLowFareSearchResponse == null) {
             return VIEW_TYPE_EMPTY;
         } else {
             return VIEW_TYPE_NON_EMPTY;
@@ -130,19 +126,26 @@ public class FlightListAdapter extends RecyclerView.Adapter<FlightListAdapter.Fl
     }
 
     public class FlightListViewHolder extends RecyclerView.ViewHolder {
-        @Nullable @BindView(R.id.tv_single_item_origin_city_code)
+        @Nullable
+        @BindView(R.id.tv_single_item_origin_city_code)
         TextView originCityCodeTextView;
-        @Nullable @BindView(R.id.tv_single_item_destination_city_code)
+        @Nullable
+        @BindView(R.id.tv_single_item_destination_city_code)
         TextView destinationCityCodeTextView;
-        @Nullable @BindView(R.id.tv_single_item_departure_value)
+        @Nullable
+        @BindView(R.id.tv_single_item_departure_value)
         TextView departureTextView;
-        @Nullable @BindView(R.id.tv_single_item_arrival_value)
+        @Nullable
+        @BindView(R.id.tv_single_item_arrival_value)
         TextView arrivalTextView;
-        @Nullable @BindView(R.id.tv_single_item_duration_value)
+        @Nullable
+        @BindView(R.id.tv_single_item_duration_value)
         TextView durationTextView;
-        @Nullable @BindView(R.id.tv_single_item_flight_fare_value)
+        @Nullable
+        @BindView(R.id.tv_single_item_flight_fare_value)
         TextView fareTextView;
-        @Nullable @BindView(R.id.tv_single_item_flight_number)
+        @Nullable
+        @BindView(R.id.tv_single_item_flight_number)
         TextView flightNumber;
 
         private FlightListViewHolder(final View view) {

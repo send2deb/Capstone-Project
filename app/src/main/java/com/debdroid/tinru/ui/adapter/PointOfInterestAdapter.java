@@ -26,12 +26,12 @@ import timber.log.Timber;
 
 public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterestAdapter.PointOfInterestViewHolder> {
 
+    private static final int VIEW_TYPE_EMPTY = 0;
+    private static final int VIEW_TYPE_NON_EMPTY = 1;
     private List<PointOfInterestResultEntity> pointOfInterestResultEntityList = new ArrayList<>();
     private Picasso picasso;
     private PointOfInterestAdapterOnClickHandler pointOfInterestAdapterOnClickHandler;
     private Context context;
-    private static final int VIEW_TYPE_EMPTY = 0;
-    private static final int VIEW_TYPE_NON_EMPTY = 1;
 
     public PointOfInterestAdapter(Context context, Picasso picasso,
                                   PointOfInterestAdapterOnClickHandler clickHandler) {
@@ -75,13 +75,10 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
                     Integer.toString(context.getResources().getInteger(R.integer.poi_list_photo_download_width_size)),
                     pointOfInterestPhotoReference);
             if (photoReferenceUrlString == null || photoReferenceUrlString.isEmpty()) {
-//            picasso.load(CommonUtility.getFallbackImageId(position)).into(holder.recipeImage);
-                //TODO set fallback image
             } else {
                 picasso.load(photoReferenceUrlString)
-                        //TODO add placehodler and fallback later
-//              .placeholder(CommonUtility.getFallbackImageId(position))
-//              .error(CommonUtility.getFallbackImageId(position))
+                        .placeholder(R.drawable.tinru_fallback_image)
+                        .error(R.drawable.tinru_fallback_image)
                         .into(holder.pointOfInterestImage);
             }
         } else {
@@ -100,7 +97,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
 
     @Override
     public int getItemViewType(int position) {
-        if(pointOfInterestResultEntityList.isEmpty()) {
+        if (pointOfInterestResultEntityList.isEmpty()) {
             return VIEW_TYPE_EMPTY;
         } else {
             return VIEW_TYPE_NON_EMPTY;
@@ -164,5 +161,4 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
             });
         }
     }
-
 }
