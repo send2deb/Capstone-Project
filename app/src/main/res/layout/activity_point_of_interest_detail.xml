@@ -1,11 +1,10 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/poi_detail_coordinator_layout"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/poi_detail_app_bar_layout"
@@ -18,14 +17,15 @@
             android:id="@+id/poi_detail_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/poi_detail_image_width"
-            app:contentScrim="?attr/colorPrimary"
             android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/iv_poi_detail_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/poi_detail_image_width"
+                android:fitsSystemWindows="true"
                 android:contentDescription="@string/home_activity_layout_image_content_desc"
                 android:scaleType="centerCrop"
                 android:src="@drawable/tinru_home_activity_fallback_image"
@@ -37,7 +37,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="@dimen/material_design_toolbar_elevation"
                 app:layout_collapseMode="pin"
-                android:fitsSystemWindows="false"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -46,7 +45,6 @@
         android:background="@color/color_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <include layout="@layout/point_of_interest_detail" />
     </android.support.v4.widget.NestedScrollView>
