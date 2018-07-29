@@ -12,9 +12,12 @@
         <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 
-    <style name="PoiDetailTheme" parent="BaseTheme">
+    <style name="AppTheme.PoiDetailTheme" parent="BaseTheme">
         <!-- to make the CollapsingToolbarLayout translucent for API level 19 -->
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppTheme.FlightListTheme" parent="BaseTheme">
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

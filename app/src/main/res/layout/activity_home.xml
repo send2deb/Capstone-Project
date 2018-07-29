@@ -99,6 +99,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:id="@+id/nearby_button_container_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/material_design_phone_grid_layout_margin"

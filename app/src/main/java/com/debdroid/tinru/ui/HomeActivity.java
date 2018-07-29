@@ -1,5 +1,6 @@
 package com.debdroid.tinru.ui;
 
+import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -8,13 +9,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -140,6 +145,9 @@ public class HomeActivity extends AppCompatActivity {
 
         // Get current location of the device
         getDeviceLocation();
+
+        // Start transition
+//        startTransition();
     }
 
     /**
@@ -337,6 +345,8 @@ public class HomeActivity extends AppCompatActivity {
                         currentPlaceCity = currentPlaceName;
                     }
 
+                    startTransition();
+
                     // Update the ui with the details
                     updateUi();
 
@@ -459,6 +469,19 @@ public class HomeActivity extends AppCompatActivity {
 //        editor.putString(key, value);
 //        editor.apply(); // Write asynchronously
 //    }
+
+    private void startTransition() {
+        Timber.d("startTransition is called");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide(Gravity.BOTTOM);
+            slide.addTarget(R.id.nearby_button_container_linear_layout);
+            slide.setInterpolator(AnimationUtils.loadInterpolator(
+                    this,
+                    android.R.interpolator.linear_out_slow_in));
+            slide.setDuration(5000);
+            getWindow().setEnterTransition(slide);
+        }
+    }
 
     /**
      * Start Nearby activity

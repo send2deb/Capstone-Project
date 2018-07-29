@@ -1,5 +1,6 @@
 package com.debdroid.tinru.ui;
 
+import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -272,6 +273,12 @@ public class PointOfInterestListActivity extends AppCompatActivity {
      */
     private void startFlightListActivity() {
         Intent intent = new Intent(this, FlightListActivity.class);
-        startActivity(intent);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(intent, bundle);
+        } else {
+            startActivity(intent);
+        }
     }
 }

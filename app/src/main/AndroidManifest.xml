@@ -40,19 +40,20 @@
             android:value=".ui.HomeActivity" />
         </activity>
         <activity android:name=".ui.PointOfInterestDetailActivity"
-            android:theme="@style/PoiDetailTheme"
+            android:theme="@style/AppTheme.PoiDetailTheme"
             android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.PointOfInterestListActivity" />
         </activity>
         <activity android:name=".ui.FlightListActivity"
+            android:theme="@style/AppTheme.FlightListTheme"
             android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.PointOfInterestListActivity" />
         </activity>
-        <activity android:name=".ui.NearByGridActivity" />
+        <activity android:name=".ui.NearByGridActivity"/>
 
         <receiver android:name=".ui.appwidget.TinruAppWidgetProvider">
             <intent-filter>

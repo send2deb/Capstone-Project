@@ -47,6 +47,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_nearby_item_grid"
             android:layout_above="@+id/iv_nearby_powered_by_google"
+            android:layout_below="@+id/nearby_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

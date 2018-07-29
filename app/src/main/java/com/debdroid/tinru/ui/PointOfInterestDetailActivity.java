@@ -1,12 +1,17 @@
 package com.debdroid.tinru.ui;
 
+import android.app.ActivityOptions;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -133,6 +138,7 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
                     updateUi(pointOfInterestDetail);
                 });
 
+        startTransition();
     }
 
     /**
@@ -235,6 +241,19 @@ public class PointOfInterestDetailActivity extends AppCompatActivity {
 //              .placeholder(CommonUtility.getFallbackImageId(position))
 //              .error(CommonUtility.getFallbackImageId(position))
                     .into(imageView);
+        }
+    }
+
+    private void startTransition() {
+        Timber.d("startTransition is called");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide(Gravity.BOTTOM);
+            slide.addTarget(R.id.poi_detail_nested_scroll);
+            slide.setInterpolator(AnimationUtils.loadInterpolator(
+                    this,
+                    android.R.interpolator.linear_out_slow_in));
+            slide.setDuration(300);
+            getWindow().setEnterTransition(slide);
         }
     }
 
