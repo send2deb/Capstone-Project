@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">myapp</string>
+    <string name="app_name">tinru</string>
 
     <!-- Shared Preference related string values -->
     <string name="preference_file_key">com.debdroid.tinru.PREFERENCE_FILE_KEY</string>
