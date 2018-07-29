@@ -5,6 +5,7 @@
 
     <dimen name="home_search_button_drawable_padding">10dp</dimen>
     <dimen name="home_search_button_bottom_padding">40dp</dimen>
+    <dimen name="home_search_landscape_button_bottom_padding">4dp</dimen>
     <dimen name="home_nearby_bottom_padding">4dp</dimen>
     <dimen name="home_nearby_bottom_elevation">4dp</dimen>
     <dimen name="single_nearby_item_margin">4dp</dimen>
@@ -31,5 +32,6 @@
     <dimen name="appwidget_body_text_size">25sp</dimen>
     <dimen name="powered_by_google_logo_margin">2dp</dimen>
     <dimen name="single_list_view_item_padding">16dp</dimen>
+    <dimen name="home_nearby_button_width">360dp</dimen>
 
 </resources>

@@ -413,6 +413,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout-land/activity_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout-v21/activity_home.xml">
           <value>
             <set />
@@ -484,6 +489,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/transition-v21/poi_list_enter.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values-land/bools.xml">
           <value>
             <set />
           </value>

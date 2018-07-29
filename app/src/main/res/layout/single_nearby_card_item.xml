@@ -7,7 +7,7 @@
     android:layout_gravity="center_horizontal"
     android:layout_margin="@dimen/single_nearby_item_margin"
     android:foreground="?android:attr/selectableItemBackground"
-    cardview:cardBackgroundColor="@color/colorPrimary"
+    cardview:cardBackgroundColor="@color/color_white"
     cardview:cardCornerRadius="@dimen/card_view_corner_radius"
     cardview:cardElevation="@dimen/card_view_elevation"
     cardview:cardUseCompatPadding="true">

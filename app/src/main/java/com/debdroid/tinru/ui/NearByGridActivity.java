@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,7 @@ import java.sql.Time;
 
 import javax.inject.Inject;
 
+import butterknife.BindBool;
 import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +62,9 @@ public class NearByGridActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindDimen(R.dimen.single_nearby_item_image_width)
     float recipeCardWidth;
+    @BindBool(R.bool.landscape_mode)
+    boolean isLandscapemode;
+
     private NearbyGridAdapter nearbyGridAdapter;
     private Parcelable linearLayoutManagerState;
 
@@ -132,14 +137,14 @@ public class NearByGridActivity extends AppCompatActivity {
                     mapIntent.setPackage("com.google.android.apps.maps");
                     startActivity(mapIntent);
                 });
-//        if(isTabletMode) { // For table use the gridlayout
+        if(isLandscapemode) { // For landscape use the gridlayout
 //            int spanCount = determineNumOfColumns();
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), spanCount);
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//        } else {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+            recyclerView.setLayoutManager(gridLayoutManager);
+        } else {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-//        }
+        }
         //Set this to false for smooth scrolling of RecyclerView
         recyclerView.setNestedScrollingEnabled(false);
         //Set this to false so that activity starts the page from the beginning
