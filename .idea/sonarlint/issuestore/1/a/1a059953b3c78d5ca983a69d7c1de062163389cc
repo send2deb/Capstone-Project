@@ -1,6 +1,6 @@
 
 Hsquid:S1612",Replace this lambda with a method reference.(Û¯ÔÄ8€Ý›äË,
 msquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈÚÅ8€Ý›äË,
-ssquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¶ÝÁûÿÿÿÿ8€Ý›äË,
 nsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«˜ôÿ8Ï¾œäË,
+ssquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¶ÝÁûÿÿÿÿ8€Ý›äË,
 Šsquid:S1488"iImmediately return this expression instead of assigning it to the temporary variable "stethoInterceptor".(•í½¾ýÿÿÿÿ8€Ý›äË,

@@ -1,2 +1,6 @@
 
+rsquid:S1611"QRemove the parentheses around the "amadeusSandboxLowFareSearchResponse" parameter(ùññÒüÿÿÿÿ8ã”ë¶Î,
+=squid:S1170"!Make this final field static too.(õ¡ÚŽ8ã”ë¶Î,
 csquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Í£Úø
+squid:S1450"`Remove the "flightListAdapter" field and declare it as a local variable in the relevant methods.(åÉèüÿÿÿÿÿ8ã”ë¶Î,
+ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡ÚŽ8ã”ë¶Î,

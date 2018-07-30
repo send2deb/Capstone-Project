@@ -1,28 +1,18 @@
 
-Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ8êºâ‹Ì,
-nsquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ8êºâ‹Ì,
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(–üê–ÿÿÿÿÿ8êºâ‹Ì,
-Nsquid:S1199"-Extract this nested code block into a method.(¶»Ó«ÿÿÿÿÿ8êºâ‹Ì,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›´ÕÄÿÿÿÿÿ8êºâ‹Ì,
-Isquid:S1604"(Make this anonymous inner class a lambda(¡ıÁßüÿÿÿÿ8êºâ‹Ì,
-msquid:S2259"QA "NullPointerException" could be thrown; "currentPlaceCountry" is nullable here.(èŠ®³8êºâ‹Ì,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›©äııÿÿÿÿ8êºâ‹Ì,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(äê—8êºâ‹Ì,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
-jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Æ¼¾Î8êºâ‹Ì,
-Ssquid:S2589"7Remove this expression which always evaluates to "true"(¢çˆµ8êºâ‹Ì,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(çòÿşÿÿÿÿ8êºâ‹Ì,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(–ã­8êºâ‹Ì,
-Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(›€Óß8êºâ‹Ì,
-squid:S00116"_Rename this field "PLACE_PICKER_REQUEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óñ€ıÿÿÿÿ8êºâ‹Ì,
-Psquid:S1066"/Merge this if statement with the enclosing one.(±„‘‰ıÿÿÿÿ8êºâ‹Ì,
-Lsquid:S1481"0Remove this unused "attribution" local variable.(Ñ¼ÖÕ8êºâ‹Ì,
-vsquid:UselessImportCheck"MRemove this unused import 'com.debdroid.tinru.viewmodel.NearbyGridViewModel'.(İĞ¢ô8êºâ‹Ì,
-jsquid:UselessImportCheck"<Remove this unused import 'android.arch.lifecycle.Observer'.(ŞƒşÖÿÿÿÿÿ8êºâ‹Ì,
-Tsquid:S1197"8Move the array designator from the variable to the type.(³Ûü¢8êºâ‹Ì,
-_squid:S1155">Use isEmpty() to check whether the collection is empty or not.(¦Áøÿÿÿÿ8êºâ‹Ì,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
-fsquid:S2259"EA "NullPointerException" could be thrown; "address" is nullable here.(º°Çóùÿÿÿÿ8êºâ‹Ì,
-lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8êºâ‹Ì,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8êºâ‹Ì,
+Nsquid:S1199"-Extract this nested code block into a method.(¶»Ó«ÿÿÿÿÿ8ä«î¶Î,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(×ö³–úÿÿÿÿ8ä«î¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ä«î¶Î,
+squid:S00116"_Rename this field "PLACE_PICKER_REQUEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óñ€ıÿÿÿÿ8ä«î¶Î,
+ksquid:UselessImportCheck"BRemove this unused import 'android.view.animation.AnimationUtils'.(µ¬8¯×ô¶Î,
+ssquid:UselessImportCheck"JRemove this unused import 'com.debdroid.tinru.repository.TinruRepository'.(Á„è8ûï¶Î,
+[squid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ8¯×ô¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ä«î¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ä«î¶Î,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Æ¼¾Î8ä«î¶Î,
+Psquid:S1066"/Merge this if statement with the enclosing one.(±„‘‰ıÿÿÿÿ8ä«î¶Î,
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8ä«î¶Î,
+Tsquid:S1197"8Move the array designator from the variable to the type.(ëá®8ä«î¶Î,
+_squid:UselessImportCheck"1Remove this unused import 'android.view.Gravity'.(ÎÎÎıÿÿÿÿ8¯×ô¶Î,
+csquid:UselessImportCheck"5Remove this unused import 'android.transition.Slide'.(ùê×Ÿûÿÿÿÿ8¯×ô¶Î,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(–üê–ÿÿÿÿÿ8ä«î¶Î,
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(›€Óß8ä«î¶Î,

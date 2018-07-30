@@ -58,6 +58,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/powered_by_google_logo_margin"
+            android:contentDescription="@string/google_powered_by_image_content_desc"
             android:src="@drawable/powered_by_google_light" />
     </RelativeLayout>
 </FrameLayout>

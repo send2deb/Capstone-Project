@@ -1,7 +1,9 @@
 
-†squid:S1450"eRemove the "pointOfInterestAdapter" field and declare it as a local variable in the relevant methods.(ŒŸš¯úÿÿÿÿ8«èöË,
-=squid:S1170"!Make this final field static too.(õ¡Ú8«èöË,
-Msquid:S1602",Remove useless curly braces around statement(ŠŠú—ÿÿÿÿÿ8«èöË,
-isquid:S1611"MRemove the parentheses around the "pointOfInterestResultEntityList" parameter(Öêù8«èöË,
-ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡Ú8«èöË,
-jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆóŞğ8«èöË,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆóŞğ8×Ôş¶Î,
+isquid:S1611"MRemove the parentheses around the "pointOfInterestResultEntityList" parameter(Öêù8×Ôş¶Î,
+†squid:S1450"eRemove the "pointOfInterestAdapter" field and declare it as a local variable in the relevant methods.(ŒŸš¯úÿÿÿÿ8×Ôş¶Î,
+ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡Ú8×Ôş¶Î,
+Ysquid:S00107"<Method has 8 parameters, which is greater than 7 authorized.(ÔÓÖÂ8×Ôş¶Î,
+Hsquid:S1602",Remove useless curly braces around statement(ºêàî8×Ôş¶Î,
+=squid:S1170"!Make this final field static too.(õ¡Ú8×Ôş¶Î,
+Hsquid:S1612",Replace this lambda with a method reference.(ºêàî8×Ôş¶Î,

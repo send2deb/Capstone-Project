@@ -1,7 +1,8 @@
 
 ‹squid:S4165"oRemove this useless assignment; "previouslongitude" already holds the assigned value along all execution paths.(•‚8¬í‰ŠÌ,
-Ysquid:S2589"8Remove this expression which always evaluates to "false"(îşÔÖûÿÿÿÿ8¬í‰ŠÌ,
 Ksquid:S1656"/Remove or correct this useless self-assignment.(•‚8¬í‰ŠÌ,
-zsquid:S1450"^Remove the "currentlatitude" field and declare it as a local variable in the relevant methods.(˜Ì£8ïûû‰Ì,
+Ysquid:S2589"8Remove this expression which always evaluates to "false"(îşÔÖûÿÿÿÿ8¬í‰ŠÌ,
 €squid:S1450"_Remove the "currentlongitude" field and declare it as a local variable in the relevant methods.(•³÷Ôûÿÿÿÿ8æªü‰Ì,
+zsquid:S1450"^Remove the "currentlatitude" field and declare it as a local variable in the relevant methods.(˜Ì£8ïûû‰Ì,
 }squid:S1450"\Remove the "needFreshData" field and declare it as a local variable in the relevant methods.(‰¡µ¤ùÿÿÿÿ8Àğğ‰Ì,
+Usquid:S1068"4Remove this unused "currentlongitude" private field.(•³÷Ôûÿÿÿÿ8Ñ‡–·Î,

@@ -1,12 +1,9 @@
 
-squid:S1192"tDefine a constant instead of duplicating this literal "Google place nearby api response not successful -> " 3 times.(¼’¹8€äíŒÌ,
-zsquid:S1192"YDefine a constant instead of duplicating this literal "Processing in thread -> " 5 times.(Ÿğ†èüÿÿÿÿ8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ğã8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å¡Ö8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
-tsquid:S1192"SDefine a constant instead of duplicating this literal "Error happened -> " 6 times.(ÅÔÛ¨üÿÿÿÿ8€äíŒÌ,
-Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8€äíŒÌ,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8ÃÿÍ¶Î,
+–squid:S1192"uDefine a constant instead of duplicating this literal "Google places nearby api response not successful -> " 3 times.(†ÕŸûÿÿÿÿ8ÃÿÍ¶Î,
+”squid:UselessImportCheck"kRemove this unused import 'com.debdroid.tinru.datamodel.AmadeusSandboxApi.AmadeusPointsOfInterestResponse'.(ƒÂÇ8Äù¾¶Î,
+zsquid:S1192"YDefine a constant instead of duplicating this literal "Processing in thread -> " 5 times.(Ÿğ†èüÿÿÿÿ8ÃÿÍ¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8ÃÿÍ¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8ÃÿÍ¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8ÃÿÍ¶Î,
+Dsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8ÃÿÍ¶Î,

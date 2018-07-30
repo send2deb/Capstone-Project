@@ -13,6 +13,7 @@
         android:layout_height="96dp"
         android:scaleType="centerCrop"
         android:transitionName="@string/point_of_interest_image_transition"
+        android:contentDescription="@string/point_of_interest_list_image_content_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
@@ -22,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/iv_poi_single_item_image"
         android:orientation="vertical"
-        android:paddingStart="@dimen/poi_list_left_text_padding">
+        android:paddingStart="@dimen/poi_list_left_text_padding"
+        android:paddingEnd="@dimen/poi_list_left_text_padding">
 
         <TextView
             android:id="@+id/tv_poi_single_item_name"

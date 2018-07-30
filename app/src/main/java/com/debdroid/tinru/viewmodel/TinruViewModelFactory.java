@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/**
+/*
  * Required for ViewModel Dagger Injection (Copied from Google sample
  * https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample
  */

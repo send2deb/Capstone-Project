@@ -1,6 +1,2 @@
 
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÅÄ±Êúÿÿÿÿ8Ï¤ÖóË,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ€ÿ…8Ï¤ÖóË,
-Nsquid:S1135"2Complete the task associated to this TODO comment.(ªÑ‰í8Ï¤ÖóË,
-Ssquid:S1135"2Complete the task associated to this TODO comment.(ˆ‹®¾ûÿÿÿÿ8Ï¤ÖóË,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Ï¤ÖóË,
+Fsquid:S00108")Either remove or fill this block of code.(ÃÖÂÈ8âÂ†ÊÎ,

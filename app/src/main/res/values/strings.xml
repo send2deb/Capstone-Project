@@ -35,6 +35,7 @@
     <string name="appwidget_no_data_available_msg">No data available</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="point_of_interest_image_transition">poster_image_transition</string>
+    <string name="point_of_interest_list_image_content_desc">Image of point of interest</string>
 
     <!-- add here for new type -->
 

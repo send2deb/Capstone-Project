@@ -1,0 +1,6 @@
+
+{squid:S1488"aImmediately return this expression instead of assigning it to the temporary variable "todayDate".(…îõ¦ÿÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+}squid:S1488"hImmediately return this expression instead of assigning it to the temporary variable "twoDayFutureDate".(«Ì—’
+Tsquid:S1118":Add a private constructor to hide the implicit public one.(Æ†ê‹þÿÿÿÿ
+squid:S1488"eImmediately return this expression instead of assigning it to the temporary variable "dateParameter".(²Çñõýÿÿÿÿ

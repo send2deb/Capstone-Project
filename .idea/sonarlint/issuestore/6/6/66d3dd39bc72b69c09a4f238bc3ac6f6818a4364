@@ -1,5 +1,4 @@
 
+zsquid:S1450"^Remove the "currentLocation" field and declare it as a local variable in the relevant methods.(µÑ“ü8ëš–·Î,
 vsquid:S1450"ZRemove the "currentType" field and declare it as a local variable in the relevant methods.(˜ªŸ8µÓœğË,
 }squid:S1450"\Remove the "needFreshData" field and declare it as a local variable in the relevant methods.(‰¡µ¤ùÿÿÿÿ8µÓœğË,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ş½8µÓœğË,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(™…²¶8µÓœğË,

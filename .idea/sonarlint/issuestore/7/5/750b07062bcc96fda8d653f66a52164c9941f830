@@ -1,13 +1,9 @@
 
-dsquid:UnusedPrivateMethod":Remove this unused private "determineNumOfColumns" method.(Ò¦Æ8Î¯ ŠÌ,
-squid:S1450"`Remove the "nearbyGridAdapter" field and declare it as a local variable in the relevant methods.(Ãô†¹üÿÿÿÿ8Î¯ ŠÌ,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥æôŒıÿÿÿÿ8Î¯ ŠÌ,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Î¯ ŠÌ,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ú»Ü›ûÿÿÿÿ8Î¯ ŠÌ,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Àµ®ãüÿÿÿÿ8Î¯ ŠÌ,
-squid:S1488"cImmediately return this expression instead of assigning it to the temporary variable "numOfColumn".(èò‡ˆ8Î¯ ŠÌ,
-=squid:S1170"!Make this final field static too.(õ¡Ú8Î¯ ŠÌ,
-esquid:S1611"DRemove the parentheses around the "nearbyResultEntityList" parameter(§¯µòÿÿÿÿÿ8Î¯ ŠÌ,
-ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡Ú8Î¯ ŠÌ,
-Xsquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰şÿÿÿÿ8Î¯ ŠÌ,
-osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆ¿”úÿÿÿÿ8Î¯ ŠÌ,
+=squid:S1170"!Make this final field static too.(õ¡Ú8»€ö¶Î,
+fsquid:UselessImportCheck"8Remove this unused import 'android.util.DisplayMetrics'.(Æ…Ú×ùÿÿÿÿ8İ°ù¶Î,
+lsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8»€ö¶Î,
+squid:S1450"`Remove the "nearbyGridAdapter" field and declare it as a local variable in the relevant methods.(Ãô†¹üÿÿÿÿ8»€ö¶Î,
+ƒsquid:S00116"fRename this field "STATE_LINEAR_LAYOUT_MANAGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¡Ú8»€ö¶Î,
+osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ˆ¿”úÿÿÿÿ8»€ö¶Î,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8»€ö¶Î,
+esquid:S1611"DRemove the parentheses around the "nearbyResultEntityList" parameter(§¯µòÿÿÿÿÿ8»€ö¶Î,
