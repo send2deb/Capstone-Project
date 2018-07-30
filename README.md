@@ -22,6 +22,15 @@ App uses the following
 10. [Google Places Api (SDK and Web-service)](https://cloud.google.com/maps-platform/places/)
 11. [AmadeusSandbox Api for flight search](https://sandbox.amadeus.com/)
 
+How to use this app
+-
+
+* Clone the repository.
+* The app uses two apis ([Google Places](https://cloud.google.com/maps-platform/places/) Api and [AmadeusSandbox](https://sandbox.amadeus.com/) Api), get the keys and add to 'gradle.properties' file as mentioned below.
+* Add the [Google Places](https://cloud.google.com/maps-platform/places/) api key to 'gradle.properties' as GOOGLE\_MAPS\_API\_KEY=\<your key\>
+* Add the [AmadeusSandbox](https://sandbox.amadeus.com/) api key to 'gradle.properties' as AMADEUS\_SANDBOX\_KEY=\<your key\>
+* Build and run the app
+
 Screenshots
 -
 ![](https://user-images.githubusercontent.com/33470591/43378880-2507fa0a-93e7-11e8-92df-23972b12a1a1.png)
