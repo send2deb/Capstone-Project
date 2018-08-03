@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            def propFile = rootProject.file("$rootDir/signing.properties")
+            if (propFile.exists()) {
+                def props = new Properties()
+                props.load(new FileInputStream(propFile))
+
+                storeFile file(props['STORE_FILE'])
+                storePassword props['STORE_PASSWORD']
+                keyAlias props['KEY_ALIAS']
+                keyPassword props['KEY_PASSWORD']
+            }
+        }
+    }
+    compileSdkVersion 27
+    buildToolsVersion rootProject.ext.buildToolVersion
+    defaultConfig {
+        applicationId "com.debdroid.tinru"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Add vector drawable support
+        vectorDrawables.useSupportLibrary = true
+        // Create a string variable for Google Place API key
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        // Create a string variable for Amadeus Sandbox API key
+        resValue "string", "amadeus_sandbox_key", (project.findProperty("AMADEUS_SANDBOX_KEY") ?: "")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayoutLibVersion}"
+    testImplementation "junit:junit:${rootProject.ext.junitLibVersion}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.testRunnerLibVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoLibVersion}"
+
+    //Google Play Service Dependencies
+    implementation "com.google.android.gms:play-services-places:${rootProject.ext.googlePlayServicesVersion}"
+    implementation "com.google.android.gms:play-services-location:${rootProject.ext.googlePlayServicesVersion}"
+    implementation "com.google.android.gms:play-services-ads:${rootProject.ext.googlePlayServicesVersion}"
+
+    //Gson dependency
+    implementation "com.google.code.gson:gson:${rootProject.ext.gsonLibVersion}"
+
+    //Retrofit related dependencies
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitLibVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitLibVersion}"
+
+    //okhttp dependency
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okHttpLibVersion}"
+
+    //Dependencies for Timber logging
+    implementation "com.jakewharton.timber:timber:${rootProject.ext.timberLibVersion}"
+
+    //Dagger2 dependencies
+    implementation "com.google.dagger:dagger:${rootProject.ext.daggerLibVersion}"
+
+    // Annotation processor for dagger
+    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerLibVersion}"
+
+    // Dagger android
+    implementation "com.google.dagger:dagger-android-support:${rootProject.ext.daggerLibVersion}"
+
+    // Annotation processor for dagger android
+    annotationProcessor "com.google.dagger:dagger-android-processor:${rootProject.ext.daggerLibVersion}"
+
+    //Picasso dependencies
+    implementation "com.squareup.picasso:picasso:${rootProject.ext.picassoLibVersion}"
+
+    //Butterknife dependencies
+    implementation "com.jakewharton:butterknife:${rootProject.ext.butterKnifeLibVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeLibVersion}"
+
+    //Facebook Stetho dependencies
+    implementation "com.facebook.stetho:stetho:${rootProject.ext.stethoLibVersion}"
+    implementation "com.facebook.stetho:stetho-okhttp3:${rootProject.ext.stethoLibVersion}"
+
+    //Google Architecture Components
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:${rootProject.ext.lifeCycleLibVersion}"
+
+    // Java8 support for Lifecycles
+    implementation "android.arch.lifecycle:common-java8:${rootProject.ext.lifeCycleLibVersion}"
+
+    // Room for data persistence
+    implementation "android.arch.persistence.room:runtime:${rootProject.ext.lifeCycleLibVersion}"
+    annotationProcessor "android.arch.persistence.room:compiler:${rootProject.ext.lifeCycleLibVersion}"
+}
